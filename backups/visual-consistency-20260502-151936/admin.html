@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administracao | Universo Relativo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --bg: #060a14;
+      --sidebar: #070b17;
+      --panel: #101625;
+      --panel-soft: #121a2b;
+      --line: rgba(148, 163, 184, .14);
+      --line-strong: rgba(148, 163, 184, .24);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --purple: #6d3df5;
+      --purple-strong: #7c3aed;
+      --green: #22c55e;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --blue: #3b82f6;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    .d-none { display: none !important; }
+
+    .admin-app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 292px minmax(0, 1fr);
+      background:
+        radial-gradient(circle at 75% 4%, rgba(124, 58, 237, .16), transparent 30%),
+        linear-gradient(180deg, #060a14, #090e1b 55%, #070b16);
+    }
+
+    .sidebar {
+      min-height: 100vh;
+      padding: 24px 18px;
+      border-right: 1px solid var(--line-strong);
+      background: linear-gradient(180deg, #050914, #070b17);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: sticky;
+      top: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 4px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-mark {
+      font-size: 2.2rem;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: #9b6cff;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: .88rem;
+      letter-spacing: .18em;
+      line-height: 1.15;
+    }
+
+    .nav-group-label {
+      margin: 4px 8px 8px;
+      color: #64748b;
+      font-size: .73rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 800;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 6px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 13px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #cbd5e1;
+      background: transparent;
+      text-align: left;
+      font-weight: 700;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .nav-btn svg { width: 19px; height: 19px; }
+    .nav-btn.active {
+      background: linear-gradient(135deg, #4c1d95, #5b21b6);
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(76, 29, 149, .32);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      display: grid;
+      gap: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .student-preview {
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: #dbeafe;
+      border-radius: 8px;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .admin-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #4c1d95, #7c3aed);
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .admin-profile span {
+      display: block;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .main {
+      min-width: 0;
+      padding: 28px 34px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 850;
+      color: #fff;
+    }
+
+    .page-subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .control, .select-control {
+      min-height: 42px;
+      border: 1px solid var(--line-strong);
+      background: #0d1322;
+      color: #e5e7eb;
+      border-radius: 8px;
+      padding: 0 13px;
+      outline: 0;
+    }
+
+    .control::placeholder { color: #64748b; }
+    .search {
+      min-width: 205px;
+      padding-left: 36px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 12px center;
+    }
+
+    .btn-ur {
+      min-height: 42px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #0d1322;
+      color: #e5e7eb;
+      font-weight: 800;
+    }
+
+    .btn-primary-ur {
+      border: 0;
+      color: #fff;
+      background: linear-gradient(135deg, #6d28d9, #4f46e5);
+      box-shadow: 0 12px 24px rgba(79, 70, 229, .28);
+    }
+
+    .btn-danger-ghost { color: #f87171; }
+    .btn-icon {
+      width: 34px;
+      height: 34px;
+      min-height: 34px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #cbd5e1;
+    }
+    .btn-icon.delete { color: #f43f5e; }
+    .btn-icon svg { width: 17px; height: 17px; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      min-height: 104px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(124, 58, 237, .14), rgba(15, 23, 42, .72));
+    }
+
+    .stat-card.blue { background: linear-gradient(135deg, rgba(59, 130, 246, .14), rgba(15, 23, 42, .72)); }
+    .stat-card.green { background: linear-gradient(135deg, rgba(34, 197, 94, .14), rgba(15, 23, 42, .72)); }
+    .stat-card.orange { background: linear-gradient(135deg, rgba(245, 158, 11, .14), rgba(15, 23, 42, .72)); }
+
+    .stat-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #c4b5fd;
+      background: rgba(124, 58, 237, .2);
+    }
+    .blue .stat-icon { color: #93c5fd; background: rgba(59, 130, 246, .18); }
+    .green .stat-icon { color: #86efac; background: rgba(34, 197, 94, .18); }
+    .orange .stat-icon { color: #fbbf24; background: rgba(245, 158, 11, .18); }
+    .stat-icon svg { width: 31px; height: 31px; }
+
+    .stat-card span {
+      display: block;
+      color: #cbd5e1;
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .stat-card strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1.78rem;
+      line-height: 1;
+      color: #fff;
+    }
+    .stat-card small {
+      display: block;
+      margin-top: 8px;
+      color: #94a3b8;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: rgba(15, 23, 42, .78);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+      color: #dbeafe;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+      font-size: .91rem;
+    }
+    th {
+      color: #cbd5e1;
+      font-weight: 800;
+      background: rgba(15, 23, 42, .38);
+    }
+    tr:last-child td { border-bottom: 0; }
+
+    .student-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-weight: 750;
+    }
+
+    .mini-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, #6d28d9, #4f46e5);
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    .badge-soft {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: .74rem;
+      font-weight: 850;
+    }
+    .status-active, .status-ready, .status-published { color: #86efac; background: rgba(34, 197, 94, .18); }
+    .status-inactive { color: #fb7185; background: rgba(244, 63, 94, .18); }
+    .status-missing, .status-draft { color: #fbbf24; background: rgba(245, 158, 11, .18); }
+    .status-scheduled { color: #93c5fd; background: rgba(59, 130, 246, .18); }
+    .tag-purple { color: #ddd6fe; background: rgba(124, 58, 237, .28); }
+
+    .pagination-bar {
+      min-height: 56px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      color: #94a3b8;
+      font-size: .9rem;
+    }
+
+    .pagination-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .page-btn {
+      min-width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      background: #0b1120;
+      color: #cbd5e1;
+      border-radius: 8px;
+    }
+    .page-btn.active { background: var(--purple); color: #fff; }
+    .page-btn:disabled { opacity: .45; }
+
+    .resolution-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .status-tabs {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 14px 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .status-tab {
+      border: 0;
+      background: transparent;
+      color: #cbd5e1;
+      padding: 0 0 13px;
+      font-weight: 800;
+      border-bottom: 2px solid transparent;
+    }
+    .status-tab.active { color: #c4b5fd; border-color: var(--purple); }
+    .count-pill {
+      margin-left: 6px;
+      border-radius: 4px;
+      padding: 2px 7px;
+      background: rgba(124, 58, 237, .45);
+      color: #fff;
+      font-size: .72rem;
+    }
+    .count-pill.green { background: rgba(34, 197, 94, .35); }
+    .count-pill.orange { background: rgba(245, 158, 11, .35); }
+
+    .side-panel {
+      border: 1px solid var(--line);
+      background: rgba(15, 23, 42, .92);
+      border-radius: 8px;
+      overflow: hidden;
+      position: sticky;
+      top: 20px;
+    }
+    .side-head {
+      min-height: 58px;
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .side-body {
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+    .question-preview {
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(2, 6, 23, .38);
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+    .question-preview img {
+      display: block;
+      max-width: 100%;
+      margin-top: 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    .modal-backdrop-ur {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(2, 6, 23, .72);
+      backdrop-filter: blur(10px);
+    }
+    .modal-card {
+      width: min(620px, 100%);
+      max-height: calc(100vh - 40px);
+      border: 1px solid var(--line-strong);
+      background: #0d1322;
+      border-radius: 12px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .42);
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-head, .modal-foot {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .modal-foot {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      justify-content: flex-end;
+    }
+    .modal-body {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      overflow-y: auto;
+    }
+    .modal-body .full { grid-column: 1 / -1; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #cbd5e1;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .login-shell {
+      max-width: 420px;
+      margin: 11vh auto 0;
+      padding: 28px;
+      border: 1px solid var(--line-strong);
+      background: rgba(15, 23, 42, .86);
+      border-radius: 12px;
+    }
+    .login-shell form { display: grid; gap: 14px; margin-top: 20px; }
+    .status-line {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .empty-state {
+      padding: 34px;
+      color: #94a3b8;
+      text-align: center;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .tool-card {
+      border: 1px solid var(--line);
+      background: rgba(15, 23, 42, .78);
+      border-radius: 8px;
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .tool-card strong {
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .tool-card span, .tool-card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .tool-card svg {
+      width: 24px;
+      height: 24px;
+      color: #a78bfa;
+    }
+
+    @media (max-width: 1100px) {
+      .admin-app { grid-template-columns: 1fr; }
+      .sidebar { position: relative; min-height: auto; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cards-grid { grid-template-columns: 1fr; }
+      .resolution-layout { grid-template-columns: 1fr; }
+      .side-panel { position: static; }
+    }
+
+    @media (max-width: 720px) {
+      .main { padding: 22px 16px; }
+      .topbar { display: grid; }
+      .toolbar { justify-content: stretch; }
+      .toolbar > * { width: 100%; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .modal-body { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loginShell" class="login-shell">
+    <div class="brand mb-3">
+      <div class="brand-mark">UR</div>
+      <div><strong>UNIVERSO<br>RELATIVO</strong></div>
+    </div>
+    <h1>Entrar como Admin</h1>
+    <p class="page-subtitle">Acesse o painel administrativo para gerenciar alunos, resolucoes e provas.</p>
+    <form id="adminLoginForm">
+      <div>
+        <label for="adminEmail">Email</label>
+        <input id="adminEmail" class="control w-100" type="email" autocomplete="username" required>
+      </div>
+      <div>
+        <label for="adminPassword">Senha</label>
+        <input id="adminPassword" class="control w-100" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn-ur btn-primary-ur" type="submit">Entrar</button>
+    </form>
+    <div id="adminLoginStatus" class="status-line">Carregando Firebase...</div>
+  </div>
+
+  <div id="adminApp" class="admin-app d-none">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">UR</div>
+        <div><strong>UNIVERSO<br>RELATIVO</strong></div>
+      </div>
+      <div class="nav-list">
+        <button class="nav-btn active" data-view="dashboard"><i data-lucide="layout-dashboard"></i>Dashboard</button>
+      </div>
+      <div>
+        <div class="nav-group-label">Gerenciamento</div>
+        <div class="nav-list">
+          <button class="nav-btn" data-view="students"><i data-lucide="users"></i>Alunos</button>
+          <button class="nav-btn" data-view="questions"><i data-lucide="circle-help"></i>Banco de Questões</button>
+          <button class="nav-btn" data-view="resolutions"><i data-lucide="play-square"></i>Resoluções</button>
+          <button class="nav-btn" data-view="lessons"><i data-lucide="video"></i>Aulas</button>
+          <button class="nav-btn" data-view="apostilas"><i data-lucide="file-text"></i>Apostilas</button>
+          <button class="nav-btn" data-view="exams"><i data-lucide="clipboard-list"></i>Provas</button>
+        </div>
+      </div>
+      <div>
+        <div class="nav-group-label">Configurações</div>
+        <div class="nav-list">
+          <button class="nav-btn" data-view="settings"><i data-lucide="settings"></i>Configurações</button>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <a href="index.html" class="student-preview">Visualizar como aluno <i data-lucide="external-link"></i></a>
+        <div class="admin-profile">
+          <div class="avatar">AD</div>
+          <div><strong>Admin</strong><span>Administrador</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="page" id="view-dashboard">
+        <div class="topbar">
+          <div>
+            <h1>Bem-vindo, Admin!</h1>
+            <p class="page-subtitle">Aqui esta um resumo geral da plataforma.</p>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon"><i data-lucide="users"></i></div><div><span>Alunos ativos</span><strong id="dashStudents">0</strong><small>Base atual da plataforma</small></div></article>
+          <article class="stat-card blue"><div class="stat-icon"><i data-lucide="circle-help"></i></div><div><span>Questões cadastradas</span><strong id="dashQuestions">0</strong><small>Total de questões no banco</small></div></article>
+          <article class="stat-card orange"><div class="stat-icon"><i data-lucide="play-circle"></i></div><div><span>Questões sem resolução</span><strong id="dashMissing">0</strong><small>Prioridade para gravar</small></div></article>
+          <article class="stat-card green"><div class="stat-icon"><i data-lucide="video"></i></div><div><span>Aulas publicadas</span><strong id="dashLessons">0</strong><small>Total de aulas disponíveis</small></div></article>
+        </div>
+        <div class="panel">
+          <div class="empty-state">Use o menu lateral para gerenciar alunos, resolucoes e provas.</div>
+        </div>
+      </section>
+
+      <section class="page d-none" id="view-students">
+        <div class="topbar">
+          <div><h1>Alunos</h1><p class="page-subtitle">Gerencie os alunos cadastrados na plataforma.</p></div>
+          <div class="toolbar">
+            <input id="studentSearch" class="control search" placeholder="Buscar aluno...">
+            <button class="btn-ur" id="studentFiltersBtn" type="button"><i data-lucide="filter"></i>Filtros</button>
+            <button class="btn-ur btn-primary-ur" id="newStudentBtn" type="button"><i data-lucide="plus"></i>Novo aluno</button>
+          </div>
+        </div>
+        <div id="studentFilters" class="toolbar mb-3 d-none">
+          <select id="studentClassFilter" class="select-control"><option value="">Todas as turmas</option></select>
+          <select id="studentStatusFilter" class="select-control"><option value="">Ativos</option><option value="inactive">Inativos</option><option value="all">Todos os status</option></select>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon"><i data-lucide="users"></i></div><div><span>Total de alunos</span><strong id="studentsTotal">0</strong><small>+ 18% em relacao ao mes anterior</small></div></article>
+          <article class="stat-card blue"><div class="stat-icon"><i data-lucide="graduation-cap"></i></div><div><span>Alunos ativos</span><strong id="studentsActive">0</strong><small id="studentsActivePct">0% do total</small></div></article>
+          <article class="stat-card green"><div class="stat-icon"><i data-lucide="circle-check"></i></div><div><span>Alunos online</span><strong id="studentsOnline">0</strong><small>Agora</small></div></article>
+          <article class="stat-card orange"><div class="stat-icon"><i data-lucide="user-plus"></i></div><div><span>Novos este mês</span><strong id="studentsNewMonth">0</strong><small>+ 12% em relacao ao mes anterior</small></div></article>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nome</th><th>Matrícula</th><th>Turma</th><th>Status</th><th>Último acesso</th><th>Ações</th></tr></thead>
+              <tbody id="studentsBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar"><span id="studentsSummary">Mostrando 0 alunos</span><div class="pagination-actions" id="studentsPages"></div></div>
+        </div>
+      </section>
+
+      <section class="page d-none" id="view-resolutions">
+        <div class="topbar">
+          <div><h1>Resoluções</h1><p class="page-subtitle">Adicione e gerencie os links das resoluções em vídeo das questões.</p></div>
+          <div class="toolbar">
+            <input id="resolutionSearch" class="control search" placeholder="Buscar questão...">
+            <select id="resolutionDiscipline" class="select-control"><option value="">Disciplina</option></select>
+            <select id="resolutionSubject" class="select-control"><option value="">Assunto</option></select>
+            <select id="resolutionStatus" class="select-control"><option value="">Status</option><option value="ready">Com resolução</option><option value="missing">Sem resolução</option></select>
+            <button class="btn-ur btn-danger-ghost" id="clearResolutionFilters" type="button">Limpar filtros</button>
+          </div>
+        </div>
+        <div class="resolution-layout">
+          <div class="panel">
+            <div class="status-tabs">
+              <button class="status-tab active" data-resolution-tab="">Todas <span class="count-pill" id="resCountAll">0</span></button>
+              <button class="status-tab" data-resolution-tab="ready">Com resolução <span class="count-pill green" id="resCountReady">0</span></button>
+              <button class="status-tab" data-resolution-tab="missing">Sem resolução <span class="count-pill orange" id="resCountMissing">0</span></button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>#</th><th>Enunciado</th><th>Disciplina</th><th>Assunto</th><th>Subassunto</th><th>Status</th><th>Link da resolução</th><th>Ações</th></tr></thead>
+                <tbody id="resolutionsBody"></tbody>
+              </table>
+            </div>
+            <div class="pagination-bar"><span id="resolutionsSummary">Mostrando 0 questões</span><div class="pagination-actions" id="resolutionsPages"></div></div>
+          </div>
+          <aside class="side-panel" id="resolutionEditor">
+            <div class="side-head"><strong>Editar resolução</strong><button class="btn-icon" id="closeResolutionEditor" type="button"><i data-lucide="x"></i></button></div>
+            <div class="side-body">
+              <div>
+                <strong id="resolutionQuestionNumber">Questão</strong>
+                <div class="question-preview" id="resolutionQuestionText">Selecione uma questão para adicionar o link de resolução.</div>
+              </div>
+              <div>
+                <label for="resolutionVideoInput">Link do YouTube</label>
+                <input id="resolutionVideoInput" class="control w-100" placeholder="https://www.youtube.com/watch?v=...">
+                <small class="page-subtitle">Cole o link completo do vídeo do YouTube.</small>
+              </div>
+              <div class="toolbar justify-content-start">
+                <button class="btn-ur" id="cancelResolutionBtn" type="button">Cancelar</button>
+                <button class="btn-ur btn-primary-ur" id="saveResolutionBtn" type="button">Salvar resolução</button>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page d-none" id="view-exams">
+        <div class="topbar">
+          <div><h1>Provas ENEM</h1><p class="page-subtitle">Publique PDFs de provas do ENEM e cadastre as resoluções das questões de Física.</p></div>
+          <div class="toolbar">
+            <input id="examSearch" class="control search" placeholder="Buscar prova...">
+            <button class="btn-ur btn-primary-ur" id="newExamBtn" type="button"><i data-lucide="plus"></i>Nova prova ENEM</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Prova</th><th>Tipo</th><th>PDF</th><th>Questões Física</th><th>Resoluções</th><th>Status</th><th>Data</th><th>Ações</th></tr></thead>
+              <tbody id="examsBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar"><span id="examsSummary">Mostrando 0 provas</span><div class="pagination-actions" id="examsPages"></div></div>
+        </div>
+      </section>
+
+      <section class="page d-none" id="view-questions">
+        <div class="topbar">
+          <div><h1>Banco de Questões</h1><p class="page-subtitle">Consulte, filtre e edite rapidamente as questões cadastradas.</p></div>
+          <div class="toolbar">
+            <input id="questionBankSearch" class="control search" placeholder="Buscar questão...">
+            <select id="questionBankDiscipline" class="select-control"><option value="">Disciplina</option></select>
+            <select id="questionBankSubject" class="select-control"><option value="">Assunto</option></select>
+            <select id="questionBankSubtopic" class="select-control"><option value="">Subassunto</option></select>
+            <button class="btn-ur btn-primary-ur" id="newQuestionBtn" type="button"><i data-lucide="plus"></i>Nova questão</button>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card blue"><div class="stat-icon"><i data-lucide="circle-help"></i></div><div><span>Total de questões</span><strong id="questionTotal">0</strong><small>Banco completo</small></div></article>
+          <article class="stat-card green"><div class="stat-icon"><i data-lucide="check-circle-2"></i></div><div><span>Com resolução</span><strong id="questionReady">0</strong><small>Vídeo vinculado</small></div></article>
+          <article class="stat-card orange"><div class="stat-icon"><i data-lucide="alert-circle"></i></div><div><span>Sem resolução</span><strong id="questionMissing">0</strong><small>Prioridade de gravação</small></div></article>
+          <article class="stat-card"><div class="stat-icon"><i data-lucide="layers"></i></div><div><span>Cards</span><strong id="questionCardsCount">0</strong><small>Listas e módulos</small></div></article>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>#</th><th>Enunciado</th><th>Disciplina</th><th>Assunto</th><th>Subassunto</th><th>Card</th><th>Status</th><th>Ações</th></tr></thead>
+              <tbody id="questionBankBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar"><span id="questionBankSummary">Mostrando 0 questões</span><div class="pagination-actions" id="questionBankPages"></div></div>
+        </div>
+      </section>
+
+      <section class="page d-none" id="view-lessons">
+        <div class="topbar">
+          <div><h1>Aulas</h1><p class="page-subtitle">Gerencie os cards de aula publicados na plataforma.</p></div>
+          <div class="toolbar"><input id="lessonSearch" class="control search" placeholder="Buscar aula..."><button class="btn-ur btn-primary-ur" id="newLessonBtn" type="button"><i data-lucide="plus"></i>Nova aula</button></div>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Aula</th><th>Disciplina</th><th>Assunto</th><th>Subassunto</th><th>Status</th><th>Link</th><th>Ações</th></tr></thead>
+              <tbody id="lessonsBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar"><span id="lessonsSummary">Mostrando 0 aulas</span><div></div></div>
+        </div>
+      </section>
+
+      <section class="page d-none" id="view-apostilas">
+        <div class="topbar">
+          <div><h1>Apostilas</h1><p class="page-subtitle">Confira os materiais em PDF vinculados às trilhas.</p></div>
+          <div class="toolbar"><input id="apostilaSearch" class="control search" placeholder="Buscar apostila..."></div>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Apostila</th><th>Disciplina</th><th>Assunto</th><th>Subassunto</th><th>Status</th><th>Arquivo</th><th>Ações</th></tr></thead>
+              <tbody id="apostilasBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-bar"><span id="apostilasSummary">Mostrando 0 apostilas</span><div></div></div>
+        </div>
+      </section>
+
+      <section class="page d-none" id="view-settings">
+        <div class="topbar"><div><h1>Configurações</h1><p class="page-subtitle">Ferramentas rápidas para manutenção do painel.</p></div></div>
+        <div class="cards-grid">
+          <article class="tool-card"><i data-lucide="refresh-cw"></i><strong>Recarregar dados</strong><p>Atualiza alunos, questões, cards e provas.</p><button class="btn-ur" id="reloadAllBtn" type="button">Recarregar</button></article>
+          <article class="tool-card"><i data-lucide="database"></i><strong>Collections em uso</strong><span>Alunos: alunos + students</span><span>Questões: questoes</span><span>Provas: exams</span></article>
+          <article class="tool-card"><i data-lucide="gauge"></i><strong>Desempenho</strong><p>Busca usa índice local normalizado após o carregamento inicial.</p><span id="cacheStatus">Cache aguardando dados.</span></article>
+        </div>
+        <div class="panel"><div class="empty-state" id="settingsStatus">Painel pronto.</div></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="studentModal" class="modal-backdrop-ur d-none">
+    <form class="modal-card" id="studentForm">
+      <div class="modal-head"><strong id="studentModalTitle">Novo aluno</strong><button class="btn-icon" data-close-modal type="button"><i data-lucide="x"></i></button></div>
+      <div class="modal-body">
+        <div class="full"><label for="studentNameInput">Nome</label><input id="studentNameInput" class="control w-100" required></div>
+        <div><label for="studentMatriculaInput">Matrícula</label><input id="studentMatriculaInput" class="control w-100" required></div>
+        <div><label for="studentTurmaInput">Turma</label><input id="studentTurmaInput" class="control w-100"></div>
+        <div><label for="studentPasswordInput">Senha inicial</label><input id="studentPasswordInput" class="control w-100" type="password"></div>
+        <div><label for="studentActiveInput">Status</label><select id="studentActiveInput" class="select-control w-100"><option value="true">Ativo</option><option value="false">Inativo</option></select></div>
+      </div>
+      <div class="modal-foot"><button class="btn-ur" data-close-modal type="button">Cancelar</button><button class="btn-ur btn-primary-ur" type="submit">Salvar aluno</button></div>
+    </form>
+  </div>
+
+  <div id="examModal" class="modal-backdrop-ur d-none">
+    <form class="modal-card" id="examForm">
+      <div class="modal-head"><strong id="examModalTitle">Nova prova ENEM</strong><button class="btn-icon" data-close-exam type="button"><i data-lucide="x"></i></button></div>
+      <div class="modal-body">
+        <div class="full"><label for="examTitleInput">Título</label><input id="examTitleInput" class="control w-100" required></div>
+        <div><label for="examYearInput">Ano</label><input id="examYearInput" class="control w-100" type="number" min="1998" max="2100" placeholder="2024" required></div>
+        <div><label for="examTypeInput">Tipo</label><select id="examTypeInput" class="select-control w-100"><option selected>ENEM</option><option>PPL</option><option>Reaplicação</option></select></div>
+        <div><label for="examStatusInput">Status</label><select id="examStatusInput" class="select-control w-100"><option value="publicado">Publicado</option><option value="rascunho" selected>Rascunho</option><option value="agendado">Agendado</option></select></div>
+        <div><label for="examQuestionsInput">Questões de Física</label><input id="examQuestionsInput" class="control w-100" type="number" min="0" value="0"></div>
+        <div class="full"><label for="examPdfInput">Link do PDF da prova</label><input id="examPdfInput" class="control w-100" placeholder="https://.../prova-enem.pdf"></div>
+        <div class="full"><label for="examPdfFileInput">Ou enviar PDF</label><input id="examPdfFileInput" class="control w-100" type="file" accept="application/pdf"></div>
+        <div class="full"><label for="examResolutionsInput">Resoluções por questão</label><textarea id="examResolutionsInput" class="control w-100" rows="7" placeholder="Uma por linha:&#10;1 | https://youtu.be/...&#10;2 | https://youtu.be/..."></textarea></div>
+      </div>
+      <div class="modal-foot"><button class="btn-ur" data-close-exam type="button">Cancelar</button><button class="btn-ur btn-primary-ur" type="submit">Salvar prova ENEM</button></div>
+    </form>
+  </div>
+
+  <div id="questionModal" class="modal-backdrop-ur d-none">
+    <form class="modal-card" id="questionForm">
+      <div class="modal-head"><strong>Nova questão</strong><button class="btn-icon" data-close-question type="button"><i data-lucide="x"></i></button></div>
+      <div class="modal-body">
+        <div><label for="qModalDiscipline">Disciplina</label><select id="qModalDiscipline" class="select-control w-100" required></select></div>
+        <div><label for="qModalSubject">Assunto</label><select id="qModalSubject" class="select-control w-100" required></select></div>
+        <div><label for="qModalSubtopic">Subassunto</label><select id="qModalSubtopic" class="select-control w-100" required></select></div>
+        <div><label for="qModalCard">Card</label><select id="qModalCard" class="select-control w-100" required></select></div>
+        <div class="full"><label for="qModalStatement">Enunciado</label><textarea id="qModalStatement" class="control w-100" rows="4" required></textarea></div>
+        <div><label for="qModalA">Alternativa A</label><input id="qModalA" class="control w-100" required></div>
+        <div><label for="qModalB">Alternativa B</label><input id="qModalB" class="control w-100" required></div>
+        <div><label for="qModalC">Alternativa C</label><input id="qModalC" class="control w-100" required></div>
+        <div><label for="qModalD">Alternativa D</label><input id="qModalD" class="control w-100" required></div>
+        <div><label for="qModalE">Alternativa E</label><input id="qModalE" class="control w-100" required></div>
+        <div><label for="qModalCorrect">Resposta correta</label><select id="qModalCorrect" class="select-control w-100" required><option value="A">A</option><option value="B">B</option><option value="C">C</option><option value="D">D</option><option value="E">E</option></select></div>
+        <div class="full"><label for="qModalResolution">Resolução em texto</label><textarea id="qModalResolution" class="control w-100" rows="3"></textarea></div>
+      </div>
+      <div class="modal-foot"><button class="btn-ur" data-close-question type="button">Cancelar</button><button class="btn-ur btn-primary-ur" type="submit">Salvar questão</button></div>
+    </form>
+  </div>
+
+  <div id="lessonModal" class="modal-backdrop-ur d-none">
+    <form class="modal-card" id="lessonForm">
+      <div class="modal-head"><strong>Nova aula</strong><button class="btn-icon" data-close-lesson type="button"><i data-lucide="x"></i></button></div>
+      <div class="modal-body">
+        <div><label for="lessonModalDiscipline">Disciplina</label><select id="lessonModalDiscipline" class="select-control w-100" required></select></div>
+        <div><label for="lessonModalSubject">Assunto</label><select id="lessonModalSubject" class="select-control w-100" required></select></div>
+        <div><label for="lessonModalSubtopic">Subassunto</label><select id="lessonModalSubtopic" class="select-control w-100" required></select></div>
+        <div><label for="lessonModalTitle">Título</label><input id="lessonModalTitle" class="control w-100" required></div>
+        <div class="full"><label for="lessonModalDescription">Descrição</label><input id="lessonModalDescription" class="control w-100"></div>
+        <div class="full"><label for="lessonModalUrl">Link do YouTube</label><input id="lessonModalUrl" class="control w-100" placeholder="https://www.youtube.com/watch?v=..."></div>
+      </div>
+      <div class="modal-foot"><button class="btn-ur" data-close-lesson type="button">Cancelar</button><button class="btn-ur btn-primary-ur" type="submit">Salvar aula</button></div>
+    </form>
+  </div>
+
+  <div id="apostilaModal" class="modal-backdrop-ur d-none">
+    <form class="modal-card" id="apostilaForm">
+      <div class="modal-head"><strong id="apostilaModalTitle">Trocar apostila</strong><button class="btn-icon" data-close-apostila type="button"><i data-lucide="x"></i></button></div>
+      <div class="modal-body">
+        <div class="full"><label>Apostila</label><input id="apostilaModalName" class="control w-100" disabled></div>
+        <div><label>Disciplina</label><input id="apostilaModalDiscipline" class="control w-100" disabled></div>
+        <div><label>Subassunto</label><input id="apostilaModalSubtopic" class="control w-100" disabled></div>
+        <div class="full"><label for="apostilaModalUrl">Link público do PDF</label><input id="apostilaModalUrl" class="control w-100" type="url" placeholder="https://..." required></div>
+        <p class="full text-muted" id="apostilaModalStatus"></p>
+      </div>
+      <div class="modal-foot"><button class="btn-ur" data-close-apostila type="button">Cancelar</button><button class="btn-ur btn-primary-ur" id="apostilaSaveBtn" type="submit">Salvar apostila</button></div>
+    </form>
+  </div>
+
+  <script src="firebase-config.js?v=12"></script>
+  <script src="banco_questoes.js?v=14"></script>
+  <script type="module" src="firebase-service.js?v=34"></script>
+  <script type="module">
+    const $ = (id) => document.getElementById(id);
+    const state = {
+      students: [],
+      questions: [],
+      questionIndex: [],
+      cards: [],
+      exams: [],
+      catalog: null,
+      loadErrors: [],
+      view: "dashboard",
+      selectedStudent: null,
+      selectedQuestion: null,
+      selectedExam: null,
+      selectedApostila: null,
+      pages: { students: 1, resolutions: 1, exams: 1, questionBank: 1 },
+      pageSize: 10
+    };
+    const ADMIN_CACHE_KEY = "universo_relativo_admin_cache_v2";
+
+    function iconRefresh() {
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function cleanText(text) {
+      const div = document.createElement("div");
+      div.innerHTML = String(text || "").replace(/<br\s*\/?>/gi, " ");
+      return (div.textContent || div.innerText || "").replace(/\s+/g, " ").trim();
+    }
+
+    function initials(name) {
+      return String(name || "AD").split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]).join("").toUpperCase() || "AD";
+    }
+
+    function hasResolution(q) {
+      return Boolean(String(q.resolutionVideoUrl || q.videoUrl || "").trim() || q.hasResolution === true);
+    }
+
+    function videoUrl(q) {
+      return String(q.resolutionVideoUrl || q.videoUrl || "").trim();
+    }
+
+    function localQuestionId(question, fallback) {
+      return String(question && (question.id || question.codigo || question.uid || question.numero) || fallback || "").trim();
+    }
+
+    function normalizeAnswer(value) {
+      const raw = String(value ?? "").trim().toUpperCase();
+      if (["A", "B", "C", "D", "E"].includes(raw)) return raw;
+      const numeric = Number(raw);
+      if (Number.isInteger(numeric) && numeric >= 0 && numeric <= 4) return "ABCDE"[numeric];
+      if (Number.isInteger(numeric) && numeric >= 1 && numeric <= 5) return "ABCDE"[numeric - 1];
+      return raw;
+    }
+
+    function normalizeLocalQuestion(question, meta, index) {
+      const id = localQuestionId(question, meta.disciplinaId + "-" + meta.assuntoId + "-" + meta.subassuntoId + "-" + index);
+      const video = String(question.resolutionVideoUrl || question.videoUrl || question.videoEmbedUrl || "").trim();
+      return {
+        ...question,
+        id,
+        enunciado: question.enunciado || question.pergunta || "",
+        alternativas: Array.isArray(question.alternativas) ? question.alternativas : [],
+        respostaCorreta: normalizeAnswer(question.respostaCorreta ?? question.correta ?? question.gabarito),
+        resolucaoTexto: question.resolucaoTexto || question.resolucaoEscrita || "",
+        resolutionVideoUrl: video,
+        videoUrl: video,
+        hasResolution: Boolean(video || question.hasResolution === true),
+        disciplinaId: meta.disciplinaId,
+        disciplinaLabel: meta.disciplinaLabel,
+        assuntoId: meta.assuntoId,
+        assuntoLabel: meta.assuntoLabel,
+        subassuntoId: meta.subassuntoId,
+        subassuntoLabel: meta.subassuntoLabel,
+        cardTitulo: question.origem || meta.subassuntoLabel || meta.assuntoLabel,
+        ativo: question.ativo !== false,
+        origemColecao: "local"
+      };
+    }
+
+    function collectLocalQuestions() {
+      const banco = window.BANCO_QUESTOES || {};
+      const disciplinas = banco.disciplinas || {};
+      const questions = [];
+      Object.entries(disciplinas).forEach(([disciplinaId, disciplina]) => {
+        const disciplinaLabel = disciplina.label || disciplinaId;
+        Object.entries(disciplina.assuntos || {}).forEach(([assuntoId, assunto]) => {
+          const assuntoLabel = assunto.label || assuntoId;
+          const pushList = (items, subassuntoId, subassuntoLabel) => {
+            (items || []).forEach((question, index) => {
+              questions.push(normalizeLocalQuestion(question, {
+                disciplinaId,
+                disciplinaLabel,
+                assuntoId,
+                assuntoLabel,
+                subassuntoId: subassuntoId || assuntoId,
+                subassuntoLabel: subassuntoLabel || assuntoLabel
+              }, index));
+            });
+          };
+          pushList(assunto.questoes, assuntoId, assuntoLabel);
+          Object.entries(assunto.subassuntos || {}).forEach(([subassuntoId, subassunto]) => {
+            pushList(subassunto.questoes, subassuntoId, subassunto.label || subassuntoId);
+          });
+        });
+      });
+      return questions.filter((question) => question.id && question.ativo !== false);
+    }
+
+    function mergeQuestions(localQuestions, remoteQuestions) {
+      const map = new Map();
+      localQuestions.forEach((question) => map.set(String(question.id), question));
+      remoteQuestions.forEach((question) => {
+        const id = String(question.id || "");
+        if (!id) return;
+        const local = map.get(id) || {};
+        map.set(id, { ...local, ...question, origemColecao: question.origemColecao || "firestore" });
+      });
+      return Array.from(map.values()).filter((question) => question.ativo !== false);
+    }
+
+    function collectCatalogCards(catalog) {
+      const cards = [];
+      Object.entries(((catalog || {}).disciplinas) || {}).forEach(([disciplinaId, disciplina]) => {
+        Object.entries(disciplina.assuntos || {}).forEach(([assuntoId, assunto]) => {
+          Object.entries(assunto.subassuntos || {}).forEach(([subassuntoId, subassunto]) => {
+            (subassunto.cards || []).forEach((card, index) => {
+              const id = String(card.id || card.cardId || [disciplinaId, assuntoId, subassuntoId, index].join("-"));
+              cards.push({
+                ...card,
+                id,
+                titulo: card.titulo || card.label || subassunto.label || id,
+                tipo: card.tipo || "questoes",
+                disciplinaId,
+                disciplinaLabel: disciplina.label || disciplinaId,
+                assuntoId,
+                assuntoLabel: assunto.label || assuntoId,
+                subassuntoId,
+                subassuntoLabel: subassunto.label || subassuntoId,
+                ativo: card.ativo !== false,
+                origemColecao: "catalogo"
+              });
+            });
+          });
+        });
+      });
+      return cards.filter((card) => card.id && card.ativo !== false);
+    }
+
+    function mergeCards(localCards, remoteCards) {
+      const map = new Map();
+      localCards.forEach((card) => map.set(String(card.id), card));
+      remoteCards.forEach((card) => {
+        const id = String(card.id || "");
+        if (!id) return;
+        const local = map.get(id) || {};
+        map.set(id, { ...local, ...card, origemColecao: card.origemColecao || "firestore" });
+      });
+      return Array.from(map.values()).filter((card) => card.ativo !== false);
+    }
+
+    function normalizeSearch(text) {
+      return String(text || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function rebuildQuestionIndex() {
+      state.questionIndex = state.questions.map((question, index) => ({
+        question,
+        index,
+        text: normalizeSearch([
+          cleanText(question.enunciado),
+          question.disciplinaLabel,
+          question.disciplinaId,
+          question.assuntoLabel,
+          question.assuntoId,
+          question.subassuntoLabel,
+          question.subassuntoId,
+          question.cardTitulo
+        ].join(" "))
+      }));
+    }
+
+    function fmtNumber(value) {
+      return Number(value || 0).toLocaleString("pt-BR");
+    }
+
+    function fmtDate(value) {
+      if (!value) return "Sem registro";
+      if (typeof value === "string") return value;
+      if (value.seconds) return new Date(value.seconds * 1000).toLocaleString("pt-BR");
+      return "Sem registro";
+    }
+
+    function paginate(items, pageKey) {
+      const totalPages = Math.max(1, Math.ceil(items.length / state.pageSize));
+      const page = Math.min(Math.max(1, state.pages[pageKey] || 1), totalPages);
+      state.pages[pageKey] = page;
+      return { page, totalPages, items: items.slice((page - 1) * state.pageSize, page * state.pageSize) };
+    }
+
+    function renderPages(targetId, pageKey, totalPages) {
+      const wrap = $(targetId);
+      const page = state.pages[pageKey] || 1;
+      const buttons = [];
+      buttons.push('<button class="page-btn" data-page-delta="-1"' + (page <= 1 ? " disabled" : "") + '><i data-lucide="chevron-left"></i></button>');
+      for (let i = 1; i <= Math.min(totalPages, 3); i++) {
+        buttons.push('<button class="page-btn ' + (i === page ? "active" : "") + '" data-page="' + i + '">' + i + '</button>');
+      }
+      if (totalPages > 4) buttons.push('<button class="page-btn" disabled>...</button><button class="page-btn" data-page="' + totalPages + '">' + totalPages + '</button>');
+      buttons.push('<button class="page-btn" data-page-delta="1"' + (page >= totalPages ? " disabled" : "") + '><i data-lucide="chevron-right"></i></button>');
+      wrap.innerHTML = buttons.join("");
+      wrap.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (btn.dataset.page) state.pages[pageKey] = Number(btn.dataset.page);
+          if (btn.dataset.pageDelta) state.pages[pageKey] += Number(btn.dataset.pageDelta);
+          renderAll();
+        });
+      });
+    }
+
+    function setView(view) {
+      state.view = view;
+      document.querySelectorAll(".page").forEach((page) => page.classList.add("d-none"));
+      $("view-" + view).classList.remove("d-none");
+      document.querySelectorAll(".nav-btn").forEach((btn) => btn.classList.toggle("active", btn.dataset.view === view));
+      if (view === "resolutions" && !state.selectedQuestion && filteredQuestions()[0]) selectQuestion(filteredQuestions()[0]);
+      iconRefresh();
+    }
+
+    function filteredStudents() {
+      const term = $("studentSearch").value.trim().toLowerCase();
+      const turma = $("studentClassFilter").value;
+      const status = $("studentStatusFilter").value;
+      return state.students.filter((student) => {
+        const active = student.ativo !== false;
+        if (term && !String(student.nome + " " + student.matricula).toLowerCase().includes(term)) return false;
+        if (turma && student.turma !== turma) return false;
+        if (!status && !active) return false;
+        if (status === "inactive" && active) return false;
+        if (status === "all") return true;
+        return true;
+      });
+    }
+
+    function filteredQuestions() {
+      const term = normalizeSearch($("resolutionSearch").value);
+      const disciplina = $("resolutionDiscipline").value;
+      const assunto = $("resolutionSubject").value;
+      const status = $("resolutionStatus").value;
+      return state.questionIndex.filter((entry) => {
+        const q = entry.question;
+        const ready = hasResolution(q);
+        if (term && !entry.text.includes(term)) return false;
+        if (disciplina && q.disciplinaId !== disciplina) return false;
+        if (assunto && q.assuntoId !== assunto) return false;
+        if (status === "ready" && !ready) return false;
+        if (status === "missing" && ready) return false;
+        return true;
+      }).map((entry) => entry.question);
+    }
+
+    function filteredQuestionBank() {
+      const term = normalizeSearch($("questionBankSearch").value);
+      const disciplina = $("questionBankDiscipline").value;
+      const assunto = $("questionBankSubject").value;
+      const subassunto = $("questionBankSubtopic").value;
+      return state.questionIndex.filter((entry) => {
+        const q = entry.question;
+        if (term && !entry.text.includes(term)) return false;
+        if (disciplina && q.disciplinaId !== disciplina) return false;
+        if (assunto && q.assuntoId !== assunto) return false;
+        if (subassunto && q.subassuntoId !== subassunto) return false;
+        return true;
+      }).map((entry) => entry.question);
+    }
+
+    function filteredCardsByType(type, inputId) {
+      const term = normalizeSearch($(inputId).value);
+      return state.cards.filter((card) => {
+        if (String(card.tipo || "").trim() !== type) return false;
+        if (term && !normalizeSearch([card.titulo, card.disciplinaLabel, card.assuntoLabel, card.subassuntoLabel].join(" ")).includes(term)) return false;
+        return true;
+      });
+    }
+
+    function filteredExams() {
+      const term = normalizeSearch($("examSearch").value);
+      return state.exams.filter((exam) => {
+        if (!term) return true;
+        return normalizeSearch([exam.titulo, exam.tipo, exam.ano, exam.pdfUrl].join(" ")).includes(term);
+      });
+    }
+
+    function renderDashboard() {
+      const active = state.students.filter((s) => s.ativo !== false).length;
+      const missing = state.questions.filter((q) => !hasResolution(q)).length;
+      const publishedLessons = state.cards.filter((card) => String(card.tipo || "") === "aula" && card.ativo !== false && String(card.videoUrl || "").trim()).length;
+      $("dashStudents").textContent = fmtNumber(active);
+      $("dashQuestions").textContent = fmtNumber(state.questions.length);
+      $("dashMissing").textContent = fmtNumber(missing);
+      $("dashLessons").textContent = fmtNumber(publishedLessons);
+    }
+
+    function renderStudents() {
+      const activeStudents = state.students.filter((s) => s.ativo !== false);
+      const total = activeStudents.length;
+      const active = total;
+      const online = activeStudents.filter((s) => String(s.sessionIdAtivo || "").trim()).length;
+      const classes = [...new Set(activeStudents.map((s) => s.turma).filter(Boolean))].sort();
+      const currentClass = $("studentClassFilter").value;
+      $("studentClassFilter").innerHTML = '<option value="">Todas as turmas</option>' + classes.map((c) => '<option value="' + c + '">' + c + '</option>').join("");
+      $("studentClassFilter").value = currentClass;
+      $("studentsTotal").textContent = fmtNumber(total);
+      $("studentsActive").textContent = fmtNumber(active);
+      $("studentsActivePct").textContent = total ? Math.round((active / total) * 100) + "% do total" : "0% do total";
+      $("studentsOnline").textContent = fmtNumber(online);
+      $("studentsNewMonth").textContent = fmtNumber(activeStudents.filter((s) => fmtDate(s.criadoEm).includes(new Date().getFullYear())).length);
+
+      const list = filteredStudents();
+      const page = paginate(list, "students");
+      $("studentsBody").innerHTML = page.items.length ? page.items.map((s) => (
+        '<tr><td><div class="student-name"><span class="mini-avatar">' + initials(s.nome) + '</span>' + (s.nome || "Aluno") + '</div></td>' +
+        '<td>' + (s.matricula || "-") + '</td><td>' + (s.turma || "-") + '</td>' +
+        '<td><span class="badge-soft ' + (s.ativo !== false ? "status-active" : "status-inactive") + '">' + (s.ativo !== false ? "Ativo" : "Inativo") + '</span></td>' +
+        '<td>' + fmtDate(s.lastLogin || s.ultimoAcessoEm || (s.progresso && s.progresso.ultimoAcessoEm)) + '</td>' +
+        '<td><button class="btn-icon" data-student-view="' + s.uid + '"><i data-lucide="eye"></i></button><button class="btn-icon" data-student-edit="' + s.uid + '"><i data-lucide="pencil"></i></button><button class="btn-icon delete" data-student-delete="' + s.uid + '"><i data-lucide="trash-2"></i></button></td></tr>'
+      )).join("") : '<tr><td colspan="6"><div class="empty-state">Nenhum aluno encontrado.</div></td></tr>';
+      $("studentsSummary").textContent = "Mostrando " + (list.length ? ((page.page - 1) * state.pageSize + 1) : 0) + " a " + Math.min(page.page * state.pageSize, list.length) + " de " + list.length + " alunos";
+      renderPages("studentsPages", "students", page.totalPages);
+    }
+
+    function renderResolutions() {
+      const all = filteredQuestions();
+      const readyCount = all.filter(hasResolution).length;
+      const missingCount = all.length - readyCount;
+      $("resCountAll").textContent = fmtNumber(all.length);
+      $("resCountReady").textContent = fmtNumber(readyCount);
+      $("resCountMissing").textContent = fmtNumber(missingCount);
+      const page = paginate(all, "resolutions");
+      $("resolutionsBody").innerHTML = page.items.length ? page.items.map((q, index) => {
+        const ready = hasResolution(q);
+        const number = (page.page - 1) * state.pageSize + index + 1;
+        const url = videoUrl(q);
+        return '<tr data-question-id="' + q.id + '"><td>' + number + '</td><td>' + cleanText(q.enunciado).slice(0, 82) + '...</td><td><span class="badge-soft tag-purple">' + (q.disciplinaLabel || q.disciplinaId || "-") + '</span></td><td>' + (q.assuntoLabel || q.assuntoId || "-") + '</td><td>' + (q.subassuntoLabel || q.subassuntoId || "-") + '</td><td><span class="badge-soft ' + (ready ? "status-ready" : "status-missing") + '">' + (ready ? "Com resolução" : "Sem resolução") + '</span></td><td>' + (url ? '<a class="text-info" href="' + url + '" target="_blank">youtu.be/... <i data-lucide="external-link"></i></a>' : "-") + '</td><td><button class="btn-icon" data-resolution-edit="' + q.id + '"><i data-lucide="pencil"></i></button><button class="btn-icon delete"><i data-lucide="trash-2"></i></button></td></tr>';
+      }).join("") : '<tr><td colspan="8"><div class="empty-state">Nenhuma questão encontrada.</div></td></tr>';
+      $("resolutionsSummary").textContent = "Mostrando " + (all.length ? ((page.page - 1) * state.pageSize + 1) : 0) + " a " + Math.min(page.page * state.pageSize, all.length) + " de " + all.length + " questões";
+      renderPages("resolutionsPages", "resolutions", page.totalPages);
+    }
+
+    function renderQuestionBank() {
+      const ready = state.questions.filter(hasResolution).length;
+      $("questionTotal").textContent = fmtNumber(state.questions.length);
+      $("questionReady").textContent = fmtNumber(ready);
+      $("questionMissing").textContent = fmtNumber(state.questions.length - ready);
+      $("questionCardsCount").textContent = fmtNumber(state.cards.filter((card) => String(card.tipo || "") === "questoes").length);
+
+      const list = filteredQuestionBank();
+      const page = paginate(list, "questionBank");
+      $("questionBankBody").innerHTML = page.items.length ? page.items.map((q, index) => {
+        const number = (page.page - 1) * state.pageSize + index + 1;
+        return '<tr><td>' + number + '</td><td>' + cleanText(q.enunciado).slice(0, 100) + '...</td><td><span class="badge-soft tag-purple">' + (q.disciplinaLabel || q.disciplinaId || "-") + '</span></td><td>' + (q.assuntoLabel || q.assuntoId || "-") + '</td><td>' + (q.subassuntoLabel || q.subassuntoId || "-") + '</td><td>' + (q.cardTitulo || q.cardId || "-") + '</td><td><span class="badge-soft ' + (hasResolution(q) ? "status-ready" : "status-missing") + '">' + (hasResolution(q) ? "Com resolução" : "Sem resolução") + '</span></td><td><button class="btn-icon" data-qbank-resolution="' + q.id + '"><i data-lucide="play-square"></i></button><button class="btn-icon" data-qbank-edit="' + q.id + '"><i data-lucide="pencil"></i></button><button class="btn-icon delete" data-qbank-delete="' + q.id + '"><i data-lucide="trash-2"></i></button></td></tr>';
+      }).join("") : '<tr><td colspan="8"><div class="empty-state">Nenhuma questão encontrada.</div></td></tr>';
+      $("questionBankSummary").textContent = "Mostrando " + (list.length ? ((page.page - 1) * state.pageSize + 1) : 0) + " a " + Math.min(page.page * state.pageSize, list.length) + " de " + list.length + " questões";
+      renderPages("questionBankPages", "questionBank", page.totalPages);
+    }
+
+    function renderLessonsAndApostilas() {
+      const lessons = filteredCardsByType("aula", "lessonSearch");
+      $("lessonsBody").innerHTML = lessons.length ? lessons.map((card) => {
+        const canRemove = String(card.origem || "") === "admin" || Boolean(card.videoUrl);
+        return '<tr><td>' + (card.titulo || "Aula") + '</td><td>' + (card.disciplinaLabel || card.disciplinaId || "-") + '</td><td>' + (card.assuntoLabel || card.assuntoId || "-") + '</td><td>' + (card.subassuntoLabel || card.subassuntoId || "-") + '</td><td><span class="badge-soft ' + (card.videoUrl ? "status-published" : "status-draft") + '">' + (card.videoUrl ? "Publicada" : "Rascunho") + '</span></td><td>' + (card.videoUrl ? '<a class="text-info" href="' + card.videoUrl + '" target="_blank">Abrir</a>' : "-") + '</td><td>' + (canRemove ? '<button class="btn-icon delete" data-lesson-delete="' + card.id + '"><i data-lucide="trash-2"></i></button>' : '-') + '</td></tr>';
+      }).join("") : '<tr><td colspan="7"><div class="empty-state">Nenhuma aula encontrada.</div></td></tr>';
+      $("lessonsSummary").textContent = "Mostrando " + lessons.length + " aulas";
+
+      const apostilas = filteredCardsByType("apostila", "apostilaSearch");
+      $("apostilasBody").innerHTML = apostilas.length ? apostilas.map((card) => (
+        '<tr><td>' + (card.titulo || "Apostila") + '</td><td>' + (card.disciplinaLabel || card.disciplinaId || "-") + '</td><td>' + (card.assuntoLabel || card.assuntoId || "-") + '</td><td>' + (card.subassuntoLabel || card.subassuntoId || "-") + '</td><td><span class="badge-soft ' + (card.apostilaUrl ? "status-published" : "status-draft") + '">' + (card.apostilaUrl ? "Publicada" : "Rascunho") + '</span></td><td>' + (card.apostilaUrl ? '<a class="text-info" href="' + card.apostilaUrl + '" target="_blank">Abrir PDF</a>' : "-") + '</td><td><button class="btn-icon" data-apostila-edit="' + card.id + '"><i data-lucide="link"></i></button>' + (card.apostilaUrl ? '<button class="btn-icon delete" data-apostila-delete="' + card.id + '"><i data-lucide="trash-2"></i></button>' : '') + '</td></tr>'
+      )).join("") : '<tr><td colspan="7"><div class="empty-state">Nenhuma apostila encontrada.</div></td></tr>';
+      $("apostilasSummary").textContent = "Mostrando " + apostilas.length + " apostilas";
+    }
+
+    function renderExams() {
+      const list = filteredExams();
+      const page = paginate(list, "exams");
+      $("examsBody").innerHTML = page.items.length ? page.items.map((exam) => {
+        const statusClass = exam.status === "publicado" ? "status-published" : exam.status === "agendado" ? "status-scheduled" : "status-draft";
+        const questions = Array.isArray(exam.questoes) ? exam.questoes : [];
+        const totalQuestions = Number(exam.questoesTotal || questions.length || 0);
+        const ready = questions.filter((questao) => String(questao.video || questao.resolutionVideoUrl || "").trim()).length;
+        const pdf = String(exam.pdfUrl || exam.pdf || "").trim();
+        return '<tr><td><strong>' + (exam.titulo || ("ENEM " + (exam.ano || ""))) + '</strong><br><small>' + (exam.ano || "-") + '</small></td><td>' + (exam.tipo || "ENEM") + '</td><td>' + (pdf ? '<a class="text-info" href="' + pdf + '" target="_blank">Abrir PDF</a>' : "-") + '</td><td>' + totalQuestions + '</td><td><span class="badge-soft ' + (ready ? "status-ready" : "status-missing") + '">' + ready + '/' + totalQuestions + '</span></td><td><span class="badge-soft ' + statusClass + '">' + (exam.status || "rascunho") + '</span></td><td>' + (exam.data || fmtDate(exam.criadoEm)) + '</td><td><button class="btn-icon" data-exam-view="' + exam.id + '"><i data-lucide="eye"></i></button><button class="btn-icon" data-exam-edit="' + exam.id + '"><i data-lucide="pencil"></i></button><button class="btn-icon" data-exam-copy="' + exam.id + '"><i data-lucide="copy"></i></button><button class="btn-icon delete" data-exam-delete="' + exam.id + '"><i data-lucide="trash-2"></i></button></td></tr>';
+      }).join("") : '<tr><td colspan="8"><div class="empty-state">Nenhuma prova ENEM encontrada.</div></td></tr>';
+      $("examsSummary").textContent = "Mostrando " + (list.length ? ((page.page - 1) * state.pageSize + 1) : 0) + " a " + Math.min(page.page * state.pageSize, list.length) + " de " + list.length + " provas";
+      renderPages("examsPages", "exams", page.totalPages);
+    }
+
+    function renderAll() {
+      renderDashboard();
+      renderStudents();
+      renderResolutions();
+      renderQuestionBank();
+      renderLessonsAndApostilas();
+      renderExams();
+      $("cacheStatus").textContent = state.questionIndex.length + " questões indexadas para busca local.";
+      $("settingsStatus").textContent = state.loadErrors.length
+        ? "Algumas consultas falharam: " + state.loadErrors.join(" | ")
+        : "Dados carregados: " + state.students.length + " alunos, " + state.questions.length + " questões, " + state.cards.length + " cards.";
+      iconRefresh();
+    }
+
+    function salvarCacheAdmin() {
+      try {
+        localStorage.setItem(ADMIN_CACHE_KEY, JSON.stringify({
+          savedAt: Date.now(),
+          students: state.students,
+          questions: state.questions,
+          cards: state.cards,
+          exams: state.exams,
+          catalog: state.catalog
+        }));
+      } catch (error) {
+        // Cache local e apenas uma melhoria de velocidade; se falhar, o painel continua normal.
+      }
+    }
+
+    function aplicarCacheAdmin() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(ADMIN_CACHE_KEY) || "null");
+        if (!cached || !cached.savedAt) return false;
+
+        state.students = Array.isArray(cached.students) ? cached.students : [];
+        state.questions = Array.isArray(cached.questions) ? cached.questions : [];
+        state.cards = Array.isArray(cached.cards) ? cached.cards : [];
+        state.exams = Array.isArray(cached.exams) ? cached.exams : [];
+        state.catalog = cached.catalog || { disciplinas: {} };
+        rebuildQuestionIndex();
+        fillCatalogFilters();
+        renderAll();
+        $("settingsStatus").textContent = "Mostrando dados salvos enquanto atualizo o painel...";
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    function registrarFalhaCarga(label, error) {
+      const message = label + ": " + (error && error.message ? error.message : "falha ao carregar");
+      if (!state.loadErrors.includes(message)) {
+        state.loadErrors.push(message);
+      }
+    }
+
+    function atualizarPainelCarregado(status) {
+      fillCatalogFilters();
+      renderAll();
+      if (status) $("settingsStatus").textContent = status;
+      salvarCacheAdmin();
+    }
+
+    function selectQuestion(question) {
+      state.selectedQuestion = question;
+      $("resolutionQuestionNumber").textContent = "Questão #" + (state.questions.indexOf(question) + 1);
+      $("resolutionQuestionText").innerHTML = cleanText(question.enunciado) + (question.imagem && question.imagem.src ? '<img src="' + question.imagem.src + '" alt="' + (question.imagem.alt || "Imagem da questão") + '">' : "");
+      $("resolutionVideoInput").value = videoUrl(question);
+      iconRefresh();
+    }
+
+    async function loadData() {
+      state.loadErrors = [];
+      aplicarCacheAdmin();
+
+      const localQuestions = collectLocalQuestions();
+      if (localQuestions.length) {
+        state.questions = mergeQuestions(localQuestions, state.questions);
+        rebuildQuestionIndex();
+        atualizarPainelCarregado("Carregando dados atualizados do Firebase...");
+      } else {
+        renderAll();
+      }
+
+      const alunosPromise = window.authService.listarAlunos()
+        .then((students) => {
+          state.students = Array.isArray(students) ? students : [];
+          atualizarPainelCarregado("Alunos atualizados. Carregando restante do painel...");
+        })
+        .catch((error) => registrarFalhaCarga("alunos", error));
+
+      const catalogoPromise = window.authService.listarCatalogoQuestoes()
+        .then((catalog) => {
+          state.catalog = catalog || { disciplinas: {} };
+          state.cards = mergeCards(collectCatalogCards(state.catalog), state.cards);
+          atualizarPainelCarregado("Catalogo atualizado. Carregando questoes e cards...");
+        })
+        .catch((error) => registrarFalhaCarga("catalogo", error));
+
+      const questoesPromise = window.authService.listarQuestoesAdmin({})
+        .then((questions) => {
+          state.questions = mergeQuestions(localQuestions, Array.isArray(questions) ? questions : []);
+          rebuildQuestionIndex();
+          atualizarPainelCarregado("Questoes atualizadas. Carregando cards e provas...");
+        })
+        .catch((error) => registrarFalhaCarga("questoes", error));
+
+      const cardsPromise = window.authService.listarCardsGerenciados({})
+        .then((cards) => {
+          state.cards = mergeCards(collectCatalogCards(state.catalog), Array.isArray(cards) ? cards : []);
+          atualizarPainelCarregado("Cards atualizados. Finalizando painel...");
+        })
+        .catch((error) => registrarFalhaCarga("cards", error));
+
+      const provasPromise = loadExams()
+        .then(() => atualizarPainelCarregado("Provas atualizadas. Finalizando painel..."))
+        .catch((error) => {
+          state.exams = [];
+          registrarFalhaCarga("provas", error);
+        });
+
+      await Promise.allSettled([alunosPromise, catalogoPromise, questoesPromise, cardsPromise, provasPromise]);
+      atualizarPainelCarregado(state.loadErrors.length ? "Painel atualizado com avisos." : "Dados atualizados com sucesso.");
+    }
+
+    async function loadExams() {
+      if (window.authService.listarProvasAdmin) {
+        const exams = await window.authService.listarProvasAdmin();
+        state.exams = exams;
+      } else {
+        state.exams = [];
+      }
+    }
+
+    function fillCatalogFilters() {
+      enrichCatalogFromData();
+      const disciplinas = Object.entries((state.catalog && state.catalog.disciplinas) || {});
+      const currentDiscipline = $("resolutionDiscipline").value;
+      const currentQuestionDiscipline = $("questionBankDiscipline").value;
+      const currentQuestionSubject = $("questionBankSubject").value;
+      const currentQuestionSubtopic = $("questionBankSubtopic").value;
+      $("resolutionDiscipline").innerHTML = '<option value="">Disciplina</option>' + disciplinas.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      $("resolutionDiscipline").value = currentDiscipline;
+      $("questionBankDiscipline").innerHTML = $("resolutionDiscipline").innerHTML;
+      $("questionBankDiscipline").value = currentQuestionDiscipline;
+      $("questionBankSubject").value = currentQuestionSubject;
+      $("questionBankSubtopic").value = currentQuestionSubtopic;
+      fillSubjectFilter();
+    }
+
+    function ensureCatalogPath(disciplinaId, disciplinaLabel, assuntoId, assuntoLabel, subassuntoId, subassuntoLabel) {
+      if (!disciplinaId) return;
+      if (!state.catalog) state.catalog = { disciplinas: {} };
+      if (!state.catalog.disciplinas) state.catalog.disciplinas = {};
+      if (!state.catalog.disciplinas[disciplinaId]) state.catalog.disciplinas[disciplinaId] = { label: disciplinaLabel || disciplinaId, assuntos: {} };
+      const disciplina = state.catalog.disciplinas[disciplinaId];
+      if (assuntoId && !disciplina.assuntos[assuntoId]) disciplina.assuntos[assuntoId] = { label: assuntoLabel || assuntoId, subassuntos: {} };
+      const assunto = assuntoId ? disciplina.assuntos[assuntoId] : null;
+      if (assunto && subassuntoId && !assunto.subassuntos[subassuntoId]) assunto.subassuntos[subassuntoId] = { label: subassuntoLabel || subassuntoId, cards: [] };
+    }
+
+    function enrichCatalogFromData() {
+      state.cards.forEach((card) => ensureCatalogPath(card.disciplinaId, card.disciplinaLabel, card.assuntoId, card.assuntoLabel, card.subassuntoId, card.subassuntoLabel));
+      state.questions.forEach((q) => ensureCatalogPath(q.disciplinaId, q.disciplinaLabel, q.assuntoId, q.assuntoLabel, q.subassuntoId, q.subassuntoLabel));
+    }
+
+    function fillSubjectFilter() {
+      const disciplina = ((state.catalog && state.catalog.disciplinas) || {})[$("resolutionDiscipline").value];
+      const assuntos = Object.entries((disciplina && disciplina.assuntos) || {});
+      const current = $("resolutionSubject").value;
+      $("resolutionSubject").innerHTML = '<option value="">Assunto</option>' + assuntos.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      $("resolutionSubject").value = current;
+      fillQuestionBankSubjectFilter();
+    }
+
+    function fillQuestionBankSubjectFilter() {
+      const disciplina = ((state.catalog && state.catalog.disciplinas) || {})[$("questionBankDiscipline").value];
+      const assuntos = Object.entries((disciplina && disciplina.assuntos) || {});
+      const current = $("questionBankSubject").value;
+      $("questionBankSubject").innerHTML = '<option value="">Assunto</option>' + assuntos.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      $("questionBankSubject").value = current;
+      fillQuestionBankSubtopicFilter();
+    }
+
+    function fillQuestionBankSubtopicFilter() {
+      const disciplina = ((state.catalog && state.catalog.disciplinas) || {})[$("questionBankDiscipline").value];
+      const assunto = disciplina && disciplina.assuntos ? disciplina.assuntos[$("questionBankSubject").value] : null;
+      const subtopics = Object.entries((assunto && assunto.subassuntos) || {});
+      const current = $("questionBankSubtopic").value;
+      $("questionBankSubtopic").innerHTML = '<option value="">Subassunto</option>' + subtopics.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      $("questionBankSubtopic").value = subtopics.some(([id]) => id === current) ? current : "";
+    }
+
+    function openStudentModal(student = null) {
+      state.selectedStudent = student;
+      $("studentModalTitle").textContent = student ? "Editar aluno" : "Novo aluno";
+      $("studentNameInput").value = student ? student.nome || "" : "";
+      $("studentMatriculaInput").value = student ? student.matricula || "" : "";
+      $("studentMatriculaInput").disabled = Boolean(student);
+      $("studentTurmaInput").value = student ? student.turma || "" : "";
+      $("studentPasswordInput").value = "";
+      $("studentPasswordInput").required = !student;
+      $("studentActiveInput").value = student && student.ativo === false ? "false" : "true";
+      $("studentModal").classList.remove("d-none");
+      iconRefresh();
+    }
+
+    function openExamModal(exam = null) {
+      state.selectedExam = exam;
+      $("examModalTitle").textContent = exam ? "Editar prova ENEM" : "Nova prova ENEM";
+      $("examTitleInput").value = exam ? exam.titulo || "" : "";
+      $("examYearInput").value = exam ? exam.ano || "" : "";
+      $("examTypeInput").value = exam ? exam.tipo || "ENEM" : "ENEM";
+      $("examStatusInput").value = exam ? exam.status || "rascunho" : "rascunho";
+      $("examQuestionsInput").value = exam ? Number(exam.questoesTotal || (Array.isArray(exam.questoes) ? exam.questoes.length : 0) || 0) : 0;
+      $("examPdfInput").value = exam ? exam.pdfUrl || exam.pdf || "" : "";
+      $("examPdfFileInput").value = "";
+      $("examResolutionsInput").value = exam ? formatExamResolutions(exam.questoes || []) : "";
+      $("examModal").classList.remove("d-none");
+      iconRefresh();
+    }
+
+    function formatExamResolutions(questoes) {
+      return (Array.isArray(questoes) ? questoes : [])
+        .filter((questao) => String(questao.video || questao.resolutionVideoUrl || "").trim())
+        .map((questao) => String(questao.numero || "") + " | " + String(questao.video || questao.resolutionVideoUrl || "").trim())
+        .join("\n");
+    }
+
+    function parseExamQuestions(total, text) {
+      const map = new Map();
+      String(text || "").split(/\r?\n/).forEach((line) => {
+        const clean = line.trim();
+        if (!clean) return;
+        const match = clean.match(/^(\d+)\s*(?:[|;-]\s*)?(.*)$/);
+        if (!match) return;
+        const numero = Number(match[1]);
+        const video = String(match[2] || "").trim();
+        if (!numero) return;
+        map.set(numero, video);
+      });
+      const max = Math.max(Number(total || 0), ...Array.from(map.keys()), 0);
+      return Array.from({ length: max }, (_, index) => {
+        const numero = index + 1;
+        const video = map.get(numero) || "";
+        return {
+          numero,
+          titulo: "Questão " + numero,
+          video,
+          resolutionVideoUrl: video,
+          status: video ? "com-resolucao" : "nao-iniciada"
+        };
+      });
+    }
+
+    function openQuestionModal() {
+      $("questionForm").reset();
+      fillQuestionModalDisciplines();
+      $("questionModal").classList.remove("d-none");
+      iconRefresh();
+    }
+
+    function openLessonModal() {
+      $("lessonForm").reset();
+      fillLessonModalDisciplines();
+      $("lessonModal").classList.remove("d-none");
+      iconRefresh();
+    }
+
+    function openApostilaModal(card) {
+      if (!card) return;
+      state.selectedApostila = card;
+      $("apostilaForm").reset();
+      $("apostilaModalTitle").textContent = card.apostilaUrl ? "Trocar apostila" : "Adicionar apostila";
+      $("apostilaModalName").value = card.titulo || "Apostila";
+      $("apostilaModalDiscipline").value = card.disciplinaLabel || card.disciplinaId || "";
+      $("apostilaModalSubtopic").value = card.subassuntoLabel || card.subassuntoId || "";
+      $("apostilaModalUrl").value = card.apostilaUrl || "";
+      $("apostilaModalStatus").textContent = "";
+      $("apostilaSaveBtn").disabled = false;
+      $("apostilaSaveBtn").textContent = "Salvar apostila";
+      $("apostilaModal").classList.remove("d-none");
+      iconRefresh();
+    }
+
+    function fillQuestionModalDisciplines() {
+      const disciplinas = Object.entries((state.catalog && state.catalog.disciplinas) || {});
+      $("qModalDiscipline").innerHTML = '<option value="">Disciplina</option>' + disciplinas.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      if ($("questionBankDiscipline").value) $("qModalDiscipline").value = $("questionBankDiscipline").value;
+      fillQuestionModalSubjects();
+    }
+
+    function fillQuestionModalSubjects() {
+      const disciplina = ((state.catalog && state.catalog.disciplinas) || {})[$("qModalDiscipline").value];
+      const assuntos = Object.entries((disciplina && disciplina.assuntos) || {});
+      $("qModalSubject").innerHTML = '<option value="">Assunto</option>' + assuntos.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      if ($("questionBankSubject").value) $("qModalSubject").value = $("questionBankSubject").value;
+      fillQuestionModalSubtopics();
+    }
+
+    function fillQuestionModalSubtopics() {
+      const disciplina = ((state.catalog && state.catalog.disciplinas) || {})[$("qModalDiscipline").value];
+      const assunto = disciplina && disciplina.assuntos ? disciplina.assuntos[$("qModalSubject").value] : null;
+      const subtopics = Object.entries((assunto && assunto.subassuntos) || {});
+      $("qModalSubtopic").innerHTML = '<option value="">Subassunto</option>' + subtopics.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      if ($("questionBankSubtopic").value) $("qModalSubtopic").value = $("questionBankSubtopic").value;
+      fillQuestionModalCards();
+    }
+
+    function fillQuestionModalCards() {
+      const cards = state.cards.filter((card) =>
+        card.disciplinaId === $("qModalDiscipline").value &&
+        card.assuntoId === $("qModalSubject").value &&
+        card.subassuntoId === $("qModalSubtopic").value &&
+        !["aula", "apostila"].includes(String(card.tipo || ""))
+      );
+      $("qModalCard").innerHTML = '<option value="">Card</option>' + cards.map((card) => '<option value="' + card.id + '">' + (card.titulo || card.id) + '</option>').join("");
+    }
+
+    function fillLessonModalDisciplines() {
+      const disciplinas = Object.entries((state.catalog && state.catalog.disciplinas) || {});
+      $("lessonModalDiscipline").innerHTML = '<option value="">Disciplina</option>' + disciplinas.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      fillLessonModalSubjects();
+    }
+
+    function fillLessonModalSubjects() {
+      const disciplina = ((state.catalog && state.catalog.disciplinas) || {})[$("lessonModalDiscipline").value];
+      const assuntos = Object.entries((disciplina && disciplina.assuntos) || {});
+      $("lessonModalSubject").innerHTML = '<option value="">Assunto</option>' + assuntos.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+      fillLessonModalSubtopics();
+    }
+
+    function fillLessonModalSubtopics() {
+      const disciplina = ((state.catalog && state.catalog.disciplinas) || {})[$("lessonModalDiscipline").value];
+      const assunto = disciplina && disciplina.assuntos ? disciplina.assuntos[$("lessonModalSubject").value] : null;
+      const subtopics = Object.entries((assunto && assunto.subassuntos) || {});
+      $("lessonModalSubtopic").innerHTML = '<option value="">Subassunto</option>' + subtopics.map(([id, item]) => '<option value="' + id + '">' + (item.label || id) + '</option>').join("");
+    }
+
+    function closeModals() {
+      $("studentModal").classList.add("d-none");
+      $("examModal").classList.add("d-none");
+      $("questionModal").classList.add("d-none");
+      $("lessonModal").classList.add("d-none");
+      $("apostilaModal").classList.add("d-none");
+      state.selectedApostila = null;
+    }
+
+    function bindEvents() {
+      document.querySelectorAll(".nav-btn").forEach((btn) => btn.addEventListener("click", () => setView(btn.dataset.view)));
+      ["studentSearch", "studentClassFilter", "studentStatusFilter", "resolutionSearch", "resolutionSubject", "resolutionStatus", "examSearch", "questionBankSearch", "questionBankSubject", "questionBankSubtopic", "lessonSearch", "apostilaSearch"].forEach((id) => {
+        $(id).addEventListener("input", () => { state.pages.students = 1; state.pages.resolutions = 1; state.pages.exams = 1; state.pages.questionBank = 1; renderAll(); });
+      });
+      $("resolutionDiscipline").addEventListener("change", () => { fillSubjectFilter(); state.pages.resolutions = 1; renderAll(); });
+      $("questionBankDiscipline").addEventListener("change", () => { $("questionBankSubject").value = ""; $("questionBankSubtopic").value = ""; fillQuestionBankSubjectFilter(); state.pages.questionBank = 1; renderAll(); });
+      $("questionBankSubject").addEventListener("change", () => { $("questionBankSubtopic").value = ""; fillQuestionBankSubtopicFilter(); state.pages.questionBank = 1; renderAll(); });
+      $("studentFiltersBtn").addEventListener("click", () => $("studentFilters").classList.toggle("d-none"));
+      $("newStudentBtn").addEventListener("click", () => openStudentModal());
+      $("newExamBtn").addEventListener("click", () => openExamModal());
+      document.querySelectorAll("[data-close-modal], [data-close-exam], [data-close-question], [data-close-lesson], [data-close-apostila]").forEach((btn) => btn.addEventListener("click", closeModals));
+      $("clearResolutionFilters").addEventListener("click", () => {
+        $("resolutionSearch").value = "";
+        $("resolutionDiscipline").value = "";
+        fillSubjectFilter();
+        $("resolutionStatus").value = "";
+        state.pages.resolutions = 1;
+        renderAll();
+      });
+      document.querySelectorAll("[data-resolution-tab]").forEach((tab) => tab.addEventListener("click", () => {
+        document.querySelectorAll("[data-resolution-tab]").forEach((item) => item.classList.remove("active"));
+        tab.classList.add("active");
+        $("resolutionStatus").value = tab.dataset.resolutionTab;
+        state.pages.resolutions = 1;
+        renderAll();
+      }));
+      $("closeResolutionEditor").addEventListener("click", () => { state.selectedQuestion = null; $("resolutionQuestionText").textContent = "Selecione uma questão para adicionar o link de resolução."; $("resolutionVideoInput").value = ""; });
+      $("cancelResolutionBtn").addEventListener("click", () => state.selectedQuestion && selectQuestion(state.selectedQuestion));
+      $("saveResolutionBtn").addEventListener("click", saveResolution);
+
+      $("studentsBody").addEventListener("click", async (event) => {
+        const viewId = event.target.closest("[data-student-view]")?.dataset.studentView;
+        const editId = event.target.closest("[data-student-edit]")?.dataset.studentEdit;
+        const deleteId = event.target.closest("[data-student-delete]")?.dataset.studentDelete;
+        if (viewId) openStudentModal(state.students.find((s) => s.uid === viewId));
+        if (editId) openStudentModal(state.students.find((s) => s.uid === editId));
+        if (deleteId && confirm("Deseja inativar este aluno?")) {
+          await window.authService.atualizarAluno(deleteId, { ativo: false });
+          state.students = state.students.map((student) => student.uid === deleteId ? { ...student, ativo: false } : student);
+          renderAll();
+          state.students = await window.authService.listarAlunos();
+          renderAll();
+        }
+      });
+
+      $("resolutionsBody").addEventListener("click", (event) => {
+        const row = event.target.closest("tr[data-question-id]");
+        const editId = event.target.closest("[data-resolution-edit]")?.dataset.resolutionEdit || (row && row.dataset.questionId);
+        if (editId) selectQuestion(state.questions.find((q) => q.id === editId));
+      });
+
+      $("questionBankBody").addEventListener("click", async (event) => {
+        const resolutionId = event.target.closest("[data-qbank-resolution]")?.dataset.qbankResolution;
+        const editId = event.target.closest("[data-qbank-edit]")?.dataset.qbankEdit;
+        const deleteId = event.target.closest("[data-qbank-delete]")?.dataset.qbankDelete;
+        if (resolutionId) {
+          const question = state.questions.find((q) => q.id === resolutionId);
+          if (question) {
+            selectQuestion(question);
+            setView("resolutions");
+          }
+        }
+        if (editId) {
+          const question = state.questions.find((q) => q.id === editId);
+          if (question) {
+            selectQuestion(question);
+            setView("resolutions");
+          }
+        }
+        if (deleteId && confirm("Deseja inativar esta questão?")) {
+          await window.authService.excluirQuestaoAdmin(deleteId);
+          state.questions = mergeQuestions(collectLocalQuestions(), await window.authService.listarQuestoesAdmin({}));
+          rebuildQuestionIndex();
+          renderAll();
+        }
+      });
+
+      $("examsBody").addEventListener("click", async (event) => {
+        const viewId = event.target.closest("[data-exam-view]")?.dataset.examView;
+        const editId = event.target.closest("[data-exam-edit]")?.dataset.examEdit;
+        const copyId = event.target.closest("[data-exam-copy]")?.dataset.examCopy;
+        const deleteId = event.target.closest("[data-exam-delete]")?.dataset.examDelete;
+        if (viewId) {
+          const exam = state.exams.find((e) => e.id === viewId);
+          const pdf = exam && String(exam.pdfUrl || exam.pdf || "").trim();
+          if (pdf) window.open(pdf, "_blank", "noopener");
+        }
+        if (editId) openExamModal(state.exams.find((e) => e.id === editId));
+        if (copyId && window.authService.duplicarProvaAdmin) { await window.authService.duplicarProvaAdmin(copyId); await loadExams(); renderAll(); }
+        if (deleteId && confirm("Deseja excluir esta prova?") && window.authService.excluirProvaAdmin) { await window.authService.excluirProvaAdmin(deleteId); await loadExams(); renderAll(); }
+      });
+
+      $("lessonsBody").addEventListener("click", async (event) => {
+        const deleteId = event.target.closest("[data-lesson-delete]")?.dataset.lessonDelete;
+        if (!deleteId || !window.authService.excluirAulaAdmin) return;
+        if (!confirm("Deseja remover esta aula da plataforma?")) return;
+
+        await window.authService.excluirAulaAdmin(deleteId);
+        state.cards = mergeCards(collectCatalogCards(state.catalog), await window.authService.listarCardsGerenciados({}));
+        renderAll();
+      });
+
+      $("apostilasBody").addEventListener("click", async (event) => {
+        const editId = event.target.closest("[data-apostila-edit]")?.dataset.apostilaEdit;
+        const deleteId = event.target.closest("[data-apostila-delete]")?.dataset.apostilaDelete;
+        if (editId) openApostilaModal(state.cards.find((card) => card.id === editId));
+        if (deleteId && window.authService.excluirApostilaAdmin && confirm("Deseja remover o link desta apostila?")) {
+          await window.authService.excluirApostilaAdmin(deleteId);
+          state.cards = mergeCards(collectCatalogCards(state.catalog), await window.authService.listarCardsGerenciados({}));
+          renderAll();
+        }
+      });
+
+      $("studentForm").addEventListener("submit", saveStudent);
+      $("examForm").addEventListener("submit", saveExam);
+      $("reloadAllBtn").addEventListener("click", async () => {
+        $("settingsStatus").textContent = "Recarregando dados...";
+        await loadData();
+        $("settingsStatus").textContent = "Dados atualizados com sucesso.";
+      });
+      $("newQuestionBtn").addEventListener("click", openQuestionModal);
+      $("newLessonBtn").addEventListener("click", openLessonModal);
+      $("qModalDiscipline").addEventListener("change", fillQuestionModalSubjects);
+      $("qModalSubject").addEventListener("change", fillQuestionModalSubtopics);
+      $("qModalSubtopic").addEventListener("change", fillQuestionModalCards);
+      $("questionForm").addEventListener("submit", saveQuestion);
+      $("lessonModalDiscipline").addEventListener("change", fillLessonModalSubjects);
+      $("lessonModalSubject").addEventListener("change", fillLessonModalSubtopics);
+      $("lessonForm").addEventListener("submit", saveLesson);
+      $("apostilaForm").addEventListener("submit", saveApostila);
+    }
+
+    async function saveStudent(event) {
+      event.preventDefault();
+      const payload = {
+        nome: $("studentNameInput").value,
+        matricula: $("studentMatriculaInput").value,
+        turma: $("studentTurmaInput").value,
+        ativo: $("studentActiveInput").value === "true"
+      };
+      if (state.selectedStudent) {
+        await window.authService.atualizarAluno(state.selectedStudent.uid, payload);
+      } else {
+        payload.senha = $("studentPasswordInput").value;
+        await window.authService.cadastrarAluno(payload);
+      }
+      closeModals();
+      state.students = await window.authService.listarAlunos();
+      renderAll();
+    }
+
+    async function saveResolution() {
+      if (!state.selectedQuestion) return;
+      const url = $("resolutionVideoInput").value.trim();
+      await window.authService.atualizarQuestaoAdmin(state.selectedQuestion.id, {
+        enunciado: state.selectedQuestion.enunciado || "",
+        alternativas: state.selectedQuestion.alternativas || [],
+        respostaCorreta: state.selectedQuestion.respostaCorreta || "",
+        resolucaoTexto: state.selectedQuestion.resolucaoTexto || state.selectedQuestion.resolucaoEscrita || "",
+        disciplinaId: state.selectedQuestion.disciplinaId || "",
+        disciplinaLabel: state.selectedQuestion.disciplinaLabel || "",
+        assuntoId: state.selectedQuestion.assuntoId || "",
+        assuntoLabel: state.selectedQuestion.assuntoLabel || "",
+        subassuntoId: state.selectedQuestion.subassuntoId || "",
+        subassuntoLabel: state.selectedQuestion.subassuntoLabel || "",
+        cardId: state.selectedQuestion.cardId || "",
+        cardTitulo: state.selectedQuestion.cardTitulo || "",
+        resolutionVideoUrl: url,
+        hasResolution: Boolean(url)
+      });
+      state.questions = mergeQuestions(collectLocalQuestions(), await window.authService.listarQuestoesAdmin({}));
+      rebuildQuestionIndex();
+      const updated = state.questions.find((q) => q.id === state.selectedQuestion.id);
+      if (updated) selectQuestion(updated);
+      renderAll();
+    }
+
+    async function saveExam(event) {
+      event.preventDefault();
+      const questoes = parseExamQuestions($("examQuestionsInput").value, $("examResolutionsInput").value);
+      const pdfFile = $("examPdfFileInput").files && $("examPdfFileInput").files[0] ? $("examPdfFileInput").files[0] : null;
+      const payload = {
+        titulo: $("examTitleInput").value,
+        ano: $("examYearInput").value,
+        tipo: $("examTypeInput").value,
+        status: $("examStatusInput").value,
+        questoesTotal: $("examQuestionsInput").value,
+        pdfUrl: $("examPdfInput").value,
+        pdf: $("examPdfInput").value,
+        disciplina: "Fisica Basica",
+        questoes,
+        pdfFile
+      };
+      if (state.selectedExam && window.authService.atualizarProvaAdmin && !String(state.selectedExam.id).startsWith("sample-")) {
+        await window.authService.atualizarProvaAdmin(state.selectedExam.id, payload);
+      } else if (window.authService.criarProvaAdmin) {
+        await window.authService.criarProvaAdmin(payload);
+      }
+      closeModals();
+      await loadExams();
+      renderAll();
+    }
+
+    async function saveQuestion(event) {
+      event.preventDefault();
+      const result = await window.authService.cadastrarQuestaoAdmin({
+        cardModo: "existente",
+        disciplinaId: $("qModalDiscipline").value,
+        assuntoId: $("qModalSubject").value,
+        subassuntoId: $("qModalSubtopic").value,
+        cardId: $("qModalCard").value,
+        enunciado: $("qModalStatement").value,
+        alternativas: [$("qModalA").value, $("qModalB").value, $("qModalC").value, $("qModalD").value, $("qModalE").value],
+        respostaCorreta: $("qModalCorrect").value,
+        resolucaoTexto: $("qModalResolution").value
+      });
+      closeModals();
+      const [questions, cards] = await Promise.all([
+        window.authService.listarQuestoesAdmin({}),
+        window.authService.listarCardsGerenciados({})
+      ]);
+      state.questions = mergeQuestions(collectLocalQuestions(), questions);
+      state.cards = mergeCards(collectCatalogCards(state.catalog), cards);
+      rebuildQuestionIndex();
+      renderAll();
+      if (result && result.id) {
+        const question = state.questions.find((item) => item.id === result.id);
+        if (question) selectQuestion(question);
+      }
+    }
+
+    async function saveLesson(event) {
+      event.preventDefault();
+      await window.authService.criarAulaAdmin({
+        disciplinaId: $("lessonModalDiscipline").value,
+        assuntoId: $("lessonModalSubject").value,
+        subassuntoId: $("lessonModalSubtopic").value,
+        titulo: $("lessonModalTitle").value,
+        descricao: $("lessonModalDescription").value,
+        videoUrl: $("lessonModalUrl").value
+      });
+      closeModals();
+      state.cards = mergeCards(collectCatalogCards(state.catalog), await window.authService.listarCardsGerenciados({}));
+      fillCatalogFilters();
+      renderAll();
+      setView("lessons");
+    }
+
+    async function saveApostila(event) {
+      event.preventDefault();
+      if (!state.selectedApostila || !window.authService.atualizarMidiaCardAdmin) return;
+
+      const apostila = state.selectedApostila;
+      const apostilaUrl = $("apostilaModalUrl").value.trim();
+      if (!apostilaUrl) {
+        $("apostilaModalStatus").textContent = "Cole o link público do PDF antes de salvar.";
+        return;
+      }
+
+      try {
+        closeModals();
+        setView("apostilas");
+        $("settingsStatus").textContent = "Salvando link da apostila...";
+        await window.authService.atualizarMidiaCardAdmin(apostila.id, { apostilaUrl });
+        state.cards = mergeCards(collectCatalogCards(state.catalog), await window.authService.listarCardsGerenciados({}));
+        fillCatalogFilters();
+        renderAll();
+        setView("apostilas");
+        $("settingsStatus").textContent = "Apostila salva com sucesso.";
+      } catch (error) {
+        $("settingsStatus").textContent = error && error.message ? error.message : "Nao consegui salvar a apostila.";
+        alert($("settingsStatus").textContent);
+      }
+    }
+
+    function initAuth() {
+      let observerRegistered = false;
+      const setupAuthService = () => {
+        if (!window.authService || observerRegistered) return;
+        observerRegistered = true;
+        $("adminLoginStatus").textContent = "Firebase conectado. Entre com um administrador.";
+        if (window.authService.onAdminAutenticado) {
+          window.authService.onAdminAutenticado(async (admin) => {
+            if (!admin) return;
+            $("loginShell").classList.add("d-none");
+            $("adminApp").classList.remove("d-none");
+            await loadData();
+            setView("students");
+          });
+        }
+      };
+
+      setupAuthService();
+      window.addEventListener("auth-service-ready", setupAuthService);
+      $("adminLoginForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        try {
+          if (!window.authService) throw new Error("Firebase ainda esta carregando.");
+          $("adminLoginStatus").textContent = "Entrando...";
+          await window.authService.entrarAdmin($("adminEmail").value, $("adminPassword").value);
+          $("loginShell").classList.add("d-none");
+          $("adminApp").classList.remove("d-none");
+          await loadData();
+          setView("students");
+        } catch (error) {
+          $("adminLoginStatus").textContent = error && error.message ? error.message : "Falha ao entrar.";
+        }
+      });
+    }
+
+    bindEvents();
+    initAuth();
+    iconRefresh();
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Bloco 2: Movimento Retilíneo Uniforme</title>
+  <style>
+    :root{--blue:#2563eb;--dark:#020617;--text:#334155;--soft:#eff6ff}
+    body{font-family:Georgia,"Times New Roman",serif;max-width:900px;margin:0 auto;padding:48px 28px;color:#0f172a;line-height:1.7;background:#f8fbff}
+    header{border-radius:28px;padding:30px;background:linear-gradient(135deg,#020617,#1d4ed8);color:white}
+    .brand{font:800 18px Arial,sans-serif;color:#93c5fd;letter-spacing:.04em;text-transform:uppercase}
+    h1{font:800 34px Arial,sans-serif;margin:10px 0 8px} h2{font:800 22px Arial,sans-serif;color:var(--blue)}
+    .card{background:white;border:1px solid #dbeafe;border-radius:22px;padding:22px;margin:22px 0;box-shadow:0 18px 45px rgba(15,23,42,.08)}
+    .math{font-size:32px;text-align:center;background:var(--soft);border:1px solid #bfdbfe;border-radius:18px;padding:22px;margin:16px 0;font-style:italic}
+    .frac{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;margin:0 .25em}.frac span:first-child{border-bottom:2px solid #0f172a}.sqrt{display:inline-flex;align-items:flex-end;gap:.08em}.sqrt span{border-top:2px solid #0f172a;padding:.02em .18em 0}
+    aside{background:#fffbeb;border:1px solid #fde68a;border-radius:16px;padding:14px;margin-top:14px}
+  </style>
+</head>
+<body>
+  <header><div class="brand">Universo Relativo</div><h1>Bloco 2: Movimento Retilíneo Uniforme</h1><p>Movimento em linha reta com velocidade constante, aceleração nula e função horária de primeiro grau.</p></header>
+  <section class="card"><h2>Como estudar este bloco</h2><p>No MRU, domine a interpretação da função horária. Ela permite prever posições, descobrir tempos e entender encontros entre móveis em linha reta.</p></section>
+  
+    <section class="card">
+      <h2>Características do MRU</h2>
+      <p>O Movimento Retilíneo Uniforme ocorre quando o móvel percorre uma trajetória reta com velocidade constante. Como a velocidade não muda, a aceleração é nula. A cada intervalo de tempo igual, o corpo percorre deslocamentos iguais.</p><p>Em problemas de MRU, o sinal da velocidade é tão importante quanto seu módulo. Velocidade positiva indica movimento no sentido positivo do eixo; velocidade negativa indica movimento no sentido contrário.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>Função horária da posição</h2>
+      <p>A função horária do MRU é uma equação de primeiro grau. Isso significa que a posição muda linearmente com o tempo. Se a velocidade é positiva, a posição aumenta; se é negativa, a posição diminui.</p><p>Esse modelo aparece em viagens com velocidade constante, deslocamentos em esteiras, trens em movimento uniforme e questões de encontro ou ultrapassagem quando as velocidades são aproximadamente constantes.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>Encontro de móveis</h2>
+      <p>Dois móveis se encontram quando ocupam a mesma posição no mesmo instante. A estratégia mais segura é escrever a função horária de cada móvel e igualar as posições.</p><p>Cuidado com sentidos opostos: um móvel pode ter velocidade positiva e o outro negativa, dependendo do eixo adotado. O eixo é uma escolha matemática, mas precisa ser mantido até o fim.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>MRU em unidades diferentes</h2>
+      <p>Muitos erros em MRU não são de Física, mas de unidade. Antes de calcular, confirme se velocidade, distância e tempo estão no mesmo sistema. Km/h combina naturalmente com quilômetros e horas; m/s combina com metros e segundos.</p><p>A conversão mais usada é entre km/h e m/s. Para passar de m/s para km/h, multiplica-se por 3,6. Para passar de km/h para m/s, divide-se por 3,6.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>Ultrapassagem e movimento relativo</h2>
+      <p>Em ultrapassagens, a distância a ser vencida pode não ser apenas a separação inicial: muitas vezes inclui o comprimento dos veículos. O movimento relativo simplifica o problema, porque permite analisar um móvel em relação ao outro.</p><p>Se os móveis estão no mesmo sentido, a velocidade relativa é a diferença dos módulos. Se estão em sentidos opostos, é a soma dos módulos, desde que os sentidos estejam bem definidos.</p>
+      
+      
+    </section>
+  
+    <section class="formula card">
+      <h2>Função horária do MRU</h2>
+      <div class="math">s = s<sub>0</sub> + v · t</div>
+      <p><strong>Como interpretar:</strong> Calcula a posição do móvel em qualquer instante, desde que a velocidade seja constante.</p>
+      <ul><li>s: posição no instante t.</li><li>s0: posição inicial.</li><li>v: velocidade constante.</li><li>t: tempo decorrido.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se s0 = 10 km e v = 60 km/h, depois de 2 h: s = 10 + 60 · 2 = 130 km.</aside>
+    </section>
+    <section class="formula card">
+      <h2>Velocidade constante</h2>
+      <div class="math">v = <span class="frac"><span>Δs</span><span>Δt</span></span></div>
+      <p><strong>Como interpretar:</strong> No MRU, essa razão é a mesma em qualquer intervalo de tempo. Por isso a velocidade média coincide com a velocidade instantânea.</p>
+      <ul><li>v: velocidade escalar constante.</li><li>Δs: deslocamento.</li><li>Δt: intervalo de tempo.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se um trem percorre 300 m em 20 s com velocidade constante, v = 300/20 = 15 m/s.</aside>
+    </section>
+    <section class="formula card">
+      <h2>Conversão de velocidade</h2>
+      <div class="math">v<sub>m/s</sub> = <span class="frac"><span>v<sub>km/h</sub></span><span>3,6</span></span></div>
+      <p><strong>Como interpretar:</strong> Transforma velocidade em km/h para m/s quando o restante do problema está no Sistema Internacional.</p>
+      <ul><li>v(m/s): velocidade em metros por segundo.</li><li>v(km/h): velocidade em quilômetros por hora.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> 72 km/h = 72/3,6 = 20 m/s.</aside>
+    </section>
+    <section class="formula card">
+      <h2>Condição de encontro</h2>
+      <div class="math">s<sub>A</sub> = s<sub>B</sub></div>
+      <p><strong>Como interpretar:</strong> Dois móveis se encontram quando ocupam a mesma posição no mesmo instante.</p>
+      <ul><li>sA: posição do móvel A.</li><li>sB: posição do móvel B.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se sA = 10 + 5t e sB = 70 - 10t, então 10 + 5t = 70 - 10t, logo t = 4 s.</aside>
+    </section>
+  <section class="card"><h2>Exemplos resolvidos comentados</h2><p><strong>Exemplo 1:</strong> Um ônibus parte do km 12 com velocidade de 48 km/h. Após 3 h, sua posição será s = 12 + 48 · 3 = 156 km.</p><p><strong>Exemplo 2:</strong> Dois carros estão na mesma estrada. A: sA = 20 + 80t. B: sB = 260 - 40t. No encontro, 20 + 80t = 260 - 40t, então 120t = 240 e t = 2 h. A posição será 180 km.</p><p><strong>Exemplo 3:</strong> Um trem de 120 m ultrapassa uma ponte de 180 m com velocidade constante de 15 m/s. Para sair completamente da ponte, precisa percorrer 300 m. O tempo é 300/15 = 20 s.</p><p><strong>Exemplo 4:</strong> Dois ciclistas separados por 900 m pedalam um em direção ao outro com velocidades 4 m/s e 5 m/s. A velocidade de aproximação é 9 m/s, então o encontro ocorre em 100 s.</p></section>
+  <section class="card"><h2>Resumo de revisão</h2><ul><li>No MRU, a velocidade é constante e a aceleração é zero.</li><li>A função horária é uma reta em relação ao tempo.</li><li>A inclinação da posição em função do tempo representa a velocidade.</li><li>Em encontro de móveis, iguale as posições no mesmo instante.</li></ul></section>
+</body>
+</html>

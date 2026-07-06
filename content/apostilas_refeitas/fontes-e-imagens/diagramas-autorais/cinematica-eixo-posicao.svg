@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
+      <rect width="900" height="430" rx="34" fill="#f8fbff"/>
+      <line x1="105" y1="230" x2="795" y2="230" stroke="#1d4ed8" stroke-width="8" stroke-linecap="round"/>
+      <path d="M795 230l-32-20v40z" fill="#1d4ed8"/>
+      <g font-family="Arial" font-size="28" fill="#172033" font-weight="700">
+        <text x="99" y="285">0</text><text x="295" y="285">xᵢ = 20 m</text><text x="610" y="285">x_f = 70 m</text>
+      </g>
+      <circle cx="330" cy="230" r="18" fill="#7c3aed"/><circle cx="680" cy="230" r="18" fill="#38bdf8"/>
+      <path d="M330 150 C430 95, 580 95, 680 150" fill="none" stroke="#7c3aed" stroke-width="7" stroke-linecap="round"/>
+      <path d="M680 150l-34-2 21 27z" fill="#7c3aed"/>
+      <text x="407" y="92" font-family="Arial" font-size="30" fill="#4338ca" font-weight="800">Δx = x_f − xᵢ</text>
+    </svg>

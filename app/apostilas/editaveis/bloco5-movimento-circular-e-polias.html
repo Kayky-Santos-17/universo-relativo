@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Bloco 5: Movimento Circular e Polias</title>
+  <style>
+    :root{--blue:#2563eb;--dark:#020617;--text:#334155;--soft:#eff6ff}
+    body{font-family:Georgia,"Times New Roman",serif;max-width:900px;margin:0 auto;padding:48px 28px;color:#0f172a;line-height:1.7;background:#f8fbff}
+    header{border-radius:28px;padding:30px;background:linear-gradient(135deg,#020617,#1d4ed8);color:white}
+    .brand{font:800 18px Arial,sans-serif;color:#93c5fd;letter-spacing:.04em;text-transform:uppercase}
+    h1{font:800 34px Arial,sans-serif;margin:10px 0 8px} h2{font:800 22px Arial,sans-serif;color:var(--blue)}
+    .card{background:white;border:1px solid #dbeafe;border-radius:22px;padding:22px;margin:22px 0;box-shadow:0 18px 45px rgba(15,23,42,.08)}
+    .math{font-size:32px;text-align:center;background:var(--soft);border:1px solid #bfdbfe;border-radius:18px;padding:22px;margin:16px 0;font-style:italic}
+    .frac{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;margin:0 .25em}.frac span:first-child{border-bottom:2px solid #0f172a}.sqrt{display:inline-flex;align-items:flex-end;gap:.08em}.sqrt span{border-top:2px solid #0f172a;padding:.02em .18em 0}
+    aside{background:#fffbeb;border:1px solid #fde68a;border-radius:16px;padding:14px;margin-top:14px}
+  </style>
+</head>
+<body>
+  <header><div class="brand">Universo Relativo</div><h1>Bloco 5: Movimento Circular e Polias</h1><p>Período, frequência, velocidade angular, velocidade tangencial, aceleração centrípeta e transmissão de movimento.</p></header>
+  <section class="card"><h2>Como estudar este bloco</h2><p>Neste bloco, pense em duas linguagens: a angular, que descreve a rotação, e a linear, que descreve a velocidade dos pontos da borda.</p></section>
+  
+    <section class="card">
+      <h2>Movimento circular uniforme</h2>
+      <p>No movimento circular uniforme, o módulo da velocidade pode permanecer constante, mas a direção da velocidade muda continuamente. Por isso, mesmo no MCU, existe aceleração: ela aponta para o centro da trajetória e é chamada centrípeta.</p><p>Período é o tempo de uma volta completa. Frequência é o número de voltas por unidade de tempo. Essas duas grandezas são inversas.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>Velocidade angular e tangencial</h2>
+      <p>A velocidade angular mede a rapidez da rotação. A velocidade tangencial mede a rapidez de um ponto ao longo da circunferência. Para o mesmo valor de velocidade angular, pontos mais distantes do eixo possuem maior velocidade tangencial.</p><p>Essa diferença explica por que a borda de uma roda percorre distância maior que um ponto próximo ao eixo no mesmo intervalo de tempo.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>Polias e engrenagens</h2>
+      <p>Quando duas polias são ligadas por correia sem escorregamento, os pontos de contato da correia têm a mesma velocidade tangencial. Se duas rodas estão presas ao mesmo eixo, elas compartilham a mesma velocidade angular.</p><p>Essa distinção é fundamental: mesma correia sugere mesma velocidade tangencial; mesmo eixo sugere mesma velocidade angular.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>Por que existe aceleração se a velocidade é constante</h2>
+      <p>No MCU, o módulo da velocidade pode ser constante, mas a velocidade é uma grandeza vetorial. Como sua direção muda a todo instante, há variação de velocidade e, portanto, aceleração.</p><p>A aceleração centrípeta não aumenta o módulo da velocidade; ela muda a direção do vetor velocidade, mantendo o corpo na trajetória curva.</p>
+      
+      
+    </section>
+    <section class="card">
+      <h2>Transmissão de movimento em sistemas de polias</h2>
+      <p>Em polias com correia sem escorregamento, a correia impõe a mesma velocidade tangencial às bordas. Como v = ωR, uma polia menor precisa ter maior velocidade angular para acompanhar a mesma velocidade tangencial.</p><p>Em rodas no mesmo eixo, todos os pontos dão a mesma quantidade de voltas no mesmo tempo; por isso, a velocidade angular é igual para as rodas solidárias ao eixo.</p>
+      
+      
+    </section>
+  
+    <section class="formula card">
+      <h2>Período e frequência</h2>
+      <div class="math">f = <span class="frac"><span>1</span><span>T</span></span></div>
+      <p><strong>Como interpretar:</strong> Relaciona quantas voltas ocorrem por unidade de tempo com o tempo gasto em uma volta.</p>
+      <ul><li>f: frequência, em hertz quando o tempo está em segundos.</li><li>T: período, tempo de uma volta completa.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se uma roda completa uma volta a cada 0,5 s, então f = 1/0,5 = 2 Hz.</aside>
+    </section>
+    <section class="formula card">
+      <h2>Velocidade angular</h2>
+      <div class="math">ω = <span class="frac"><span>2π</span><span>T</span></span></div>
+      <p><strong>Como interpretar:</strong> Mede o ângulo varrido por unidade de tempo no movimento circular uniforme.</p>
+      <ul><li>ω: velocidade angular.</li><li>T: período.</li><li>2π: ângulo de uma volta completa em radianos.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se T = 4 s, então ω = 2π/4 = π/2 rad/s.</aside>
+    </section>
+    <section class="formula card">
+      <h2>Velocidade tangencial</h2>
+      <div class="math">v = ω · R</div>
+      <p><strong>Como interpretar:</strong> Conecta a rotação à velocidade ao longo da borda da circunferência.</p>
+      <ul><li>v: velocidade tangencial.</li><li>ω: velocidade angular.</li><li>R: raio da trajetória.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Para R = 0,5 m e ω = 6 rad/s, v = 6 · 0,5 = 3 m/s.</aside>
+    </section>
+    <section class="formula card">
+      <h2>Aceleração centrípeta</h2>
+      <div class="math">a<sub>c</sub> = <span class="frac"><span>v<sup>2</sup></span><span>R</span></span></div>
+      <p><strong>Como interpretar:</strong> Indica a aceleração responsável por mudar a direção da velocidade em uma trajetória circular.</p>
+      <ul><li>ac: aceleração centrípeta.</li><li>v: velocidade tangencial.</li><li>R: raio da trajetória.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se v = 10 m/s e R = 20 m, ac = 100/20 = 5 m/s².</aside>
+    </section>
+    <section class="formula card">
+      <h2>Relação entre arcos e ângulos</h2>
+      <div class="math">Δs = R · Δq</div>
+      <p><strong>Como interpretar:</strong> Relaciona o comprimento de arco percorrido com o ângulo varrido em radianos.</p>
+      <ul><li>Δs: comprimento do arco.</li><li>R: raio da circunferência.</li><li>Δθ: deslocamento angular em radianos.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se R = 2 m e Δθ = 3 rad, então Δs = 6 m.</aside>
+    </section>
+    <section class="formula card">
+      <h2>Polias ligadas por correia</h2>
+      <div class="math">v<sub>1</sub> = v<sub>2</sub>  então  ω<sub>1</sub>R<sub>1</sub> = ω<sub>2</sub>R<sub>2</sub></div>
+      <p><strong>Como interpretar:</strong> Sem escorregamento, a velocidade tangencial nas bordas das polias é a mesma.</p>
+      <ul><li>v1 e v2: velocidades tangenciais nas bordas.</li><li>ω1 e ω2: velocidades angulares.</li><li>R1 e R2: raios das polias.</li></ul>
+      <aside><strong>Exemplo comentado:</strong> Se R1 é metade de R2, então ω1 precisa ser o dobro de ω2 para manter a mesma velocidade tangencial.</aside>
+    </section>
+  <section class="card"><h2>Exemplos resolvidos comentados</h2><p><strong>Exemplo 1:</strong> Duas polias ligadas por correia têm raios 10 cm e 20 cm. Sem escorregamento, suas bordas têm a mesma velocidade tangencial, mas a menor gira com maior velocidade angular.</p><p><strong>Exemplo 2:</strong> Um carro faz uma curva circular de raio 50 m com velocidade 10 m/s. A aceleração centrípeta é 100/50 = 2 m/s², apontando para o centro da curva.</p><p><strong>Exemplo 3:</strong> Uma roda de bicicleta com raio 0,35 m gira com frequência 2 Hz. Sua velocidade angular é 4π rad/s e a velocidade tangencial da borda é aproximadamente 4,4 m/s.</p><p><strong>Exemplo 4:</strong> Uma polia de raio 5 cm está ligada por correia a outra de 15 cm. A polia menor gira três vezes mais rápido em velocidade angular.</p></section>
+  <section class="card"><h2>Resumo de revisão</h2><ul><li>Período e frequência são inversos.</li><li>Velocidade angular descreve rotação; tangencial descreve movimento na borda.</li><li>Mesmo eixo: mesma velocidade angular.</li><li>Mesma correia sem escorregamento: mesma velocidade tangencial.</li><li>A aceleração centrípeta aponta para o centro.</li></ul></section>
+</body>
+</html>

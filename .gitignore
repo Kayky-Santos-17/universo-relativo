@@ -1,0 +1,4 @@
+﻿# Ignorar backups locais gerados automaticamente
+
+# Ignorar caches do navegador movidos para backup
+backups/edge-caches/

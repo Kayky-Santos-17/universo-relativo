@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
+      <rect width="900" height="430" rx="34" fill="#f8fbff"/>
+      <line x1="80" y1="215" x2="820" y2="215" stroke="#cbd5e1" stroke-width="4"/>
+      <path d="M80 215 C150 70, 230 70, 300 215 S450 360, 520 215 S670 70, 740 215 S835 330, 860 260" fill="none" stroke="#2563eb" stroke-width="9" stroke-linecap="round"/>
+      <line x1="190" y1="215" x2="190" y2="92" stroke="#7c3aed" stroke-width="5" stroke-dasharray="10 10"/><text x="205" y="160" font-family="Arial" font-size="26" fill="#4338ca" font-weight="800">A</text>
+      <line x1="190" y1="85" x2="630" y2="85" stroke="#16a34a" stroke-width="5"/><path d="M190 85l24-14v28zM630 85l-24-14v28z" fill="#16a34a"/><text x="386" y="67" font-family="Arial" font-size="26" fill="#166534" font-weight="800">λ</text>
+      <text x="145" y="55" font-family="Arial" font-size="24" fill="#172033" font-weight="800">crista</text><text x="372" y="375" font-family="Arial" font-size="24" fill="#172033" font-weight="800">vale</text>
+    </svg>

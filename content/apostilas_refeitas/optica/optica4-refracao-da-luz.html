@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Óptica 4 - Refração da Luz</title>
+  <style>
+    @page{size:A4;margin:13mm}
+    *{box-sizing:border-box}
+    body{margin:0;background:#eef4ff;color:#172033;font-family:Arial,Helvetica,sans-serif;line-height:1.54}
+    .page{min-height:268mm;background:#fff;border:1px solid #dbeafe;border-radius:22px;padding:27px;margin:0 auto 18px;box-shadow:0 14px 36px rgba(30,64,175,.10);position:relative;overflow:hidden}
+    .cover{display:grid;align-content:center;background:radial-gradient(circle at 80% 14%,rgba(124,58,237,.28),transparent 30%),linear-gradient(135deg,#020617,#172554 56%,#2563eb);color:#fff}
+    .brand{display:flex;align-items:center;gap:12px;text-transform:uppercase;font-weight:900;letter-spacing:.08em;color:#bfdbfe}
+    .logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#7c3aed,#38bdf8);display:grid;place-items:center;color:#fff;font-weight:900}
+    h1{font-size:43px;line-height:1.02;margin:24px 0 12px;color:inherit}
+    h2{font-size:25px;color:#1d4ed8;margin:0 0 12px}
+    h3{font-size:18px;color:#172033;margin:0 0 10px}
+    p{margin:0 0 12px}.muted{color:#64748b}.lead{font-size:18px;color:#dbeafe;max-width:650px}
+    .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}.meta div{background:rgba(255,255,255,.1);border:1px solid rgba(191,219,254,.24);border-radius:16px;padding:14px}.meta span{display:block;color:#bfdbfe;font-size:12px;text-transform:uppercase;font-weight:800}.meta strong{display:block;color:#fff;margin-top:4px}
+    .card,.formula-card,.example,.warning,.tip,.exercise{background:#fff;border:1px solid #dbeafe;border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 10px 22px rgba(37,99,235,.07);break-inside:avoid;page-break-inside:avoid}
+    .route{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.route div{padding:13px;border-radius:14px;background:#eff6ff;border:1px solid #bfdbfe;font-weight:700;color:#1e3a8a}
+    .image-card{display:grid;grid-template-columns:1fr 1.04fr;gap:18px;align-items:center}.image-card img{width:100%;max-height:226px;object-fit:contain;border-radius:16px;background:#f8fbff;border:1px solid #dbeafe;padding:8px}.caption{font-size:12px;color:#64748b}
+    .label{display:inline-flex;margin:0 0 10px;padding:6px 10px;border-radius:999px;background:#e0e7ff;color:#4338ca;font-size:12px;font-weight:900;text-transform:uppercase}
+    .math{font-family:"Cambria Math","Times New Roman",serif;font-size:30px;text-align:center;background:linear-gradient(135deg,#eff6ff,#eef2ff);border:1px solid #bfdbfe;border-radius:16px;padding:15px;margin:11px 0;color:#0f172a}
+    .symbol-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.symbol-grid div{background:#f8fbff;border:1px solid #e2e8f0;border-radius:12px;padding:10px}.symbol-grid strong{color:#1d4ed8}.symbol-grid span{display:block;color:#475569;font-size:13px}
+    .mini-example,.tip{background:#ecfdf5;border-color:#bbf7d0;color:#14532d}.warning{background:#fffbeb;border-color:#fde68a;color:#78350f}.example{background:#f8fbff}.answer{margin-top:10px;padding:12px;border-radius:14px;background:#dbeafe;color:#1e3a8a;font-weight:900}
+    ol,ul{margin:8px 0 0;padding-left:22px}li{margin:4px 0}.page-break{break-after:page}
+    .refs p{font-size:13px;color:#475569}.footer{position:absolute;left:27px;right:27px;bottom:15px;color:#94a3b8;font-size:11px;display:flex;justify-content:space-between}
+    @media print{body{background:#fff}.page{box-shadow:none;margin:0;border:none;border-radius:0;min-height:auto}.page-break{break-after:page}}
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <div class="brand"><div class="logo">UR</div><span>Universo Relativo</span></div>
+    <h1>Refração da Luz</h1>
+    <p class="lead">índice de refração, lei de Snell e reflexão total. Material refeito com linguagem didática, matemática revisada, exemplos resolvidos e exercícios comentados.</p>
+    <div class="meta"><div><span>Curso</span><strong>Universo Relativo</strong></div><div><span>Área</span><strong>Física</strong></div><div><span>Óptica</span><strong>Óptica 4</strong></div></div>
+  </section><div class="page-break"></div>
+  <section class="page">
+    <h2>Roteiro do bloco</h2>
+    <div class="route"><div>01. Índice de refração</div><div>02. Lei de Snell</div><div>03. Desvio da luz</div><div>04. Ângulo limite</div><div>05. Reflexão total</div></div>
+    <div class="tip"><strong>Como estudar:</strong> leia a explicação, refaça os exemplos sem olhar a resolução e depois tente os exercícios. A matemática fica mais segura quando cada símbolo é entendido antes da substituição.</div>
+    <div class="image-card card">
+      <div><h2>Introdução</h2><p>Refração da Luz organiza uma parte importante da Física. Neste bloco, o foco é entender o fenômeno, reconhecer as grandezas, usar unidades corretas e interpretar cada resultado.</p><p>Antes de aplicar qualquer fórmula, pergunte: qual é o sistema físico, quais dados foram fornecidos e qual grandeza o problema pede?</p></div>
+      <figure><img src="../fontes-e-imagens/diagramas-autorais/optica-refracao.svg" alt="Diagrama autoral para mudança de direção da luz entre meios."><figcaption class="caption">Diagrama autoral para mudança de direção da luz entre meios.</figcaption></figure>
+    </div>
+  </section><div class="page-break"></div>
+  <section class="page">
+    <h2>Conceitos principais</h2>
+    <div class="card"><h3>Índice de refração</h3><p>Este ponto define a linguagem do bloco. Ao estudar índice de refração, observe quais grandezas aparecem, como elas são medidas e qual relação física conecta os dados.</p></div><div class="card"><h3>Lei de Snell</h3><p>A ideia central é evitar substituição mecânica. Primeiro interpretamos a situação, depois escolhemos a expressão matemática compatível com o fenômeno.</p></div><div class="card"><h3>Desvio da luz</h3><p>Sempre escreva as unidades junto dos valores. Isso ajuda a perceber conversões necessárias e evita resultados numericamente corretos, mas fisicamente sem sentido.</p></div><div class="card"><h3>Ângulo limite</h3><p>Quando houver direção, sentido, imagem, onda ou troca de energia, desenhe um esquema simples. O diagrama costuma revelar a equação correta.</p></div><div class="card"><h3>Reflexão total</h3><p>Finalize conferindo se o resultado responde exatamente ao que foi perguntado e se a ordem de grandeza é plausível.</p></div>
+    <div class="warning"><strong>Erro comum:</strong> copiar uma fórmula antes de entender o que cada símbolo representa. Antes de substituir valores, escreva as unidades e confira se as grandezas pertencem à mesma situação física.</div>
+  </section><div class="page-break"></div>
+  <section class="page">
+    <h2>Fórmulas essenciais</h2>
+    <section class="formula-card">
+    <p class="label">Fórmula-chave</p>
+    <h3>Índice de refração</h3>
+    <div class="math">n = c/v</div>
+    <div class="symbol-grid"><div><strong>n</strong><span>índice de refração</span></div><div><strong>c</strong><span>velocidade da luz no vácuo</span></div><div><strong>v</strong><span>velocidade da luz no meio</span></div></div>
+    <div class="mini-example"><strong>Exemplo simples:</strong> Quanto maior n, menor a velocidade da luz no meio.</div>
+  </section><section class="formula-card">
+    <p class="label">Fórmula-chave</p>
+    <h3>Lei de Snell</h3>
+    <div class="math">n<sub>1</sub> · sen θ<sub>1</sub> = n<sub>2</sub> · sen θ<sub>2</sub></div>
+    <div class="symbol-grid"><div><strong>n<sub>1</sub>, n<sub>2</sub></strong><span>índices dos meios</span></div><div><strong>θ<sub>1</sub>, θ<sub>2</sub></strong><span>ângulos com a normal</span></div></div>
+    <div class="mini-example"><strong>Exemplo simples:</strong> Ao entrar em meio mais refringente, o raio se aproxima da normal.</div>
+  </section><section class="formula-card">
+    <p class="label">Fórmula-chave</p>
+    <h3>Ângulo limite</h3>
+    <div class="math">sen L = n<sub>menor</sub>/n<sub>maior</sub></div>
+    <div class="symbol-grid"><div><strong>L</strong><span>ângulo limite</span></div><div><strong>n<sub>maior</sub></strong><span>índice do meio mais refringente</span></div><div><strong>n<sub>menor</sub></strong><span>índice do meio menos refringente</span></div></div>
+    <div class="mini-example"><strong>Exemplo simples:</strong> Reflexão total só ocorre do meio mais refringente para o menos refringente.</div>
+  </section>
+  </section><div class="page-break"></div>
+  <section class="page">
+    <h2>Exemplos resolvidos</h2>
+    <div class="example"><p class="label">Exemplo 1</p><h3>A luz passa do ar para o vidro. O raio se aproxima ou se afasta da normal?</h3><p><strong>Resolução passo a passo:</strong></p><ol><li>Vidro tem índice maior que o ar.</li><li>Ao entrar em meio mais refringente, a velocidade diminui.</li><li>O raio se aproxima da normal.</li></ol><div class="answer">O raio se aproxima da normal.</div></div><div class="example"><p class="label">Exemplo 2</p><h3>Um meio tem n = 1,5. Qual é a velocidade da luz nele? Use c = 3,0 × 10<sup>8</sup> m/s.</h3><p><strong>Resolução passo a passo:</strong></p><ol><li>Use n = c/v.</li><li>Isole: v = c/n.</li><li>v = 3,0 × 10<sup>8</sup>/1,5 = 2,0 × 10<sup>8</sup> m/s.</li></ol><div class="answer">A velocidade é 2,0 × 10<sup>8</sup> m/s.</div></div>
+  </section><div class="page-break"></div>
+  <section class="page">
+    <h2>Erros comuns</h2>
+    <div class="warning"><strong>Atenção:</strong> Medir ângulo em relação à superfície.</div><div class="warning"><strong>Atenção:</strong> Achar que frequência muda na refração.</div><div class="warning"><strong>Atenção:</strong> Aplicar reflexão total indo do meio menos refringente para o mais refringente.</div>
+    <h2>Exercícios para fixação</h2>
+    <div class="exercise"><p class="label">Exercício 1</p><h3>A luz passa do ar para o vidro. O raio se aproxima ou se afasta da normal?</h3><p><strong>Resolução completa:</strong></p><ol><li>Vidro tem índice maior que o ar.</li><li>Ao entrar em meio mais refringente, a velocidade diminui.</li><li>O raio se aproxima da normal.</li></ol><div class="answer">O raio se aproxima da normal.</div></div><div class="exercise"><p class="label">Exercício 2</p><h3>Um meio tem n = 1,5. Qual é a velocidade da luz nele? Use c = 3,0 × 10<sup>8</sup> m/s.</h3><p><strong>Resolução completa:</strong></p><ol><li>Use n = c/v.</li><li>Isole: v = c/n.</li><li>v = 3,0 × 10<sup>8</sup>/1,5 = 2,0 × 10<sup>8</sup> m/s.</li></ol><div class="answer">A velocidade é 2,0 × 10<sup>8</sup> m/s.</div></div><div class="exercise"><p class="label">Exercício 3</p><h3>Explique a ideia central de Refração da Luz sem começar por fórmula.</h3><p><strong>Resolução completa:</strong></p><ol><li>Identifique o fenômeno físico estudado.</li><li>Cite as grandezas principais.</li><li>Finalize conectando conceito, unidade e interpretação.</li></ol><div class="answer">Resposta esperada: explicação física clara, com grandezas e unidades.</div></div><div class="exercise"><p class="label">Exercício 4</p><h3>Aponte um erro comum desse bloco e corrija-o.</h3><p><strong>Resolução completa:</strong></p><ol><li>Escolha uma confusão frequente da seção de erros comuns.</li><li>Explique por que ela é incorreta.</li><li>Mostre o procedimento correto.</li></ol><div class="answer">Erro identificado e correção justificada.</div></div><div class="exercise"><p class="label">Exercício 5</p><h3>Monte um quadro de dados antes de resolver uma questão numérica do bloco.</h3><p><strong>Resolução completa:</strong></p><ol><li>Liste dados fornecidos.</li><li>Converta unidades quando necessário.</li><li>Escreva a fórmula somente depois de identificar o pedido.</li></ol><div class="answer">Quadro organizado com dados, unidade e incógnita.</div></div>
+  </section><div class="page-break"></div>
+  <section class="page">
+    <h2>Resumo final</h2>
+    <ul><li>Refração é mudança de velocidade da luz ao trocar de meio.</li><li>A frequência permanece constante na mudança de meio.</li><li>Snell relaciona índices e ângulos.</li><li>Reflexão total exige sentido do meio mais refringente para o menos refringente.</li></ul>
+    <div class="tip"><strong>Fechamento do bloco:</strong> uma resposta de Física só está completa quando traz valor numérico, unidade correta e interpretação do resultado.</div>
+    <h2>Referências das imagens</h2>
+    <div class="refs"><p>Refração da luz: diagrama autoral criado para o projeto Universo Relativo, arquivo local <strong>optica-refracao.svg</strong>.</p><p>Logo e identidade visual: Universo Relativo, usados como marca do material didático.</p></div>
+  </section>
+</body>
+</html>

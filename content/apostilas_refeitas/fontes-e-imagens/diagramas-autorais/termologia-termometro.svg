@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
+      <rect width="900" height="430" rx="34" fill="#f8fbff"/>
+      <rect x="380" y="65" width="82" height="250" rx="41" fill="#e0f2fe" stroke="#0369a1" stroke-width="7"/><rect x="410" y="125" width="22" height="195" rx="11" fill="#ef4444"/><circle cx="421" cy="335" r="55" fill="#ef4444" stroke="#991b1b" stroke-width="7"/>
+      <g font-family="Arial" font-size="22" fill="#172033" font-weight="700"><text x="480" y="135">100 °C</text><text x="480" y="225">50 °C</text><text x="480" y="315">0 °C</text></g>
+      <path d="M160 215 C230 160, 285 160, 350 215" fill="none" stroke="#7c3aed" stroke-width="7"/><path d="M350 215l-32-6 18 28z" fill="#7c3aed"/><text x="125" y="145" font-family="Arial" font-size="27" fill="#4338ca" font-weight="800">calor flui do mais quente</text>
+    </svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
+      <rect width="900" height="430" rx="34" fill="#f8fbff"/>
+      <line x1="80" y1="340" x2="815" y2="340" stroke="#172033" stroke-width="6"/><line x1="90" y1="345" x2="90" y2="70" stroke="#172033" stroke-width="6"/>
+      <path d="M110 335 C250 130, 520 70, 770 335" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round"/>
+      <line x1="130" y1="320" x2="290" y2="190" stroke="#7c3aed" stroke-width="8" stroke-linecap="round"/><path d="M290 190l-36 8 22 27z" fill="#7c3aed"/>
+      <line x1="130" y1="320" x2="300" y2="320" stroke="#38bdf8" stroke-width="7"/><line x1="300" y1="320" x2="300" y2="190" stroke="#38bdf8" stroke-width="7"/>
+      <text x="210" y="178" font-family="Arial" font-size="26" font-weight="800" fill="#4338ca">v₀</text><text x="190" y="356" font-family="Arial" font-size="24" font-weight="800" fill="#0369a1">v₀x</text><text x="312" y="260" font-family="Arial" font-size="24" font-weight="800" fill="#0369a1">v₀y</text><text x="420" y="384" font-family="Arial" font-size="24" font-weight="800" fill="#172033">alcance A</text>
+    </svg>

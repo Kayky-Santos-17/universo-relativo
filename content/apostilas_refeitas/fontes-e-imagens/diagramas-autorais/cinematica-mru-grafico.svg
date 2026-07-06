@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
+      <rect width="900" height="430" rx="34" fill="#f8fbff"/>
+      <g stroke="#c7d2fe" stroke-width="2"><line x1="110" y1="70" x2="110" y2="340"/><line x1="200" y1="70" x2="200" y2="340"/><line x1="290" y1="70" x2="290" y2="340"/><line x1="380" y1="70" x2="380" y2="340"/><line x1="470" y1="70" x2="470" y2="340"/><line x1="560" y1="70" x2="560" y2="340"/><line x1="650" y1="70" x2="650" y2="340"/><line x1="90" y1="100" x2="710" y2="100"/><line x1="90" y1="155" x2="710" y2="155"/><line x1="90" y1="210" x2="710" y2="210"/><line x1="90" y1="265" x2="710" y2="265"/><line x1="90" y1="320" x2="710" y2="320"/></g>
+      <line x1="90" y1="340" x2="725" y2="340" stroke="#172033" stroke-width="5"/><line x1="90" y1="340" x2="90" y2="65" stroke="#172033" stroke-width="5"/>
+      <path d="M120 310 L670 95" stroke="#2563eb" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <text x="52" y="83" font-family="Arial" font-size="28" font-weight="800" fill="#172033">s</text><text x="730" y="350" font-family="Arial" font-size="28" font-weight="800" fill="#172033">t</text>
+      <rect x="575" y="245" width="235" height="82" rx="18" fill="#eef2ff" stroke="#c7d2fe"/><text x="600" y="282" font-family="Arial" font-size="24" font-weight="800" fill="#3730a3">inclinação = v</text><text x="600" y="312" font-family="Arial" font-size="20" fill="#475569">velocidade constante</text>
+    </svg>
