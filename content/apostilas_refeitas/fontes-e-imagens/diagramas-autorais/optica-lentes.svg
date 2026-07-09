@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430">
-      <rect width="900" height="430" rx="34" fill="#f8fbff"/>
-      <line x1="80" y1="215" x2="820" y2="215" stroke="#cbd5e1" stroke-width="5"/><path d="M430 70 C500 145, 500 285, 430 360 C360 285, 360 145, 430 70z" fill="#dbeafe" stroke="#2563eb" stroke-width="7"/>
-      <g stroke="#7c3aed" stroke-width="7" fill="none" stroke-linecap="round"><path d="M100 130 L430 130 L735 215"/><path d="M100 215 L735 215"/><path d="M100 300 L430 300 L735 215"/></g>
-      <circle cx="735" cy="215" r="12" fill="#ef4444"/><text x="705" y="255" font-family="Arial" font-size="25" fill="#991b1b" font-weight="800">foco</text><text x="365" y="395" font-family="Arial" font-size="25" fill="#1d4ed8" font-weight="800">lente convergente</text>
-    </svg>

@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <title>Termologia 1: Fundamentos de Termologia</title>
+  <style>
+    :root {
+      --blue: #2563eb;
+      --dark: #020617;
+      --text: #334155;
+      --soft: #eff6ff
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 28px;
+      color: #0f172a;
+      line-height: 1.7;
+      background: #f8fbff
+    }
+
+    header {
+      border-radius: 28px;
+      padding: 30px;
+      background: linear-gradient(135deg, #020617, #1d4ed8);
+      color: white
+    }
+
+    .brand {
+      font: 800 18px Arial, sans-serif;
+      color: #93c5fd;
+      letter-spacing: .04em;
+      text-transform: uppercase
+    }
+
+    h1 {
+      font: 800 34px Arial, sans-serif;
+      margin: 10px 0 8px
+    }
+
+    h2 {
+      font: 800 22px Arial, sans-serif;
+      color: var(--blue)
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 22px;
+      padding: 22px;
+      margin: 22px 0;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, .08)
+    }
+
+    .math {
+      font-size: 32px;
+      text-align: center;
+      background: var(--soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+      padding: 22px;
+      margin: 16px 0;
+      font-style: italic
+    }
+
+    .frac {
+      display: inline-flex;
+      vertical-align: middle;
+      flex-direction: column;
+      text-align: center;
+      margin: 0 .25em
+    }
+
+    .frac span:first-child {
+      border-bottom: 2px solid #0f172a
+    }
+
+    .sqrt {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: .08em
+    }
+
+    .sqrt span {
+      border-top: 2px solid #0f172a;
+      padding: .02em .18em 0
+    }
+
+    aside {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 14px
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">Universo Relativo</div>
+    <h1>Termologia 1: Fundamentos de Termologia</h1>
+    <p>Temperatura, calor, equilíbrio térmico, energia interna e linguagem inicial dos fenômenos térmicos.</p>
+  </header>
+  <section class="card">
+    <h2>Como estudar este bloco</h2>
+    <p>Comece separando temperatura de calor. Temperatura mede estado térmico; calor é energia em trânsito por diferença
+      de temperatura.</p>
+  </section>
+
+  <section class="card">
+    <h2>Temperatura e agitação térmica</h2>
+    <p>Temperatura está relacionada ao grau de agitação microscópica das partículas de um corpo. Quanto maior a
+      temperatura, maior tende a ser a energia cinética média das partículas.</p>
+    <p>Essa descrição microscópica ajuda a entender por que corpos aparentemente parados possuem energia interna: suas
+      moléculas continuam em movimento.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Calor não é algo que o corpo possui</h2>
+    <p>Calor é energia térmica em trânsito entre corpos ou sistemas devido a uma diferença de temperatura. Um corpo não
+      contém calor; ele contém energia interna.</p>
+    <p>Quando dois corpos a temperaturas diferentes entram em contato térmico, a energia flui espontaneamente do corpo
+      de maior temperatura para o de menor temperatura até o equilíbrio térmico.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Equilíbrio térmico e lei zero</h2>
+    <p>Dois corpos estão em equilíbrio térmico quando não há troca líquida de calor entre eles. A lei zero da
+      Termodinâmica permite definir temperatura como grandeza comparável entre sistemas.</p>
+    <p>Se A está em equilíbrio térmico com B, e B está em equilíbrio térmico com C, então A e C também estão em
+      equilíbrio térmico.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Energia interna</h2>
+    <p>Energia interna é a energia associada ao estado microscópico do sistema: movimentos, interações e organização das
+      partículas. Em gases ideais, ela depende diretamente da temperatura.</p>
+    <p>Essa grandeza será fundamental na Termodinâmica, porque permite relacionar calor, trabalho e variação do estado
+      do sistema.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Roteiro de resolução em Termologia</h2>
+    <p>Antes de substituir valores, identifique qual grandeza está mudando: temperatura, estado físico, volume, pressão
+      ou energia interna. Essa leitura inicial decide qual modelo físico deve ser usado.</p>
+    <p>Em exercícios térmicos, a escolha da unidade costuma ser decisiva. Temperaturas em gases devem estar em kelvin;
+      massas precisam ser compatíveis com calor específico; pressão e volume devem conversar com a constante escolhida.
+    </p>
+    <p>Quando houver mais de um corpo trocando calor, escreva quem recebe energia e quem cede energia. Depois aplique
+      conservação de energia, tomando cuidado com sinais e mudanças de fase intermediárias.</p>
+    <ul>
+      <li>Se muda temperatura: pense em calor sensível.</li>
+      <li>Se muda estado físico: pense em calor latente.</li>
+      <li>Se aparece gás: verifique se a temperatura está em kelvin.</li>
+      <li>Se aparece máquina térmica: organize calor recebido, calor rejeitado e trabalho.</li>
+    </ul>
+
+  </section>
+  <section class="card">
+    <h2>Interpretação física antes da conta</h2>
+    <p>Um resultado numérico só faz sentido quando combina com o comportamento físico esperado. Se um corpo recebe calor
+      sem mudar de fase, sua temperatura deve aumentar; se cede calor, deve diminuir.</p>
+    <p>Em dilatação, aquecer geralmente aumenta dimensões; em gases, aquecer a volume constante aumenta pressão; em
+      termodinâmica, expansão geralmente significa trabalho realizado pelo gás.</p>
+    <p>Essa checagem qualitativa evita respostas absurdas, como temperatura final fora do intervalo esperado em uma
+      mistura simples sem mudança de fase.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Leitura de unidades e proporcionalidade</h2>
+    <p>As fórmulas da Termologia frequentemente indicam proporcionalidade direta ou inversa. Em Q = mcΔT, dobrar a massa
+      dobra o calor necessário. Em Fourier, dobrar a espessura reduz o fluxo pela metade.</p>
+    <p>Treinar proporcionalidade ajuda a resolver questões conceituais sem cálculo pesado e também permite conferir se o
+      resultado final está coerente.</p>
+    <p>Quando o enunciado não pede valor exato, compare grandezas: maior massa, maior calor específico, maior variação
+      térmica ou maior diferença de temperatura.</p>
+
+
+  </section>
+
+  <section class="formula card">
+    <h2>Variação de temperatura</h2>
+    <div class="math">ΔT = T - T<sub>0</sub></div>
+    <p><strong>Como interpretar:</strong> Compara a temperatura final com a inicial. O sinal indica aquecimento ou
+      resfriamento.</p>
+    <ul>
+      <li>ΔT: variação de temperatura.</li>
+      <li>T: temperatura final.</li>
+      <li>T0: temperatura inicial.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> De 20 °C para 80 °C, ΔT = 60 °C. O corpo aqueceu.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Equilíbrio térmico ideal</h2>
+    <div class="math">T<sub>A</sub> = T<sub>B</sub></div>
+    <p><strong>Como interpretar:</strong> No equilíbrio térmico, os corpos em contato atingem a mesma temperatura final.
+    </p>
+    <ul>
+      <li>TA e TB: temperaturas dos corpos em contato.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Um termômetro mede corretamente quando entra em equilíbrio térmico com o
+      corpo analisado.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Energia interna de gás ideal monoatômico</h2>
+    <div class="math">U = <span class="frac"><span>3nRT</span><span>2</span></span></div>
+    <p><strong>Como interpretar:</strong> Mostra que a energia interna de um gás ideal monoatômico depende da
+      temperatura absoluta.</p>
+    <ul>
+      <li>U: energia interna.</li>
+      <li>n: quantidade de matéria.</li>
+      <li>R: constante dos gases.</li>
+      <li>T: temperatura em kelvin.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Se a temperatura absoluta dobra, a energia interna também dobra para o
+      mesmo gás.</aside>
+  </section>
+  <section class="card">
+    <h2>Exemplos resolvidos comentados</h2>
+    <p><strong>Exemplo 1:</strong> Uma colher metálica em uma xícara quente aquece porque recebe energia térmica do café
+      até se aproximar da mesma temperatura.</p>
+    <p><strong>Exemplo 2:</strong> Ao medir febre, o termômetro não mede calor do corpo: ele atinge equilíbrio térmico e
+      indica temperatura.</p>
+    <p><strong>Exemplo 3:</strong> Um gás aquecido em recipiente rígido aumenta sua energia interna porque suas
+      partículas passam a se mover com maior energia média.</p>
+    <p><strong>Exemplo 4:</strong> Em uma mistura de água quente e fria, a temperatura final deve ficar entre as
+      temperaturas iniciais se não houver mudança de fase nem perda de calor. Se o cálculo der fora desse intervalo, há
+      erro de sinal ou unidade.</p>
+    <p><strong>Exemplo 5:</strong> Se um gás é aquecido dentro de recipiente rígido, o volume não muda. Portanto, o
+      aumento de temperatura deve aparecer principalmente como aumento de pressão e energia interna.</p>
+    <p><strong>Exemplo 6:</strong> Ao comparar dois materiais aquecidos pela mesma quantidade de calor, o que possui
+      maior capacidade térmica sofre menor variação de temperatura.</p>
+  </section>
+  <section class="card">
+    <h2>Resumo de revisão</h2>
+    <ul>
+      <li>Temperatura está ligada à agitação térmica.</li>
+      <li>Calor é energia em trânsito, não algo armazenado.</li>
+      <li>Equilíbrio térmico ocorre quando não há troca líquida de calor.</li>
+      <li>Energia interna descreve o estado microscópico do sistema.</li>
+    </ul>
+  </section>
+</body>
+
+</html>

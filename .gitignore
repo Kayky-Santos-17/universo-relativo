@@ -2,3 +2,8 @@
 
 # Ignorar caches do navegador movidos para backup
 backups/edge-caches/
+
+# React / Vite
+node_modules/
+dist/
+*.local

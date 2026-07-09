@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bloco 3: Movimento Retilíneo Uniformemente Variado</title>
+  <style>
+    :root {
+      --blue: #2563eb;
+      --dark: #020617;
+      --text: #334155;
+      --soft: #eff6ff
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 28px;
+      color: #0f172a;
+      line-height: 1.7;
+      background: #f8fbff
+    }
+
+    header {
+      border-radius: 28px;
+      padding: 30px;
+      background: linear-gradient(135deg, #020617, #1d4ed8);
+      color: white
+    }
+
+    .brand {
+      font: 800 18px Arial, sans-serif;
+      color: #93c5fd;
+      letter-spacing: .04em;
+      text-transform: uppercase
+    }
+
+    h1 {
+      font: 800 34px Arial, sans-serif;
+      margin: 10px 0 8px
+    }
+
+    h2 {
+      font: 800 22px Arial, sans-serif;
+      color: var(--blue)
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 22px;
+      padding: 22px;
+      margin: 22px 0;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, .08)
+    }
+
+    .math {
+      font-size: 32px;
+      text-align: center;
+      background: var(--soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+      padding: 22px;
+      margin: 16px 0;
+      font-style: italic
+    }
+
+    .frac {
+      display: inline-flex;
+      vertical-align: middle;
+      flex-direction: column;
+      text-align: center;
+      margin: 0 .25em
+    }
+
+    .frac span:first-child {
+      border-bottom: 2px solid #0f172a
+    }
+
+    .sqrt {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: .08em
+    }
+
+    .sqrt span {
+      border-top: 2px solid #0f172a;
+      padding: .02em .18em 0
+    }
+
+    aside {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 14px
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">Universo Relativo</div>
+    <h1>Bloco 3: Movimento Retilíneo Uniformemente Variado</h1>
+    <p>Movimento em linha reta com aceleração constante, variação uniforme de velocidade e equações fundamentais.</p>
+  </header>
+  <section class="card">
+    <h2>Como estudar este bloco</h2>
+    <p>O MRUV é o bloco em que a Cinemática começa a ganhar força. Em vez de decorar fórmulas, observe quais grandezas
+      aparecem no enunciado e qual delas falta.</p>
+  </section>
+
+  <section class="card">
+    <h2>A ideia de aceleração constante</h2>
+    <p>No MRUV, a velocidade varia de maneira uniforme. Isso significa que, a cada segundo, a velocidade aumenta ou
+      diminui sempre a mesma quantidade. A aceleração é a taxa de variação da velocidade.</p>
+    <p>Se velocidade e aceleração têm o mesmo sinal, o movimento é acelerado. Se têm sinais opostos, o movimento é
+      retardado. O sinal depende do eixo escolhido, por isso é importante manter coerência ao longo da resolução.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Quando usar cada equação</h2>
+    <p>A equação da velocidade é útil quando o problema envolve tempo e velocidade. A função horária da posição é usada
+      quando queremos posição ou deslocamento em função do tempo. A equação de Torricelli é poderosa quando o tempo não
+      aparece.</p>
+    <p>Antes de substituir números, organize uma pequena tabela com v0, v, a, t e Δs. Essa prática reduz erros e ajuda a
+      perceber qual fórmula se encaixa.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Interpretação física</h2>
+    <p>A aceleração não mede velocidade; mede mudança de velocidade. Um corpo pode estar com velocidade alta e
+      aceleração zero, como no MRU. Também pode ter velocidade instantânea nula e aceleração diferente de zero, como uma
+      bola no ponto mais alto de um lançamento vertical.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Aceleração positiva não significa sempre acelerar</h2>
+    <p>A palavra acelerar no cotidiano costuma significar aumentar a velocidade. Em Física, aceleração é variação da
+      velocidade. Se a velocidade é negativa e a aceleração é positiva, o módulo da velocidade pode diminuir.</p>
+    <p>Por isso, a classificação entre movimento acelerado ou retardado depende da comparação entre os sinais de
+      velocidade e aceleração. Mesmo sinal: módulo da velocidade aumenta. Sinais opostos: módulo da velocidade diminui.
+    </p>
+
+
+  </section>
+  <section class="card">
+    <h2>Organização algébrica antes dos números</h2>
+    <p>Problemas de MRUV ficam mais limpos quando você identifica primeiro as grandezas conhecidas. Escreva v0, v, a, t
+      e Δs. Depois escolha a equação que contém apenas uma incógnita.</p>
+    <p>Essa rotina evita a tentativa de encaixar fórmulas decoradas e aproxima o estudo do raciocínio usado em livros de
+      Física.</p>
+
+
+  </section>
+
+  <section class="formula card">
+    <h2>Velocidade no MRUV</h2>
+    <div class="math">v = v<sub>0</sub> + a · t</div>
+    <p><strong>Como interpretar:</strong> Mostra como a velocidade muda com o tempo quando a aceleração é constante.</p>
+    <ul>
+      <li>v: velocidade final.</li>
+      <li>v0: velocidade inicial.</li>
+      <li>a: aceleração constante.</li>
+      <li>t: intervalo de tempo.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Um móvel parte com 4 m/s e acelera 3 m/s² por 5 s. v = 4 + 3 · 5 = 19
+      m/s.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Função horária da posição</h2>
+    <div class="math">s = s<sub>0</sub> + v<sub>0</sub> · t + <span class="frac"><span>a ·
+          t<sup>2</sup></span><span>2</span></span></div>
+    <p><strong>Como interpretar:</strong> Determina a posição quando há velocidade inicial e aceleração constante.</p>
+    <ul>
+      <li>s: posição no instante t.</li>
+      <li>s0: posição inicial.</li>
+      <li>v0: velocidade inicial.</li>
+      <li>a: aceleração.</li>
+      <li>t: tempo.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Se s0 = 0, v0 = 2 m/s, a = 4 m/s² e t = 3 s, então s = 0 + 2 · 3 + (4 ·
+      9)/2 = 24 m.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Equação de Torricelli</h2>
+    <div class="math">v<sup>2</sup> = v<sub>0</sub><sup>2</sup> + 2aΔs</div>
+    <p><strong>Como interpretar:</strong> Relaciona velocidades, aceleração e deslocamento sem usar o tempo.</p>
+    <ul>
+      <li>v: velocidade final.</li>
+      <li>v0: velocidade inicial.</li>
+      <li>a: aceleração.</li>
+      <li>Δs: deslocamento.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Um carro parte do repouso e acelera 2 m/s² por 25 m. v² = 0 + 2 · 2 · 25
+      = 100, logo v = 10 m/s.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Aceleração média</h2>
+    <div class="math">a = <span class="frac"><span>Δv</span><span>Δt</span></span></div>
+    <p><strong>Como interpretar:</strong> Mede quanto a velocidade varia por unidade de tempo. No MRUV, esse valor é
+      constante.</p>
+    <ul>
+      <li>a: aceleração média.</li>
+      <li>Δv: variação de velocidade.</li>
+      <li>Δt: intervalo de tempo.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Se a velocidade passa de 6 m/s para 18 m/s em 4 s, então a = 12/4 = 3
+      m/s².</aside>
+  </section>
+  <section class="formula card">
+    <h2>Deslocamento pela velocidade média no MRUV</h2>
+    <div class="math">Δs = <span class="frac"><span>v + v<sub>0</sub></span><span>2</span></span> · t</div>
+    <p><strong>Como interpretar:</strong> No MRUV, a velocidade média entre dois instantes é a média aritmética das
+      velocidades inicial e final.</p>
+    <ul>
+      <li>Δs: deslocamento.</li>
+      <li>v: velocidade final.</li>
+      <li>v0: velocidade inicial.</li>
+      <li>t: tempo.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Se v0 = 4 m/s, v = 16 m/s e t = 5 s, então Δs = ((16 + 4)/2) · 5 = 50 m.
+    </aside>
+  </section>
+  <section class="card">
+    <h2>Exemplos resolvidos comentados</h2>
+    <p><strong>Exemplo 1:</strong> Um corpo parte do repouso com aceleração de 2 m/s² durante 8 s. A velocidade final é
+      16 m/s e o deslocamento é (2 · 64)/2 = 64 m.</p>
+    <p><strong>Exemplo 2:</strong> Um veículo a 30 m/s freia com aceleração de módulo 5 m/s² até parar. Pela equação de
+      Torricelli: 0² = 30² + 2(-5)Δs, então Δs = 90 m.</p>
+    <p><strong>Exemplo 3:</strong> Um carro reduz de 25 m/s para 5 m/s em 4 s. A aceleração é (5 - 25)/4 = -5 m/s². O
+      sinal negativo indica aceleração oposta ao sentido positivo escolhido.</p>
+    <p><strong>Exemplo 4:</strong> Um móvel com v0 = 10 m/s sofre aceleração -2 m/s². Após 3 s, v = 10 - 6 = 4 m/s. O
+      movimento ainda é para frente se o eixo positivo acompanha a velocidade inicial, mas está retardado.</p>
+  </section>
+  <section class="card">
+    <h2>Resumo de revisão</h2>
+    <ul>
+      <li>No MRUV, a aceleração é constante.</li>
+      <li>Velocidade e aceleração com mesmo sinal indicam aumento do módulo da velocidade.</li>
+      <li>Torricelli é ideal quando o tempo não aparece.</li>
+      <li>A função horária da posição é de segundo grau no tempo.</li>
+    </ul>
+  </section>
+</body>
+
+</html>

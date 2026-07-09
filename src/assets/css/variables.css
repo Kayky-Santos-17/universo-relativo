@@ -1,0 +1,74 @@
+:root {
+  /* motion */
+  --motion-fast: .18s;
+  --motion-base: .28s;
+  --motion-slow: .42s;
+  --ease-premium: cubic-bezier(.22,1,.36,1);
+
+  /* shadows */
+  --shadow-soft: 0 14px 30px rgba(15,23,42,.08);
+  --shadow-hover: 0 22px 42px rgba(15,23,42,.12);
+  --shadow-focus: 0 0 0 4px rgba(59,130,246,.14);
+
+  /* Core colors (dark default) */
+  --bg: #0b0f1a;
+  --surface: #111827;
+  --card: #111827;
+  --card-soft: #172033;
+  --text: #ffffff;
+  --text-muted: #cbd5e1;
+  --heading: #ffffff;
+  --primary: #3b82f6;
+  --primary-strong: #2563eb;
+  --border-soft: rgba(148,163,184,.18);
+  --page-bg: linear-gradient(135deg,#020617 0%,#050816 46%,#0b1024 100%);
+
+  /* accent palette */
+  --purple: #8b5cf6;
+  --purple-2: #a78bfa;
+  --purple-strong: #7c3aed;
+  --blue: #3b82f6;
+  --cyan: #22d3ee;
+  --amber: #f59e0b;
+  --emerald: #10b981;
+  --pink: #ec4899;
+  --red: #ef4444;
+  --green: #22c55e;
+
+  /* sidebar */
+  --sidebar-w: 280px;
+  --sidebar-collapsed-w: 88px;
+  --sidebar-bg: linear-gradient(180deg,#020617 0%,#0f172a 35%,#172554 100%);
+  --sidebar-w-mobile: 85vw;
+
+  /* shapes */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* fonts */
+  --font-sans: Arial, system-ui, -apple-system, sans-serif;
+  --font-mono: "Cascadia Code", "Fira Code", monospace;
+
+  /* misc */
+  --navbar-height: 0px;
+}
+
+body.light {
+  --bg: #f5f7ff;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --card-soft: #eef4ff;
+  --text: #1f2937;
+  --text-muted: #475569;
+  --heading: #0f172a;
+  --primary: #2563eb;
+  --primary-strong: #1d4ed8;
+  --border-soft: rgba(37,99,235,.14);
+  --page-bg: linear-gradient(180deg,#f8fbff 0%,#eef4ff 100%);
+  --shadow-soft: 0 14px 30px rgba(37,99,235,.08);
+  --shadow-hover: 0 18px 38px rgba(37,99,235,.13);
+  --sidebar-bg: linear-gradient(180deg,#f8fbff 0%,#eef4ff 100%);
+}

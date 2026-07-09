@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ondulatória 6: Movimento Harmônico Simples</title>
+  <style>
+    :root {
+      --blue: #2563eb;
+      --dark: #020617;
+      --text: #334155;
+      --soft: #eff6ff
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 28px;
+      color: #0f172a;
+      line-height: 1.7;
+      background: #f8fbff
+    }
+
+    header {
+      border-radius: 28px;
+      padding: 30px;
+      background: linear-gradient(135deg, #020617, #1d4ed8);
+      color: white
+    }
+
+    .brand {
+      font: 800 18px Arial, sans-serif;
+      color: #93c5fd;
+      letter-spacing: .04em;
+      text-transform: uppercase
+    }
+
+    h1 {
+      font: 800 34px Arial, sans-serif;
+      margin: 10px 0 8px
+    }
+
+    h2 {
+      font: 800 22px Arial, sans-serif;
+      color: var(--blue)
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #dbeafe;
+      border-radius: 22px;
+      padding: 22px;
+      margin: 22px 0;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, .08)
+    }
+
+    .math {
+      font-size: 32px;
+      text-align: center;
+      background: var(--soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+      padding: 22px;
+      margin: 16px 0;
+      font-style: italic
+    }
+
+    .frac {
+      display: inline-flex;
+      vertical-align: middle;
+      flex-direction: column;
+      text-align: center;
+      margin: 0 .25em
+    }
+
+    .frac span:first-child {
+      border-bottom: 2px solid #0f172a
+    }
+
+    .sqrt {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: .08em
+    }
+
+    .sqrt span {
+      border-top: 2px solid #0f172a;
+      padding: .02em .18em 0
+    }
+
+    aside {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 14px
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">Universo Relativo</div>
+    <h1>Ondulatória 6: Movimento Harmônico Simples</h1>
+    <p>Oscilações, amplitude, período, frequência angular, sistema massa-mola e pêndulo simples.</p>
+  </header>
+  <section class="card">
+    <h2>Como estudar este bloco</h2>
+    <p>MHS é a ponte entre oscilações e ondas. Domine a ideia de força restauradora proporcional ao afastamento.</p>
+  </section>
+
+  <section class="card">
+    <h2>O que caracteriza o MHS</h2>
+    <p>No Movimento Harmônico Simples, o sistema oscila em torno de uma posição de equilíbrio sob ação de uma força
+      restauradora proporcional ao deslocamento.</p>
+    <p>Quanto mais afastado da posição de equilíbrio, maior a tendência de retorno. Isso produz movimento periódico.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Amplitude, período e frequência</h2>
+    <p>Amplitude é o afastamento máximo em relação ao equilíbrio. Período é o tempo de uma oscilação completa.
+      Frequência é o número de oscilações por unidade de tempo.</p>
+    <p>Frequência angular mede a rapidez da fase do movimento e se relaciona ao período e à frequência.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Massa-mola</h2>
+    <p>Em um sistema massa-mola ideal, o período depende da massa e da constante elástica da mola. A amplitude não
+      altera o período no modelo ideal.</p>
+    <p>Uma mola mais rígida oscila mais rapidamente; uma massa maior oscila mais lentamente.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Pêndulo simples</h2>
+    <p>Para pequenas amplitudes, o pêndulo simples realiza movimento aproximadamente harmônico. Seu período depende do
+      comprimento do fio e da gravidade.</p>
+    <p>No modelo ideal, o período não depende da massa do corpo preso ao fio.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Roteiro de resolução em Ondulatória</h2>
+    <p>Comece identificando fonte, meio de propagação e grandezas dadas. Em ondas, muitos problemas misturam frequência,
+      período, velocidade e comprimento de onda; organizar essas grandezas evita confusões.</p>
+    <p>A frequência é determinada pela fonte. Quando a onda muda de meio, a frequência permanece, enquanto velocidade e
+      comprimento de onda podem mudar.</p>
+    <p>Quando houver reflexão, interferência ou ondas estacionárias, desenhe mentalmente nós, ventres, cristas, vales e
+      sentidos de propagação antes de calcular.</p>
+    <ul>
+      <li>Se aparece período: use f = 1/T.</li>
+      <li>Se aparece comprimento de onda: pense em v = λf.</li>
+      <li>Se muda de meio: frequência permanece constante.</li>
+      <li>Se há duas ondas sobrepostas: use superposição e fase.</li>
+    </ul>
+
+  </section>
+  <section class="card">
+    <h2>Interpretação física dos fenômenos</h2>
+    <p>Ondas transportam energia, mas isso não significa transporte permanente de matéria. Em uma corda ou na superfície
+      da água, os pontos do meio oscilam em torno de posições de equilíbrio.</p>
+    <p>Fenômenos como difração, interferência e ressonância mostram que ondas não se comportam como partículas rígidas.
+      Elas se espalham, se somam e podem formar padrões estáveis.</p>
+    <p>No som, a leitura física passa por frequência, intensidade e timbre. Frequência muda a altura; intensidade muda a
+      sensação de volume; timbre identifica a fonte sonora.</p>
+
+
+  </section>
+  <section class="card">
+    <h2>Como evitar erros comuns</h2>
+    <p>Não confunda velocidade da onda com velocidade de oscilação das partículas do meio. A onda se propaga; cada
+      partícula apenas vibra localmente em torno de sua posição.</p>
+    <p>Também não confunda amplitude com comprimento de onda. Amplitude é afastamento máximo; comprimento de onda é
+      distância entre pontos equivalentes consecutivos.</p>
+    <p>Em tubos e cordas, observe as extremidades. Uma extremidade fixa ou fechada impõe condição diferente de uma
+      extremidade livre ou aberta.</p>
+
+
+  </section>
+
+  <section class="formula card">
+    <h2>Frequência angular</h2>
+    <div class="math">ω = <span class="frac"><span>2π</span><span>T</span></span> = 2πf</div>
+    <p><strong>Como interpretar:</strong> Relaciona período, frequência e frequência angular.</p>
+    <ul>
+      <li>ω: frequência angular.</li>
+      <li>T: período.</li>
+      <li>f: frequência.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Se T = 2 s, então ω = π rad/s.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Lei de Hooke</h2>
+    <div class="math">F = -kx</div>
+    <p><strong>Como interpretar:</strong> Expressa a força restauradora da mola, oposta ao deslocamento.</p>
+    <ul>
+      <li>F: força elástica.</li>
+      <li>k: constante elástica.</li>
+      <li>x: deformação.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Se k = 100 N/m e x = 0,05 m, o módulo da força é 5 N.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Período massa-mola</h2>
+    <div class="math">T = 2π<span class="sqrt">√<span><span
+            class="frac"><span>m</span><span>k</span></span></span></span></div>
+    <p><strong>Como interpretar:</strong> Mostra que maior massa aumenta o período e mola mais rígida reduz o período.
+    </p>
+    <ul>
+      <li>T: período.</li>
+      <li>m: massa.</li>
+      <li>k: constante elástica.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Se a massa aumenta, o sistema oscila mais devagar; se k aumenta, oscila
+      mais rápido.</aside>
+  </section>
+  <section class="formula card">
+    <h2>Período do pêndulo simples</h2>
+    <div class="math">T = 2π<span class="sqrt">√<span><span
+            class="frac"><span>L</span><span>g</span></span></span></span></div>
+    <p><strong>Como interpretar:</strong> Vale para pequenas oscilações de um pêndulo simples ideal.</p>
+    <ul>
+      <li>T: período.</li>
+      <li>L: comprimento do pêndulo.</li>
+      <li>g: gravidade.</li>
+    </ul>
+    <aside><strong>Exemplo comentado:</strong> Aumentar o comprimento do pêndulo aumenta o período; aumentar g reduz o
+      período.</aside>
+  </section>
+  <section class="card">
+    <h2>Exemplos resolvidos comentados</h2>
+    <p><strong>Exemplo 1:</strong> Um relógio de pêndulo atrasa se o comprimento efetivo do pêndulo aumenta, pois o
+      período fica maior.</p>
+    <p><strong>Exemplo 2:</strong> Uma mola mais rígida tem constante elástica maior e tende a oscilar com menor
+      período.</p>
+    <p><strong>Exemplo 3:</strong> No MHS, a velocidade é máxima na posição de equilíbrio e nula nos extremos.</p>
+    <p><strong>Exemplo 4:</strong> Se uma onda passa para outro meio e sua velocidade diminui, mas a fonte continua a
+      mesma, a frequência permanece e o comprimento de onda diminui.</p>
+    <p><strong>Exemplo 5:</strong> Duas ondas em fase produzem reforço; duas ondas em oposição de fase podem se cancelar
+      parcialmente ou totalmente.</p>
+    <p><strong>Exemplo 6:</strong> Em uma corda fixa nas extremidades, não pode haver ventre na extremidade: ali a
+      condição física exige nó.</p>
+  </section>
+  <section class="card">
+    <h2>Resumo de revisão</h2>
+    <ul>
+      <li>MHS exige força restauradora proporcional ao deslocamento.</li>
+      <li>Amplitude é afastamento máximo.</li>
+      <li>Período é tempo de uma oscilação.</li>
+      <li>Massa-mola depende de m e k.</li>
+      <li>Pêndulo simples depende de L e g para pequenas amplitudes.</li>
+    </ul>
+  </section>
+</body>
+
+</html>

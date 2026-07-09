@@ -1,0 +1,147 @@
+.session-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(8px);
+  animation: sessionModalFadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.session-modal-dialog {
+  position: relative;
+  width: min(420px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 36px 36px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.15),
+    0 34px 90px rgba(2, 6, 23, 0.5),
+    0 0 48px rgba(139, 92, 246, 0.12);
+  animation: sessionModalScaleIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  text-align: center;
+}
+
+.session-modal-astro {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 8px;
+  display: grid;
+  place-items: center;
+}
+
+.session-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.session-modal-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  margin-bottom: 4px;
+}
+
+.session-modal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.session-modal-desc {
+  font-size: 0.95rem;
+  color: rgba(203, 213, 225, 0.8);
+  margin: 0 0 20px;
+  max-width: 320px;
+  line-height: 1.5;
+}
+
+.session-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 50px;
+  padding: 0 32px;
+  border: none;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+  box-shadow: 0 16px 32px rgba(79, 70, 229, 0.28);
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+  width: 100%;
+}
+
+.session-modal-btn:hover {
+  transform: translateY(-1px) scale(1.018);
+  box-shadow: 0 22px 40px rgba(79, 70, 229, 0.36);
+  filter: brightness(1.08);
+}
+
+.session-modal-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.35), 0 16px 32px rgba(79, 70, 229, 0.28);
+}
+
+@keyframes sessionModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sessionModalScaleIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+body.light .session-modal-overlay {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+body.light .session-modal-dialog {
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+body.light .session-modal-title {
+  color: #0f172a;
+}
+
+body.light .session-modal-desc {
+  color: #475569;
+}
+
+body.light .session-modal-btn {
+  background: linear-gradient(135deg, #7c3aed, #6366f1);
+  box-shadow: 0 16px 32px rgba(99, 102, 241, 0.24);
+}
+
+body.light .session-modal-btn:hover {
+  box-shadow: 0 22px 40px rgba(99, 102, 241, 0.32);
+}
