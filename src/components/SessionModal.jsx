@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSession } from "../hooks/useSession";
-import { forceLogout } from "../services/auth";
+import { logout } from "../services/auth";
 import Astronaut from "./Astronaut/Astronaut";
 
 export default function SessionModal() {
@@ -14,7 +14,7 @@ export default function SessionModal() {
       loggedOutRef.current = false;
     } else if (!loggedOutRef.current) {
       loggedOutRef.current = true;
-      forceLogout().catch(() => {});
+      logout().catch(() => {});
     }
   }, [sessionValid]);
 

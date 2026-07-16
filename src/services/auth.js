@@ -4,7 +4,9 @@ import {
   signOut,
   sendPasswordResetEmail,
   updateProfile,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 import { auth } from "./firebase";
 
@@ -20,6 +22,11 @@ export function register(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
 }
 
+export function loginWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider);
+}
+
 export function logout() {
   return signOut(auth);
 }
@@ -32,6 +39,4 @@ export function updateUserProfile(profile) {
   return updateProfile(auth.currentUser, profile);
 }
 
-export function forceLogout() {
-  return signOut(auth);
-}
+

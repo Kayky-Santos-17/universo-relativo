@@ -11,13 +11,7 @@ const labels = {
   "/questoes": "Questões",
   "/provas": "Provas",
   "/perfil": "Perfil",
-  "/admin": "Admin",
-  "/admin/alunos": "Alunos",
-  "/admin/apostilas": "Apostilas",
-  "/admin/questoes": "Questões",
-  "/admin/trilhas": "Trilhas",
-  "/admin/provas": "Provas",
-  "/admin/analises": "Análises"
+  "/admin": "Admin"
 };
 
 const IGNORE_ROOTS = ["/admin"];

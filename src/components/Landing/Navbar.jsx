@@ -51,13 +51,13 @@ function Navbar() {
             </li>
           ))}
           <li className="landing-navbar-links-mobile-actions">
-            <button className="landing-navbar-action-btn" onClick={() => navigate("/login")} aria-label="Entrar na plataforma">Entrar</button>
-            <button className="landing-navbar-action-btn" onClick={() => navigate("/login")} aria-label="Criar conta">Cadastrar</button>
+            <button className="landing-navbar-action-btn" onClick={() => navigate("/login?mode=login")} aria-label="Entrar na plataforma">Entrar</button>
+            <button className="landing-navbar-action-btn" onClick={() => navigate("/login?mode=register")} aria-label="Criar conta">Cadastrar</button>
           </li>
         </ul>
         <div className="landing-navbar-actions">
-          <button className="landing-navbar-action-btn" onClick={() => navigate("/login")} aria-label="Entrar na plataforma">Entrar</button>
-          <button className="landing-navbar-action-btn" onClick={() => navigate("/login")} aria-label="Criar conta">Cadastrar</button>
+          <button className="landing-navbar-action-btn" onClick={() => navigate("/login?mode=login")} aria-label="Entrar na plataforma">Entrar</button>
+          <button className="landing-navbar-action-btn" onClick={() => navigate("/login?mode=register")} aria-label="Criar conta">Cadastrar</button>
         </div>
         <button
           className={`landing-navbar-hamburger${menuOpen ? " landing-navbar-hamburger--open" : ""}`}

@@ -1,14 +1,10 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { getAll, addToCol, setDocById, updateDocById, deleteDocById, getDocById, getDocsByQuery } from "../../services/firestore";
 import { logout, register } from "../../services/auth";
-
-const SvgIcon = ({ d, size = 19 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d={d} />
-  </svg>
-);
+import { htmlEscape } from "../../utils/helpers";
+import SvgIcon from "../../components/SvgIcon";
 
 const ICONS = {
   dashboard: "M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z",
@@ -39,10 +35,6 @@ const ICONS = {
   layers: "M12 2l9 4-9 4-9-4 9-4zM2 10l10 5 10-5M2 14l10 5 10-5M2 18l10 5 10-5",
   "alert-circle": "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM12 8v4M12 16h.01"
 };
-
-function htmlEscape(s) {
-  return String(s || "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-}
 
 const PAGE_SIZE = 15;
 const FISICA_CONFIG = [

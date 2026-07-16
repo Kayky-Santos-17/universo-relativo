@@ -1,12 +1,13 @@
-import { createContext, useState, useEffect, useCallback } from "react";
+import { createContext, useState, useEffect, useCallback, useRef } from "react";
 import {
   onAuthChange,
   login as authLogin,
   logout as authLogout,
   register as authRegister,
-  resetPassword as authResetPassword
+  resetPassword as authResetPassword,
+  loginWithGoogle as authLoginWithGoogle
 } from "../services/auth";
-import { getDocById } from "../services/firestore";
+import { getDocById, setDocById } from "../services/firestore";
 import { COLECAO } from "../utils/constants";
 import { useSession } from "../hooks/useSession";
 
@@ -17,31 +18,38 @@ export function AuthProvider({ children }) {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const userRef = useRef(null);
   const { handleLogin, handleLogout } = useSession();
 
-  useEffect(() => {
-    const unsub = onAuthChange(async (firebaseUser) => {
-      setUser(firebaseUser);
-      if (firebaseUser) {
-        try {
-          const snap = await getDocById(COLECAO.alunos, firebaseUser.uid);
-          if (snap.exists()) {
-            const data = snap.data();
-            setUserData(data);
-            setIsAdmin(data.admin === true);
-          }
-        } catch {
+  const loadUserData = useCallback(async (firebaseUser) => {
+    userRef.current = firebaseUser;
+    setUser(firebaseUser);
+    if (firebaseUser) {
+      try {
+        const snap = await getDocById(COLECAO.alunos, firebaseUser.uid);
+        if (snap.exists()) {
+          const data = snap.data();
+          setUserData(data);
+          setIsAdmin(data.admin === true);
+        } else {
           setUserData(null);
           setIsAdmin(false);
         }
-      } else {
+      } catch {
         setUserData(null);
         setIsAdmin(false);
       }
-      setLoading(false);
-    });
-    return unsub;
+    } else {
+      setUserData(null);
+      setIsAdmin(false);
+    }
+    setLoading(false);
   }, []);
+
+  useEffect(() => {
+    const unsub = onAuthChange(loadUserData);
+    return unsub;
+  }, [loadUserData]);
 
   const login = useCallback(async (email, password) => {
     const cred = await authLogin(email, password);
@@ -53,6 +61,36 @@ export function AuthProvider({ children }) {
       userAgent: navigator.userAgent,
     });
     return cred.user;
+  }, [handleLogin]);
+
+  const loginWithGoogle = useCallback(async () => {
+    const result = await authLoginWithGoogle();
+    const fbUser = result.user;
+    const uid = fbUser.uid;
+
+    const snap = await getDocById(COLECAO.alunos, uid);
+    if (!snap.exists()) {
+      const newUserData = {
+        nome: fbUser.displayName || "",
+        email: fbUser.email,
+        photoURL: fbUser.photoURL || "",
+        ativo: true,
+        criadoEm: new Date(),
+        provider: "google",
+        progresso: { questoesRespondidas: 0, acertos: 0 }
+      };
+      await setDocById(COLECAO.alunos, uid, newUserData);
+      setUserData(newUserData);
+      setIsAdmin(false);
+    }
+
+    await handleLogin(uid, {
+      device: navigator.userAgent,
+      browser: navigator.userAgent,
+      platform: navigator.platform,
+      userAgent: navigator.userAgent,
+    });
+    return fbUser;
   }, [handleLogin]);
 
   const logout = useCallback(async () => {
@@ -78,8 +116,23 @@ export function AuthProvider({ children }) {
     await authResetPassword(email);
   }, []);
 
+  const reloadUserData = useCallback(async () => {
+    const fbUser = userRef.current;
+    if (!fbUser) return;
+    try {
+      const snap = await getDocById(COLECAO.alunos, fbUser.uid);
+      if (snap.exists()) {
+        const data = snap.data();
+        setUserData(data);
+        setIsAdmin(data.admin === true);
+      }
+    } catch {
+      // silencioso
+    }
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, userData, loading, isAdmin, login, logout, register, resetPassword }}>
+    <AuthContext.Provider value={{ user, userData, loading, isAdmin, login, loginWithGoogle, logout, register, resetPassword, reloadUserData }}>
       {children}
     </AuthContext.Provider>
   );

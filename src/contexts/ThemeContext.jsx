@@ -10,7 +10,8 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
-    document.body.className = theme;
+    document.body.classList.remove("dark", "light");
+    document.body.classList.add(theme);
   }, [theme]);
 
   const toggleTheme = () => {

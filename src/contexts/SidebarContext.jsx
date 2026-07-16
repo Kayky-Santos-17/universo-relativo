@@ -10,12 +10,8 @@ export function SidebarProvider({ children }) {
     setCollapsed((prev) => !prev);
   }, []);
 
-  const collapse = useCallback(() => setCollapsed(true), []);
-  const expand = useCallback(() => setCollapsed(false), []);
-
   const toggleMobile = useCallback(() => setMobileOpen((prev) => !prev), []);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
-  const openMobile = useCallback(() => setMobileOpen(true), []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,7 +22,7 @@ export function SidebarProvider({ children }) {
   }, []);
 
   return (
-    <SidebarContext.Provider value={{ collapsed, toggleCollapse, collapse, expand, mobileOpen, toggleMobile, closeMobile, openMobile }}>
+    <SidebarContext.Provider value={{ collapsed, toggleCollapse, mobileOpen, toggleMobile, closeMobile }}>
       {children}
     </SidebarContext.Provider>
   );

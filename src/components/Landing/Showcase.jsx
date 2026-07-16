@@ -64,7 +64,7 @@ function Showcase() {
                 <span className="landing-dash-value">85%</span>
               </div>
               <div className="landing-dash-row">
-                <div className="landing-dash-label">Termodinâmica</div>
+                <div className="landing-dash-label">Termologia</div>
                 <div className="landing-dash-bar">
                   <div className="landing-dash-bar-fill" style={{ width: "62%" }} />
                 </div>

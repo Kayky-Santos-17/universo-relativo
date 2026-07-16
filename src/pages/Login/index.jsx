@@ -1,51 +1,194 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { setDocById } from "../../services/firestore";
+import { COLECAO } from "../../utils/constants";
+import { validarNome, validarSenha, validarConfirmacao, calcularForcaSenha, obterChecklistSenha } from "../../utils/validators";
+import PasswordStrength from "../../components/PasswordStrength";
 import Astronaut from "../../components/Astronaut/Astronaut";
 
-const MATRICULA_DOMAIN = "universorelativo.app";
+const ERROR_MAP = {
+  "auth/invalid-email": "Email inválido.",
+  "auth/user-not-found": "Conta não encontrada.",
+  "auth/wrong-password": "Senha incorreta.",
+  "auth/invalid-credential": "Email ou senha incorretos.",
+  "auth/email-already-in-use": "Este email já está cadastrado.",
+  "auth/weak-password": "A senha deve ter no mínimo 6 caracteres.",
+  "auth/too-many-requests": "Muitas tentativas. Tente novamente mais tarde.",
+  "auth/network-request-failed": "Erro de conexão. Verifique sua internet.",
+  "auth/popup-blocked": "Permita popups para entrar com Google.",
+  "permission-denied": "Erro de permissão. Tente novamente."
+};
+
+function friendlyError(err) {
+  if (!err) return "Ocorreu um erro.";
+  if (err.code && ERROR_MAP[err.code]) return ERROR_MAP[err.code];
+  if (err.message?.includes("permission")) return "Erro de permissão. Tente novamente.";
+  return err.message || "Ocorreu um erro.";
+}
+
+function ValidacaoMsg({ children, valido }) {
+  if (!children) return null;
+  return (
+    <p className={`validacao-msg ${valido ? "valido" : "invalido"}`}>
+      {children}
+    </p>
+  );
+}
+
+function Checklist({ itens, tocado }) {
+  return (
+    <div className="senha-checklist">
+      {itens.map(item => (
+        <span key={item.id} className={`check-item ${item.valido ? "check-ok" : tocado ? "check-pending" : ""}`}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            {item.valido
+              ? <polyline points="20 6 9 17 4 12" />
+              : <line x1="18" y1="6" x2="6" y2="18" />
+            }
+          </svg>
+          {item.label}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export default function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
-  const [matricula, setMatricula] = useState("");
+  const [searchParams] = useSearchParams();
+  const { login, loginWithGoogle, register, resetPassword, reloadUserData } = useAuth();
+
+  const [mode, setMode] = useState("login");
+
+  useEffect(() => {
+    const m = searchParams.get("mode");
+    if (m === "register" || m === "login") setMode(m);
+  }, [searchParams]);
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const [nome, setNome] = useState("");
+  const [confirm, setConfirm] = useState("");
+
+  const [nomeTocado, setNomeTocado] = useState(false);
+  const [senhaTocada, setSenhaTocada] = useState(false);
+  const [confirmTocada, setConfirmTocada] = useState(false);
+
+  const nomeResult = nomeTocado && mode === "register" ? validarNome(nome) : null;
+  const senhaResult = senhaTocada && mode === "register" ? validarSenha(password) : null;
+  const forca = mode === "register" ? calcularForcaSenha(password) : { nivel: 0, label: "", cor: "var(--text-muted)" };
+  const checklist = mode === "register" ? obterChecklistSenha(password) : [];
+  const confirmacao = confirmTocada && mode === "register" ? validarConfirmacao(password, confirm) : null;
+
+  const podeRegistrar = mode === "register"
+    && validarNome(nome).valido
+    && validarSenha(password).valido
+    && password === confirm
+    && password.length > 0;
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
-
-    const id = matricula.trim();
+    const emailVal = email.trim();
     const pw = password.trim();
-
-    if (!id || !pw) {
-      setError("Preencha todos os campos.");
-      setLoading(false);
-      return;
-    }
-
+    if (!emailVal || !pw) { setError("Preencha todos os campos."); return; }
+    setLoading(true);
     try {
-      if (id.includes("@")) {
-        await login(id, pw);
-        navigate("/admin");
-        return;
-      }
-
-      const email = `${id}@${MATRICULA_DOMAIN}`;
-      await login(email, pw);
-      navigate("/");
+      await login(emailVal, pw);
+      navigate("/dashboard");
     } catch (err) {
-      const msg = id.includes("@")
-        ? (err?.message || "Não foi possível entrar.")
-        : (err?.message || "Senha ou Matrícula incorreta.");
-      setError(msg);
+      setError(friendlyError(err));
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    setNomeTocado(true);
+    setSenhaTocada(true);
+    setConfirmTocada(true);
+
+    const nomeVal = nome.trim();
+    const emailVal = email.trim();
+    const pw = password;
+    const conf = confirm;
+
+    const valNome = validarNome(nomeVal);
+    const valSenha = validarSenha(pw);
+    const valConfirm = validarConfirmacao(pw, conf);
+
+    if (!valNome.valido) { setError(valNome.mensagem); return; }
+    if (!valSenha.valido) { setError("A senha não atende aos requisitos."); return; }
+    if (!valConfirm.valido) { setError(valConfirm.mensagem); return; }
+    if (!emailVal) { setError("Preencha todos os campos."); return; }
+
+    setLoading(true);
+    try {
+      const cred = await register(emailVal, pw);
+      await setDocById(COLECAO.alunos, cred.uid, {
+        nome: nomeVal,
+        email: emailVal,
+        photoURL: "",
+        ativo: true,
+        criadoEm: new Date(),
+        ultimoLogin: new Date(),
+        provider: "password",
+        progresso: { questoesRespondidas: 0, acertos: 0 }
+      });
+      await reloadUserData();
+      navigate("/dashboard");
+    } catch (err) {
+      setError(friendlyError(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogle = async () => {
+    setError("");
+    setLoading(true);
+    try {
+      await loginWithGoogle();
+      navigate("/dashboard");
+    } catch (err) {
+      if (err.code === "auth/popup-closed-by-user") return;
+      setError(friendlyError(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = async () => {
+    setError("");
+    const emailVal = email.trim();
+    if (!emailVal) { setError("Digite seu email para recuperar a senha."); return; }
+    setLoading(true);
+    try {
+      await resetPassword(emailVal);
+      setResetSent(true);
+    } catch (err) {
+      setError(friendlyError(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const switchMode = (m) => {
+    setMode(m);
+    setError("");
+    setResetSent(false);
+    setNomeTocado(false);
+    setSenhaTocada(false);
+    setConfirmTocada(false);
   };
 
   return (
@@ -67,27 +210,40 @@ export default function Login() {
           <span className="ui-badge">Universo Relativo</span>
         </div>
         <div className="login-box glass-panel">
-          <form onSubmit={handleSubmit}>
-            <span className="login-student-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10l-10-5L2 10l10 5 10-5z"/><path d="M6 12v5c3 2 6 2 10 0v-5"/></svg>
-              Área do aluno
-            </span>
+          <form noValidate onSubmit={mode === "login" ? handleLogin : handleRegister}>
+            <div className="login-tabs">
+              <button type="button" className={`login-tab${mode === "login" ? " active" : ""}`} onClick={() => switchMode("login")}>Entrar</button>
+              <button type="button" className={`login-tab${mode === "register" ? " active" : ""}`} onClick={() => switchMode("register")}>Criar Conta</button>
+            </div>
             <div className="login-heading">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-              <h2 className="login-title">Acesse a plataforma</h2>
-              <p className="login-subtitle">Entre com sua matrícula e senha</p>
+              {mode === "login" ? (
+                <><h2 className="login-title">Acesse a plataforma</h2><p className="login-subtitle">Entre com seu email e senha</p></>
+              ) : (
+                <><h2 className="login-title">Novo por aqui?</h2><p className="login-subtitle">Crie sua conta e comece a estudar</p></>
+              )}
             </div>
+            {mode === "register" && (
+              <div className="login-field">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" className="form-control" id="authNome" placeholder="Nome completo" autoComplete="name" value={nome} onChange={(e) => { setNome(e.target.value); if (!nomeTocado) setNomeTocado(true); }} />
+              </div>
+            )}
+            {nomeResult && (
+              <ValidacaoMsg valido={nomeResult.valido}>
+                {nomeResult.mensagem}
+              </ValidacaoMsg>
+            )}
             <div className="login-field">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
               <input
-                type="text"
+                type="email"
                 className="form-control"
-                id="loginMatricula"
-                placeholder="Digite sua matrícula"
-                autoComplete="username"
-                required
-                value={matricula}
-                onChange={(e) => setMatricula(e.target.value)}
+                id="authEmail"
+                placeholder="Digite seu email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); setResetSent(false); }}
               />
             </div>
             <div className="login-field login-password-field">
@@ -95,12 +251,11 @@ export default function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
-                id="loginPassword"
-                placeholder="Senha"
-                autoComplete="current-password"
-                required
+                id="authPassword"
+                placeholder={mode === "register" ? "Crie uma senha forte" : "Senha"}
+                autoComplete={mode === "register" ? "new-password" : "current-password"}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => { setPassword(e.target.value); if (!senhaTocada) setSenhaTocada(true); }}
               />
               <button
                 type="button"
@@ -118,13 +273,53 @@ export default function Login() {
                 </svg>
               </button>
             </div>
-            <button className="btn btn-primary w-100 py-3 login-submit" type="submit" disabled={loading}>
-              {loading ? "Entrando..." : "Entrar no universo"}
+            {mode === "register" && (
+              <>
+                <PasswordStrength senha={password} forca={forca} />
+                {senhaResult && !senhaResult.valido && (
+                  <Checklist itens={checklist} tocado={senhaTocada} />
+                )}
+              </>
+            )}
+            {mode === "register" && (
+              <div className="login-field login-password-field">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                <input type={showPassword ? "text" : "password"} className="form-control" id="authConfirm" placeholder="Confirmar senha" autoComplete="new-password" value={confirm} onChange={(e) => { setConfirm(e.target.value); if (!confirmTocada) setConfirmTocada(true); }} />
+              </div>
+            )}
+            {confirmacao && (
+              <ValidacaoMsg valido={confirmacao.valido}>
+                {confirmacao.mensagem}
+              </ValidacaoMsg>
+            )}
+            {error && <p className="text-danger mt-2 mb-0">{error}</p>}
+            <button className="btn btn-primary w-100 py-3 login-submit" type="submit" disabled={loading || (mode === "register" && !podeRegistrar)}>
+              {loading
+                ? (mode === "login" ? "Entrando..." : "Criando conta...")
+                : (mode === "login" ? "Entrar no universo" : "Criar conta")}
               {!loading && (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               )}
             </button>
-            {error && <p className="text-danger mt-3 mb-0">{error}</p>}
+            {mode === "login" && (
+              <div className="login-links">
+                <button type="button" className="login-link-btn" onClick={handleReset} disabled={loading}>
+                  {resetSent ? "Email enviado! Verifique sua caixa de entrada." : "Esqueceu sua senha?"}
+                </button>
+              </div>
+            )}
+            <div className="login-divider"><span>ou</span></div>
+            <button type="button" className="btn btn-google w-100 py-3" onClick={handleGoogle} disabled={loading}>
+              <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              {mode === "login" ? "Entrar com Google" : "Criar com Google"}
+            </button>
+            <p className="login-signup-text">
+              {mode === "login" ? (
+                <>Ainda não tem conta? <button type="button" className="login-link-btn" onClick={() => switchMode("register")}>Criar conta</button></>
+              ) : (
+                <>Já tem uma conta? <button type="button" className="login-link-btn" onClick={() => switchMode("login")}>Fazer login</button></>
+              )}
+            </p>
           </form>
         </div>
       </div>

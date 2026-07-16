@@ -31,7 +31,7 @@ function CTA() {
         <p className="landing-cta-subtitle">
           Junte-se a milhares de estudantes que transformaram sua forma de aprender. Sua jornada começa agora.
         </p>
-        <button className="landing-cta-btn" onClick={() => navigate("/login")} aria-label="Criar conta gratuita">
+        <button className="landing-cta-btn" onClick={() => navigate("/login?mode=register")} aria-label="Criar conta gratuita">
           Quero Fazer Parte
         </button>
       </div>

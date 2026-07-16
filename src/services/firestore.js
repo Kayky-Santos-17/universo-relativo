@@ -65,3 +65,15 @@ export function deleteDocById(colName, id) {
 export function addToCol(colName, data) {
   return addDoc(collection(db, colName), data);
 }
+
+export function getSubCollection(parentCol, parentId, subCol) {
+  return getDocs(collection(db, parentCol, parentId, subCol));
+}
+
+export function addToSubCollection(parentCol, parentId, subCol, data) {
+  return addDoc(collection(db, parentCol, parentId, subCol), data);
+}
+
+export function setSubDoc(parentCol, parentId, subCol, docId, data) {
+  return setDoc(doc(db, parentCol, parentId, subCol, docId), data);
+}
