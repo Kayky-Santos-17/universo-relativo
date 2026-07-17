@@ -35,7 +35,7 @@ const ICON_MAP = {
 export default function Home() {
   const navigate = useNavigate();
   const toast = useToast();
-  const { user, userData, loading } = useAuth();
+  const { user, userData, loading, isAdmin } = useAuth();
   const [atividades, setAtividades] = useState([]);
   const [contagemFirebase, setContagemFirebase] = useState(null);
   const uid = user?.uid || "anonimo";

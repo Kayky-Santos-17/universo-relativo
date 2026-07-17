@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import Navbar from "../../components/Landing/Navbar";
 import Hero from "../../components/Landing/Hero";
 import Features from "../../components/Landing/Features";
+import UniverseConceptSection from "../../components/Landing/UniverseConceptSection";
 import Showcase from "../../components/Landing/Showcase";
 import CTA from "../../components/Landing/CTA";
 import LandingFooter from "../../components/Landing/Footer";
@@ -36,6 +37,7 @@ function Landing() {
       <main>
         <Hero />
         <Features />
+        <UniverseConceptSection />
         <Showcase />
         <CTA />
       </main>

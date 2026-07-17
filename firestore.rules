@@ -1,0 +1,90 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Alunos ──
+    match /alunos/{uid} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+                    && request.auth.uid == uid
+                    && request.resource.data.admin == false;
+      allow update: if request.auth != null
+                    && (
+                      // próprio usuário (não pode se promover a admin)
+                      (request.auth.uid == uid
+                       && (!request.resource.data.keys().hasAny(['admin'])
+                           || request.resource.data.admin == resource.data.admin))
+                      ||
+                      // admin pode editar qualquer aluno
+                      get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true
+                    );
+      allow delete: if request.auth != null
+                    && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    // ── Coleções de leitura para usuários autenticados ──
+    match /apostilas/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    match /banco_questoes/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    match /flashcards/{doc} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null
+                   && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    match /trilhas/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    match /provas/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    match /aulas/{doc} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    match /estatisticas_questoes/{doc} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /presencas_chamada/{doc} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /notifications/{doc} {
+      allow read, write: if request.auth != null;
+    }
+
+    match /progresso_flashcards/{doc} {
+      allow read, write: if request.auth != null
+                   && request.auth.uid == doc.split('_')[1];
+    }
+
+    match /flashcards_pessoais/{doc} {
+      allow read, write: if request.auth != null
+                   && get(/databases/$(database)/documents/alunos/$(request.auth.uid)).data.admin == true;
+    }
+
+    // ── Negar tudo o mais ──
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

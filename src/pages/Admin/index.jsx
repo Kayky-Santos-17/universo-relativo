@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { getAll, addToCol, setDocById, updateDocById, deleteDocById, getDocById, getDocsByQuery } from "../../services/firestore";
-import { logout, register } from "../../services/auth";
+import { register } from "../../services/auth";
 import { htmlEscape } from "../../utils/helpers";
 import SvgIcon from "../../components/SvgIcon";
 
@@ -54,7 +54,7 @@ const FISICA_CONFIG = [
 
 /* ── Admin Page ── */
 export default function Admin() {
-  const { user, loading, userData } = useAuth();
+  const { user, loading, userData, logout } = useAuth();
   const navigate = useNavigate();
   const [view, setView] = useState("dashboard");
   const [data, setData] = useState({ alunos: [], questoes: [], cards: [], provas: [], catalog: null });
@@ -905,8 +905,11 @@ export default function Admin() {
           <div className="nav-list"><NavView id="settings" icon="settings" label="Configurações" /></div>
         </div>
         <div className="sidebar-footer">
-          <button className="student-preview" onClick={() => navigate("/")}>
-            Visualizar como aluno <SvgIcon d={ICONS.external} />
+          <button className="student-preview" onClick={() => navigate("/dashboard?visao=aluno")}>
+            Visão do Aluno <SvgIcon d={ICONS.external} />
+          </button>
+          <button className="student-preview logout" onClick={async () => { await logout(); navigate("/"); }}>
+            Sair <SvgIcon d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
           </button>
           <div className="admin-profile">
             <div className="avatar">AD</div>

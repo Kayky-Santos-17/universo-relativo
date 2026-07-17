@@ -1,0 +1,34 @@
+@keyframes heroAstroFloat {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  50%      { transform: translateY(-16px) translateX(8px) rotate(3deg); }
+}
+
+.hero-astronaut {
+  width: clamp(140px, 18vw, 300px);
+  filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.35));
+  animation: heroAstroFloat 6s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .hero-astronaut {
+    width: clamp(120px, 34vw, 200px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-astronaut {
+    width: 140px;
+  }
+}
+
+.hero-astronaut-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-astronaut {
+    animation: none;
+  }
+}

@@ -104,6 +104,32 @@
   box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.35), 0 16px 32px rgba(79, 70, 229, 0.28);
 }
 
+.session-modal-btn.secondary {
+  background: rgba(255,255,255,0.06);
+  box-shadow: none;
+  border: 1px solid rgba(148,163,184,0.2);
+  color: var(--text-muted);
+}
+
+.session-modal-btn.secondary:hover {
+  transform: none;
+  box-shadow: none;
+  filter: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+body.light .session-modal-btn.secondary {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: #64748b;
+}
+
+body.light .session-modal-btn.secondary:hover {
+  background: rgba(0,0,0,0.08);
+  color: #0f172a;
+}
+
 @keyframes sessionModalFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

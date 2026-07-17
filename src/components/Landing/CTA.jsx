@@ -29,9 +29,9 @@ function CTA() {
           O universo da <span className="landing-cta-highlight">Física</span> está esperando por você
         </h2>
         <p className="landing-cta-subtitle">
-          Junte-se a milhares de estudantes que transformaram sua forma de aprender. Sua jornada começa agora.
+          Aulas interativas, questões com feedback e revisão espaçada — tudo em um só lugar. Sua jornada começa agora.
         </p>
-        <button className="landing-cta-btn" onClick={() => navigate("/login?mode=register")} aria-label="Criar conta gratuita">
+        <button className="landing-cta-btn" onClick={() => navigate("/login")} aria-label="Criar conta gratuita">
           Quero Fazer Parte
         </button>
       </div>

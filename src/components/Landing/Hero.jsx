@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { useNavigate } from "react-router-dom";
-import Astronaut from "../Astronaut/Astronaut";
+import HeroAstronaut from "./HeroAstronaut";
 
 function Hero() {
   const navigate = useNavigate();
@@ -27,12 +27,12 @@ function Hero() {
             Domine a física com aulas interativas, questões inteligentes e flashcards. Do básico ao avançado, no seu ritmo.
           </p>
           <div className="landing-hero-actions">
-            <button className="landing-hero-btn landing-hero-btn-primary" onClick={() => navigate("/login?mode=register")} aria-label="Criar conta gratuita">Comece Grátis</button>
+            <button className="landing-hero-btn landing-hero-btn-primary" onClick={() => navigate("/login")} aria-label="Criar conta gratuita">Comece Grátis</button>
             <button className="landing-hero-btn landing-hero-btn-outline" onClick={(e) => handleScroll(e, "features")} aria-label="Saber mais sobre a plataforma">Quero Conhecer</button>
           </div>
         </div>
         <div className="landing-hero-right">
-          <Astronaut size="xl" animated variant="default" />
+          <HeroAstronaut />
         </div>
       </div>
       <div className="landing-scroll-indicator">

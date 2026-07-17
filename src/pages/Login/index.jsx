@@ -139,6 +139,7 @@ export default function Login() {
         email: emailVal,
         photoURL: "",
         ativo: true,
+        admin: false,
         criadoEm: new Date(),
         ultimoLogin: new Date(),
         provider: "password",

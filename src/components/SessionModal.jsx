@@ -1,29 +1,38 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSession } from "../hooks/useSession";
+import { useAuth } from "../hooks/useAuth";
 import { logout } from "../services/auth";
 import Astronaut from "./Astronaut/Astronaut";
 
 export default function SessionModal() {
-  const { sessionValid, resetSession } = useSession();
+  const { user } = useAuth();
+  const { sessionValid, handleLogin, resetSession } = useSession();
   const navigate = useNavigate();
-  const loggedOutRef = useRef(false);
-
-  useEffect(() => {
-    if (sessionValid) {
-      loggedOutRef.current = false;
-    } else if (!loggedOutRef.current) {
-      loggedOutRef.current = true;
-      logout().catch(() => {});
-    }
-  }, [sessionValid]);
-
-  const handleReLogin = () => {
-    resetSession();
-    navigate("/login", { replace: true });
-  };
+  const [takingControl, setTakingControl] = useState(false);
 
   if (sessionValid) return null;
+
+  const handleTakeControl = async () => {
+    if (!user?.uid) {
+      navigate("/login", { replace: true });
+      return;
+    }
+    setTakingControl(true);
+    try {
+      await handleLogin(user.uid, { recovered: true });
+    } catch {
+      navigate("/login", { replace: true });
+    } finally {
+      setTakingControl(false);
+    }
+  };
+
+  const handleQuit = () => {
+    resetSession();
+    logout().catch(() => {});
+    navigate("/login", { replace: true });
+  };
 
   return (
     <div
@@ -45,17 +54,26 @@ export default function SessionModal() {
               <path d="M7 11V7a5 5 0 0110 0v4"/>
             </svg>
           </div>
-          <h2 className="session-modal-title">Sessão encerrada</h2>
+          <h2 className="session-modal-title">Sessão concorrente</h2>
           <p className="session-modal-desc">
-            Sua sessão foi encerrada porque outro dispositivo fez login com esta conta.
+            Outro dispositivo fez login com esta conta.
           </p>
-          <button
-            className="session-modal-btn"
-            onClick={handleReLogin}
-            autoFocus
-          >
-            Fazer login novamente
-          </button>
+          <div style={{ display: "flex", gap: 8, flexDirection: "column" }}>
+            <button
+              className="session-modal-btn"
+              onClick={handleTakeControl}
+              disabled={takingControl}
+              autoFocus
+            >
+              {takingControl ? "Recuperando..." : "Recuperar sessão"}
+            </button>
+            <button
+              className="session-modal-btn secondary"
+              onClick={handleQuit}
+            >
+              Sair
+            </button>
+          </div>
         </div>
       </div>
     </div>

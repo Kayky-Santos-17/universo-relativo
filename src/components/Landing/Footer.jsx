@@ -24,7 +24,7 @@ function LandingFooter() {
           <a href="#hero" onClick={(e) => { e.preventDefault(); document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" }); }}>Início</a>
           <a href="#features" onClick={(e) => { e.preventDefault(); document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }); }}>Como Funciona</a>
           <a href="#showcase" onClick={(e) => { e.preventDefault(); document.getElementById("showcase")?.scrollIntoView({ behavior: "smooth" }); }}>Diferenciais</a>
-          <a href="#cta" onClick={(e) => { e.preventDefault(); document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" }); }}>Contato</a>
+          <a href="#cta" onClick={(e) => { e.preventDefault(); document.getElementById("cta")?.scrollIntoView({ behavior: "smooth" }); }}>Comece Agora</a>
         </div>
         <div className="landing-footer-socials">
           {SOCIALS.map((s) => (

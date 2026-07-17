@@ -1,10 +1,11 @@
 import { lazy, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
+import AdminLayout from "./layouts/AdminLayout";
 import PrivateRoute from "./routes/PrivateRoute";
 import Loading from "./components/Loading";
 
-const Home = lazy(() => import("./pages/Home"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Login = lazy(() => import("./pages/Login"));
 const Landing = lazy(() => import("./pages/Landing/Landing"));
 const Apostilas = lazy(() => import("./pages/Apostilas"));
@@ -25,7 +26,7 @@ export default function App() {
         {
           element: <PrivateRoute />,
           children: [
-            { path: "/dashboard", element: <Home /> },
+            { path: "/dashboard", element: <Dashboard /> },
             { path: "/apostilas", element: <Apostilas /> },
             { path: "/flashcards", element: <Flashcards /> },
             { path: "/trilhas", element: <Trilhas /> },
@@ -38,10 +39,15 @@ export default function App() {
       ]
     },
     {
-      element: <PrivateRoute requireAdmin />,
+      element: <AdminLayout />,
       children: [
-        { path: "/admin", element: <Admin /> },
-        { path: "/admin/*", element: <Admin /> }
+        {
+          element: <PrivateRoute requireAdmin />,
+          children: [
+            { path: "/admin", element: <Admin /> },
+            { path: "/admin/*", element: <Admin /> }
+          ]
+        }
       ]
     }
   ]);

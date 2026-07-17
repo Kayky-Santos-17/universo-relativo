@@ -35,7 +35,8 @@ export function AuthProvider({ children }) {
           setUserData(null);
           setIsAdmin(false);
         }
-      } catch {
+      } catch (err) {
+        console.warn("[Auth] Erro ao carregar dados do usuário:", err?.code || err?.message || err);
         setUserData(null);
         setIsAdmin(false);
       }
@@ -75,6 +76,7 @@ export function AuthProvider({ children }) {
         email: fbUser.email,
         photoURL: fbUser.photoURL || "",
         ativo: true,
+        admin: false,
         criadoEm: new Date(),
         provider: "google",
         progresso: { questoesRespondidas: 0, acertos: 0 }
@@ -130,6 +132,12 @@ export function AuthProvider({ children }) {
       // silencioso
     }
   }, []);
+
+  if (typeof window !== "undefined") {
+    window.__isAdmin = isAdmin;
+    window.__userUid = user?.uid;
+    window.__userData = userData;
+  }
 
   return (
     <AuthContext.Provider value={{ user, userData, loading, isAdmin, login, loginWithGoogle, logout, register, resetPassword, reloadUserData }}>

@@ -86,7 +86,7 @@ function Features() {
               </div>
               <h3>{f.title}</h3>
               <p>{f.desc}</p>
-              <span className="landing-features-step" style={{ background: f.color }}>{f.step}</span>
+              <span className="landing-features-step" style={{ color: f.color }}>{f.step}</span>
             </div>
           ))}
         </div>
