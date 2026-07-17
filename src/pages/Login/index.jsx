@@ -8,23 +8,23 @@ import PasswordStrength from "../../components/PasswordStrength";
 import Astronaut from "../../components/Astronaut/Astronaut";
 
 const ERROR_MAP = {
-  "auth/invalid-email": "Email inválido.",
-  "auth/user-not-found": "Conta não encontrada.",
-  "auth/wrong-password": "Senha incorreta.",
-  "auth/invalid-credential": "Email ou senha incorretos.",
-  "auth/email-already-in-use": "Este email já está cadastrado.",
-  "auth/weak-password": "A senha deve ter no mínimo 6 caracteres.",
-  "auth/too-many-requests": "Muitas tentativas. Tente novamente mais tarde.",
-  "auth/network-request-failed": "Erro de conexão. Verifique sua internet.",
-  "auth/popup-blocked": "Permita popups para entrar com Google.",
-  "permission-denied": "Erro de permissão. Tente novamente."
+  "auth/invalid-email": "Não foi possível reconhecer este email. Confira e tente novamente.",
+  "auth/user-not-found": "Não encontramos uma conta com estas informações.",
+  "auth/wrong-password": "Não foi possível confirmar sua senha.",
+  "auth/invalid-credential": "Não foi possível confirmar suas informações.",
+  "auth/email-already-in-use": "Este email já possui cadastro. Que tal fazer login?",
+  "auth/weak-password": "A senha precisa ser um pouco mais longa (mínimo de 6 caracteres).",
+  "auth/too-many-requests": "Muitas tentativas seguidas. Vamos aguardar um momento antes de tentar novamente.",
+  "auth/network-request-failed": "Algo inesperado aconteceu com sua conexão. Verifique e tente novamente.",
+  "auth/popup-blocked": "Precisamos de permissão para abrir uma janela. Permita popups nas configurações do seu navegador.",
+  "permission-denied": "Não foi possível acessar este recurso agora. Tente novamente."
 };
 
 function friendlyError(err) {
-  if (!err) return "Ocorreu um erro.";
+  if (!err) return "Algo inesperado aconteceu.";
   if (err.code && ERROR_MAP[err.code]) return ERROR_MAP[err.code];
-  if (err.message?.includes("permission")) return "Erro de permissão. Tente novamente.";
-  return err.message || "Ocorreu um erro.";
+  if (err.message?.includes("permission")) return "Não foi possível acessar este recurso agora. Tente novamente.";
+  return err.message || "Algo inesperado aconteceu.";
 }
 
 function ValidacaoMsg({ children, valido }) {
@@ -202,31 +202,62 @@ export default function Login() {
         <div className="orbit orbit-one"><span className="planet planet-one" /></div>
         <div className="orbit orbit-two"><span className="planet planet-two" /></div>
         <div className="orbit orbit-three"><span className="planet planet-three" /></div>
-        <div className="astronaut-wrapper" aria-hidden="true">
-          <Astronaut size="lg" variant="floating" animated />
-        </div>
       </div>
+
       <div className="login-layout">
-        <div className="login-brand-panel glass-panel zoom-lens">
-          <span className="ui-badge">Universo Relativo</span>
+        <div className="login-brand-panel">
+          <div className="login-brand-cosmos">
+            <div className="brand-galaxy"></div>
+            <div className="brand-dust"></div>
+            <div className="brand-ring-planet">
+              <div className="brand-ring"></div>
+            </div>
+            <div className="brand-orbit brand-orbit-1">
+              <span className="brand-planet brand-planet-1"></span>
+            </div>
+            <div className="brand-orbit brand-orbit-2">
+              <span className="brand-planet brand-planet-2"></span>
+            </div>
+            <div className="brand-orbit brand-orbit-3">
+              <span className="brand-planet brand-planet-3"></span>
+            </div>
+            <div className="login-brand-astro">
+              <Astronaut size="lg" variant="floating" animated />
+            </div>
+            <div className="brand-stars"></div>
+            <div className="brand-trail"></div>
+            <div className="brand-trail-glow"></div>
+            <div className="brand-spaceship">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C12 2 4 10 4 16C4 19.3 7.6 22 12 22C16.4 22 20 19.3 20 16C20 10 12 2 12 2Z" fill="#a78bfa" opacity="0.9"/>
+                <path d="M12 2C12 2 8 10 8 14C8 16.8 10 19 12 19C14 19 16 16.8 16 14C16 10 12 2 12 2Z" fill="#c4b5fd" opacity="0.5"/>
+                <circle cx="12" cy="14" r="2" fill="#e9d5ff"/>
+                <path d="M7 18 L5 22 M17 18 L19 22" stroke="#7c3aed" strokeWidth="1.5" strokeLinecap="round"/>
+                <ellipse cx="12" cy="22" rx="4" ry="1.5" fill="#7c3aed" opacity="0.4"/>
+              </svg>
+            </div>
+          </div>
         </div>
+
         <div className="login-box glass-panel">
           <form noValidate onSubmit={mode === "login" ? handleLogin : handleRegister}>
             <div className="login-tabs">
               <button type="button" className={`login-tab${mode === "login" ? " active" : ""}`} onClick={() => switchMode("login")}>Entrar</button>
               <button type="button" className={`login-tab${mode === "register" ? " active" : ""}`} onClick={() => switchMode("register")}>Criar Conta</button>
             </div>
+
             <div className="login-heading">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
               {mode === "login" ? (
                 <><h2 className="login-title">Acesse a plataforma</h2><p className="login-subtitle">Entre com seu email e senha</p></>
               ) : (
                 <><h2 className="login-title">Novo por aqui?</h2><p className="login-subtitle">Crie sua conta e comece a estudar</p></>
               )}
             </div>
+
             {mode === "register" && (
               <div className="login-field">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 <input type="text" className="form-control" id="authNome" placeholder="Nome completo" autoComplete="name" value={nome} onChange={(e) => { setNome(e.target.value); if (!nomeTocado) setNomeTocado(true); }} />
               </div>
             )}
@@ -235,8 +266,9 @@ export default function Login() {
                 {nomeResult.mensagem}
               </ValidacaoMsg>
             )}
+
             <div className="login-field">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
               <input
                 type="email"
                 className="form-control"
@@ -247,8 +279,9 @@ export default function Login() {
                 onChange={(e) => { setEmail(e.target.value); setResetSent(false); }}
               />
             </div>
+
             <div className="login-field login-password-field">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
               <input
                 type={showPassword ? "text" : "password"}
                 className="form-control"
@@ -266,7 +299,7 @@ export default function Login() {
                 onClick={() => setShowPassword((v) => !v)}
                 tabIndex={-1}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   {showPassword
                     ? <><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></>
                     : <><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></>
@@ -274,6 +307,7 @@ export default function Login() {
                 </svg>
               </button>
             </div>
+
             {mode === "register" && (
               <>
                 <PasswordStrength senha={password} forca={forca} />
@@ -282,9 +316,10 @@ export default function Login() {
                 )}
               </>
             )}
+
             {mode === "register" && (
               <div className="login-field login-password-field">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
                 <input type={showPassword ? "text" : "password"} className="form-control" id="authConfirm" placeholder="Confirmar senha" autoComplete="new-password" value={confirm} onChange={(e) => { setConfirm(e.target.value); if (!confirmTocada) setConfirmTocada(true); }} />
               </div>
             )}
@@ -293,7 +328,9 @@ export default function Login() {
                 {confirmacao.mensagem}
               </ValidacaoMsg>
             )}
+
             {error && <p className="text-danger mt-2 mb-0">{error}</p>}
+
             <button className="btn btn-primary w-100 py-3 login-submit" type="submit" disabled={loading || (mode === "register" && !podeRegistrar)}>
               {loading
                 ? (mode === "login" ? "Entrando..." : "Criando conta...")
@@ -302,6 +339,7 @@ export default function Login() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               )}
             </button>
+
             {mode === "login" && (
               <div className="login-links">
                 <button type="button" className="login-link-btn" onClick={handleReset} disabled={loading}>
@@ -309,11 +347,14 @@ export default function Login() {
                 </button>
               </div>
             )}
+
             <div className="login-divider"><span>ou</span></div>
+
             <button type="button" className="btn btn-google w-100 py-3" onClick={handleGoogle} disabled={loading}>
               <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
               {mode === "login" ? "Entrar com Google" : "Criar com Google"}
             </button>
+
             <p className="login-signup-text">
               {mode === "login" ? (
                 <>Ainda não tem conta? <button type="button" className="login-link-btn" onClick={() => switchMode("register")}>Criar conta</button></>

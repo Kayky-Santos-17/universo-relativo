@@ -189,19 +189,19 @@ export default function Flashcards() {
                   placeholder="Pergunta"
                   value={novaPergunta}
                   onChange={(e) => setNovaPergunta(e.target.value)}
-                  style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(148,163,184,.18)", color: "#fff", borderRadius: "12px", padding: "12px" }}
+                  style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(139,92,246,.18)", color: "#fff", borderRadius: "12px", padding: "12px" }}
                 />
                 <input
                   className="form-control"
                   placeholder="Resposta"
                   value={novaResposta}
                   onChange={(e) => setNovaResposta(e.target.value)}
-                  style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(148,163,184,.18)", color: "#fff", borderRadius: "12px", padding: "12px" }}
+                  style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(139,92,246,.18)", color: "#fff", borderRadius: "12px", padding: "12px" }}
                 />
                 <select
                   value={novaMateria}
                   onChange={(e) => setNovaMateria(e.target.value)}
-                  style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(148,163,184,.18)", color: "#fff", borderRadius: "12px", padding: "12px" }}
+                  style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(139,92,246,.18)", color: "#fff", borderRadius: "12px", padding: "12px" }}
                 >
                   {MATERIAS.filter((m) => m !== "Todas").map((m) => <option key={m} value={m}>{m}</option>)}
                 </select>
@@ -233,7 +233,7 @@ export default function Flashcards() {
                   padding: "40px 30px",
                   borderRadius: "24px",
                   background: "linear-gradient(180deg,rgba(15,23,42,.88),rgba(2,6,23,.78))",
-                  border: `2px solid ${virado ? "rgba(34,197,94,.34)" : "rgba(148,163,184,.18)"}`,
+                  border: `2px solid ${virado ? "rgba(34,197,94,.34)" : "rgba(139,92,246,.14)"}`,
                   minHeight: "200px",
                   display: "flex",
                   flexDirection: "column",

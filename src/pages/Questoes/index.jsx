@@ -92,7 +92,7 @@ export default function Questoes() {
         setScreen("quiz");
       }
     } catch (err) {
-      setError("Erro ao carregar questões: " + (err.message || ""));
+      setError("Algo inesperado aconteceu ao carregar as questões. Tente novamente.");
       setQuestoes([]);
     } finally {
       setLoading(false);
@@ -130,7 +130,7 @@ export default function Questoes() {
 
   const responder = useCallback(async () => {
     if (respostas[atual] === undefined || respostas[atual] === null) {
-      toast?.error?.("Selecione uma alternativa.");
+      toast?.error?.("Escolha uma alternativa para responder.");
       return;
     }
     setFinalizadas((prev) => ({ ...prev, [atual]: true }));
@@ -331,7 +331,7 @@ export default function Questoes() {
                 <div className={`quiz-feedback ${respostas[atual] === questaoAtual.correta ? "correct" : "incorrect"}`}>
                   {respostas[atual] === questaoAtual.correta
                     ? "Resposta correta."
-                    : `Resposta incorreta. A alternativa correta é ${String.fromCharCode(65 + questaoAtual.correta)}.`}
+                    : `Essa não foi a resposta correta desta vez. A alternativa correta é ${String.fromCharCode(65 + questaoAtual.correta)}.`}
                 </div>
               )}
 

@@ -108,7 +108,7 @@ export default function Perfil() {
                         className="form-control"
                         value={nomeEdit}
                         onChange={(e) => setNomeEdit(e.target.value)}
-                        style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(148,163,184,.18)", color: "#fff", borderRadius: "10px", padding: "8px 12px", fontSize: ".95rem", maxWidth: "220px" }}
+                        style={{ background: "rgba(15,23,42,.58)", border: "1px solid rgba(139,92,246,.18)", color: "#fff", borderRadius: "12px", padding: "8px 12px", fontSize: ".95rem", maxWidth: "220px" }}
                       />
                       <button className="btn btn-sm btn-primary" onClick={salvarNome} disabled={salvando}>
                         <SvgIcon d={ICON_SAVE} size={15} /> Salvar
@@ -175,7 +175,7 @@ export default function Perfil() {
                     style={{
                       position: "relative", width: "48px", height: "26px", borderRadius: "999px",
                       background: theme === "dark" ? "rgba(15,23,42,.85)" : "#dbeafe",
-                      border: `1px solid ${theme === "dark" ? "rgba(148,163,184,.22)" : "rgba(37,99,235,.18)"}`,
+                      border: `1px solid ${theme === "dark" ? "rgba(139,92,246,.16)" : "rgba(124,58,237,.14)"}`,
                       cursor: "pointer", padding: 0, flexShrink: 0
                     }}
                   >
@@ -194,7 +194,7 @@ export default function Perfil() {
                   <div style={{
                     display: "flex", alignItems: "center", justifyContent: "space-between",
                     padding: "14px 18px", borderRadius: "14px",
-                    background: "rgba(15,23,42,.45)", border: "1px solid rgba(148,163,184,.12)"
+background: "rgba(15,23,42,.45)", border: "1px solid rgba(139,92,246,.1)"
                   }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                       <SvgIcon d={ICON_LOCK} size={18} style={{ color: "#94a3b8" }} />

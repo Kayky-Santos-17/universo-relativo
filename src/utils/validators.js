@@ -56,58 +56,58 @@ export function validarNome(nome) {
   const normalized = normalizarNome(nome);
 
   if (!normalized) {
-    return { valido: false, mensagem: "Informe seu nome completo." };
+    return { valido: false, mensagem: "Como gostaria de ser chamado?" };
   }
 
   if (normalized.length < 5) {
-    return { valido: false, mensagem: "Informe seu nome completo." };
+    return { valido: false, mensagem: "Como gostaria de ser chamado? Utilize seu nome completo." };
   }
 
   if (normalized.length > 80) {
-    return { valido: false, mensagem: "O nome informado parece inválido." };
+    return { valido: false, mensagem: "Não foi possível reconhecer este nome. Confira e tente novamente." };
   }
 
   const palavras = normalized.split(" ");
   if (palavras.length < 2) {
-    return { valido: false, mensagem: "Utilize seu nome e sobrenome." };
+    return { valido: false, mensagem: "Seu nome completo nos ajuda a conhecer você melhor." };
   }
 
   const lower = normalized.toLowerCase();
 
   if (PALAVRAS_PROIBIDAS.includes(lower)) {
-    return { valido: false, mensagem: "O nome informado parece inválido." };
+    return { valido: false, mensagem: "Não foi possível reconhecer este nome. Confira e tente novamente." };
   }
 
   for (const palavra of palavras) {
     if (PALAVRAS_PROIBIDAS.includes(palavra.toLowerCase())) {
-      return { valido: false, mensagem: "O nome informado parece inválido." };
+      return { valido: false, mensagem: "Não foi possível reconhecer este nome. Confira e tente novamente." };
     }
   }
 
   const apenasLetrasEEspacos = /^[a-zA-Zà-ÿÀ-ß\s'-]+$/.test(normalized);
   if (!apenasLetrasEEspacos) {
-    return { valido: false, mensagem: "Utilize seu nome e sobrenome." };
+    return { valido: false, mensagem: "Seu nome completo nos ajuda a conhecer você melhor." };
   }
 
   if (temSequenciaTeclado(lower.replace(/\s/g, ""))) {
-    return { valido: false, mensagem: "O nome informado parece inválido." };
+    return { valido: false, mensagem: "Não foi possível reconhecer este nome. Confira e tente novamente." };
   }
 
   const junta = normalized.replace(/\s/g, "");
   if (temRepeticaoCaractere(junta)) {
-    return { valido: false, mensagem: "O nome informado parece inválido." };
+    return { valido: false, mensagem: "Não foi possível reconhecer este nome. Confira e tente novamente." };
   }
 
   if (temPadraoRepetido(junta)) {
-    return { valido: false, mensagem: "O nome informado parece inválido." };
+    return { valido: false, mensagem: "Não foi possível reconhecer este nome. Confira e tente novamente." };
   }
 
   if (apenasDigitos(junta)) {
-    return { valido: false, mensagem: "Utilize seu nome e sobrenome." };
+    return { valido: false, mensagem: "Seu nome completo nos ajuda a conhecer você melhor." };
   }
 
   if (apenasSimbolos(junta)) {
-    return { valido: false, mensagem: "O nome informado parece inválido." };
+    return { valido: false, mensagem: "Não foi possível reconhecer este nome. Confira e tente novamente." };
   }
 
   return { valido: true, mensagem: "" };
@@ -117,28 +117,28 @@ export function validarSenha(senha) {
   const erros = [];
 
   if (!senha) {
-    return { valido: false, erros: ["Digite uma senha."] };
+    return { valido: false, erros: ["Escolha uma senha para sua conta."] };
   }
 
   if (senha.length < 8) {
-    erros.push("Mínimo de 8 caracteres.");
+    erros.push("Pelo menos 8 caracteres");
   }
 
   if (!/[A-Z]/.test(senha)) {
-    erros.push("Letra maiúscula.");
+    erros.push("Incluir letra maiúscula");
   }
 
   if (!/[a-z]/.test(senha)) {
-    erros.push("Letra minúscula.");
+    erros.push("Incluir letra minúscula");
   }
 
   if (!/[0-9]/.test(senha)) {
-    erros.push("Pelo menos um número.");
+    erros.push("Incluir pelo menos um número");
   }
 
   const temSimbolo = [...senha].some(c => SIMBOLOS_ACEITOS.trim().includes(c));
   if (!temSimbolo) {
-    erros.push("Pelo menos um símbolo (@ # $ % & * ! ? _ - .).");
+    erros.push("Incluir um símbolo (@ # $ % & * ! ? _ - .)");
   }
 
   return { valido: erros.length === 0, erros };
@@ -150,7 +150,7 @@ export function calcularForcaSenha(senha) {
   }
 
   if (senha.length < 8) {
-    return { nivel: 1, label: "Muito Fraca", cor: "var(--red)" };
+    return { nivel: 1, label: "Em construção", cor: "var(--red)" };
   }
 
   const temMaiuscula = /[A-Z]/.test(senha);
@@ -163,7 +163,7 @@ export function calcularForcaSenha(senha) {
   const letrasENumeros = /^[a-zA-Z0-9]+$/.test(senha);
 
   if (apenasLetras || apenasNumeros) {
-    return { nivel: 2, label: "Fraca", cor: "var(--amber)" };
+    return { nivel: 2, label: "Pode melhorar", cor: "var(--amber)" };
   }
 
   if (letrasENumeros) {
@@ -186,9 +186,9 @@ export function validarConfirmacao(senha, confirmacao) {
     return { valido: false, mensagem: "" };
   }
   if (senha !== confirmacao) {
-    return { valido: false, mensagem: "As senhas não coincidem." };
+    return { valido: false, mensagem: "As senhas digitadas são diferentes." };
   }
-  return { valido: true, mensagem: "Senhas coincidem." };
+  return { valido: true, mensagem: "As senhas conferem." };
 }
 
 export function obterChecklistSenha(senha) {

@@ -15,6 +15,7 @@ const Questoes = lazy(() => import("./pages/Questoes"));
 const Provas = lazy(() => import("./pages/Provas"));
 const Perfil = lazy(() => import("./pages/Perfil"));
 const Admin = lazy(() => import("./pages/Admin"));
+const Blueprint = lazy(() => import("./pages/Blueprint"));
 
 export default function App() {
   const routes = useRoutes([
@@ -45,7 +46,8 @@ export default function App() {
           element: <PrivateRoute requireAdmin />,
           children: [
             { path: "/admin", element: <Admin /> },
-            { path: "/admin/*", element: <Admin /> }
+            { path: "/admin/*", element: <Admin /> },
+            { path: "/blueprint", element: <Blueprint /> }
           ]
         }
       ]
