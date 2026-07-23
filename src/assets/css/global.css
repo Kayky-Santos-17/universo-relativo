@@ -278,217 +278,117 @@ body:not(.light) .modal-close-btn:hover{background:rgba(255,255,255,.12)}
 .login-cosmos .orbit.orbit-two .planet{width:38px;height:38px;top:-19px;transform:translateX(-50%);background:radial-gradient(circle at 30% 28%,#93c5fd,#60a5fa 38%,#2563eb 65%,#1d4ed8);box-shadow:0 0 22px rgba(96,165,250,.35),0 0 56px rgba(96,165,250,.1),inset -3px -5px 10px rgba(30,64,175,.35);animation:planetPulse 5s ease-in-out infinite alternate-reverse}
 .login-cosmos .orbit.orbit-three{width:380px;height:380px;top:66%;left:28%;border-color:rgba(167,139,250,.16);animation-duration:28s}
 .login-cosmos .orbit.orbit-three .planet{width:32px;height:32px;top:-16px;transform:translateX(-50%);background:radial-gradient(circle at 32% 25%,#ddd6fe,#a78bfa 35%,#7c3aed 62%,#6d28d9);box-shadow:0 0 20px rgba(167,139,250,.32),0 0 50px rgba(167,139,250,.1),inset -3px -4px 10px rgba(91,33,182,.35);animation:planetPulse 4.5s ease-in-out infinite alternate}
-
-/* ── Login layout ── */
-.login-layout{position:relative;width:100%;max-width:1000px;margin:0 auto;display:flex;gap:28px;align-items:stretch;z-index:2;padding:28px 0}
-
-/* ── Brand panel (left) ── */
-.login-brand-panel{flex:1.1;display:flex;align-items:center;justify-content:center;padding:48px 40px;border-radius:32px;color:#fff;background:linear-gradient(170deg,rgba(15,23,42,.58),rgba(2,6,23,.48));border:1px solid rgba(139,92,246,.14);backdrop-filter:blur(16px);box-shadow:0 28px 80px rgba(2,6,23,.42),inset 0 1px 0 rgba(255,255,255,.06);position:relative;overflow:visible;isolation:isolate}
-.login-brand-panel::before{content:"";position:absolute;top:-40%;right:-20%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 62%);pointer-events:none}
-.login-brand-panel::after{content:"";position:absolute;bottom:-20%;left:-10%;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(14,165,233,.12),transparent 60%);pointer-events:none}
-.login-brand-cosmos{position:relative;width:100%;min-height:450px;display:flex;align-items:center;justify-content:center}
-.login-brand-astro{position:absolute;z-index:5;filter:drop-shadow(0 0 80px rgba(147,197,253,.55));pointer-events:none;animation:brandAstroFloat 8s ease-in-out infinite;transform:scale(0.7)}
-@keyframes brandAstroFloat{0%,100%{transform:scale(0.7) translateY(0)}50%{transform:scale(0.72) translateY(-12px)}}
-
-/* giant ringed planet */
-.brand-ring-planet{position:absolute;width:350px;height:350px;top:-140px;right:-180px;z-index:1;pointer-events:none;animation:brandRingPulse 8s ease-in-out infinite alternate}
-@keyframes brandRingPulse{0%{filter:brightness(1) saturate(1)}100%{filter:brightness(1.25) saturate(1.15)}}
-.brand-ring-planet::before{content:"";position:absolute;inset:50px;border-radius:50%;background:radial-gradient(circle at 30% 25%,#fde68a,#f59e0b 35%,#d97706 60%,#b45309 82%,#78350f);box-shadow:0 0 120px rgba(251,191,36,.4),inset -12px -18px 36px rgba(120,53,15,.45)}
-.brand-ring{position:absolute;top:50%;left:50%;width:480px;height:96px;transform:translate(-50%,-50%) rotate(-15deg);border-radius:50%;border:8px solid rgba(251,191,36,.14);pointer-events:none;box-shadow:0 0 80px rgba(251,191,36,.06)}
-.brand-ring::before{content:"";position:absolute;inset:-16px -28px;border-radius:50%;border:4px solid rgba(251,191,36,.07)}
-.brand-ring::after{content:"";position:absolute;inset:16px 10px;border-radius:50%;border:3px solid rgba(251,191,36,.04)}
-
-/* giant orbits */
-.brand-orbit{position:absolute;top:50%;left:50%;border-radius:50%;border:3px solid;pointer-events:none;animation:brandOrbitSpin linear infinite}
-@keyframes brandOrbitSpin{0%{transform:translate(-50%,-50%) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg)}}
-.brand-orbit .brand-planet{position:absolute;border-radius:50%;left:50%;pointer-events:none}
-
-.brand-orbit-1{width:1000px;height:1000px;border-color:rgba(96,165,250,.1);animation-duration:60s}
-.brand-orbit-1 .brand-planet{width:200px;height:200px;margin-left:-100px;top:-20px;background:radial-gradient(circle at 28% 22%,#bfdbfe,#60a5fa 28%,#2563eb 50%,#1d4ed8 72%,#0f3b8e 90%,#08246b);box-shadow:0 0 100px rgba(96,165,250,.45),inset -14px -18px 40px rgba(30,64,175,.45)}
-
-.brand-orbit-2{width:800px;height:800px;border-color:rgba(167,139,250,.08);animation-duration:70s;animation-direction:reverse}
-.brand-orbit-2 .brand-planet{width:170px;height:170px;margin-left:-85px;top:-18px;background:radial-gradient(circle at 28% 22%,#e9d5ff,#a78bfa 28%,#7c3aed 50%,#6d28d9 72%,#4c1d95 88%,#2e1065);box-shadow:0 0 90px rgba(167,139,250,.4),inset -12px -16px 36px rgba(91,33,182,.45)}
-
-.brand-orbit-3{width:640px;height:640px;border-color:rgba(34,211,238,.06);animation-duration:50s}
-.brand-orbit-3 .brand-planet{width:140px;height:140px;margin-left:-70px;top:-16px;background:radial-gradient(circle at 28% 22%,#cffafe,#22d3ee 28%,#0891b2 50%,#155e75 72%,#0a3d4f 88%,#062a36);box-shadow:0 0 80px rgba(34,211,238,.4),inset -10px -14px 32px rgba(21,94,117,.45)}
-
-/* stars overlay */
-.brand-stars{position:absolute;inset:-150px;pointer-events:none;z-index:6;background-image:radial-gradient(2px 2px at 18% 12%,rgba(255,255,255,.7),transparent),radial-gradient(2.5px 2.5px at 76% 18%,rgba(255,255,255,.5),transparent),radial-gradient(2px 2px at 44% 82%,rgba(255,255,255,.6),transparent),radial-gradient(1.5px 1.5px at 88% 72%,rgba(255,255,255,.4),transparent),radial-gradient(2px 2px at 8% 68%,rgba(255,255,255,.5),transparent),radial-gradient(2.5px 2.5px at 62% 90%,rgba(255,255,255,.3),transparent),radial-gradient(1.5px 1.5px at 92% 34%,rgba(255,255,255,.4),transparent),radial-gradient(2px 2px at 28% 44%,rgba(255,255,255,.35),transparent),radial-gradient(1.8px 1.8px at 12% 90%,rgba(255,255,255,.45),transparent),radial-gradient(1.5px 1.5px at 70% 6%,rgba(255,255,255,.5),transparent),radial-gradient(2.5px 2.5px at 50% 50%,rgba(255,255,255,.15),transparent);animation:brandStarsTwinkle 6s ease-in-out infinite alternate}
-@keyframes brandStarsTwinkle{0%{opacity:.4}100%{opacity:1}}
-
-/* galaxy background */
-.brand-galaxy{position:absolute;inset:-120px;z-index:0;pointer-events:none;background:radial-gradient(ellipse 45% 35% at 50% 50%,rgba(139,92,246,.22) 0%,rgba(124,58,237,.16) 10%,rgba(99,102,241,.12) 22%,rgba(14,165,233,.09) 38%,rgba(59,130,246,.06) 52%,transparent 70%);animation:brandGalaxyPulse 20s ease-in-out infinite alternate}
-@keyframes brandGalaxyPulse{0%{transform:rotate(-20deg) scale(1);opacity:.7}100%{transform:rotate(-20deg) scale(1.08);opacity:1}}
-
-/* space dust particles */
-.brand-dust{position:absolute;inset:-80px;z-index:0;pointer-events:none;background-image:
-radial-gradient(2px 2px at 12% 18%,rgba(255,255,255,.5),transparent),
-radial-gradient(2.5px 2.5px at 16% 22%,rgba(167,139,250,.45),transparent),
-radial-gradient(1.8px 1.8px at 20% 14%,rgba(147,197,253,.4),transparent),
-radial-gradient(2px 2px at 24% 28%,rgba(255,255,255,.35),transparent),
-radial-gradient(1.5px 1.5px at 10% 32%,rgba(167,139,250,.4),transparent),
-radial-gradient(2.5px 2.5px at 28% 8%,rgba(147,197,253,.35),transparent),
-radial-gradient(2px 2px at 34% 20%,rgba(255,255,255,.3),transparent),
-radial-gradient(1.8px 1.8px at 40% 15%,rgba(167,139,250,.38),transparent),
-radial-gradient(2px 2px at 46% 25%,rgba(147,197,253,.32),transparent),
-radial-gradient(1.5px 1.5px at 52% 12%,rgba(255,255,255,.28),transparent),
-radial-gradient(2.5px 2.5px at 58% 22%,rgba(167,139,250,.35),transparent),
-radial-gradient(2px 2px at 64% 18%,rgba(147,197,253,.3),transparent),
-radial-gradient(1.8px 1.8px at 70% 28%,rgba(255,255,255,.25),transparent),
-radial-gradient(2px 2px at 76% 10%,rgba(167,139,250,.32),transparent),
-radial-gradient(1.5px 1.5px at 82% 24%,rgba(147,197,253,.28),transparent),
-radial-gradient(2.5px 2.5px at 88% 16%,rgba(255,255,255,.3),transparent),
-radial-gradient(2px 2px at 42% 35%,rgba(167,139,250,.3),transparent),
-radial-gradient(1.8px 1.8px at 50% 38%,rgba(147,197,253,.25),transparent),
-radial-gradient(2px 2px at 22% 42%,rgba(255,255,255,.28),transparent),
-radial-gradient(1.5px 1.5px at 68% 45%,rgba(167,139,250,.22),transparent),
-radial-gradient(2.5px 2.5px at 30% 50%,rgba(147,197,253,.2),transparent),
-radial-gradient(2px 2px at 56% 48%,rgba(255,255,255,.18),transparent),
-radial-gradient(1.8px 1.8px at 76% 52%,rgba(167,139,250,.2),transparent),
-radial-gradient(2px 2px at 14% 55%,rgba(147,197,253,.22),transparent),
-radial-gradient(1.5px 1.5px at 84% 58%,rgba(255,255,255,.15),transparent),
-radial-gradient(2.5px 2.5px at 38% 60%,rgba(167,139,250,.18),transparent),
-radial-gradient(2px 2px at 62% 55%,rgba(147,197,253,.15),transparent),
-radial-gradient(1.8px 1.8px at 48% 65%,rgba(255,255,255,.2),transparent),
-radial-gradient(2px 2px at 72% 68%,rgba(167,139,250,.15),transparent),
-radial-gradient(1.5px 1.5px at 26% 70%,rgba(147,197,253,.18),transparent),
-radial-gradient(2.5px 2.5px at 18% 78%,rgba(255,255,255,.22),transparent),
-radial-gradient(2px 2px at 58% 72%,rgba(167,139,250,.14),transparent),
-radial-gradient(1.8px 1.8px at 80% 75%,rgba(147,197,253,.12),transparent),
-radial-gradient(2px 2px at 34% 82%,rgba(255,255,255,.18),transparent),
-radial-gradient(1.5px 1.5px at 66% 85%,rgba(167,139,250,.1),transparent),
-radial-gradient(2.5px 2.5px at 90% 8%,rgba(147,197,253,.2),transparent),
-radial-gradient(2px 2px at 6% 45%,rgba(255,255,255,.15),transparent),
-radial-gradient(1.8px 1.8px at 44% 5%,rgba(167,139,250,.25),transparent),
-radial-gradient(2px 2px at 74% 35%,rgba(147,197,253,.18),transparent)
-;animation:brandDustDrift 30s ease-in-out infinite alternate}
-@keyframes brandDustDrift{0%{transform:translate(0,0);opacity:.6}100%{transform:translate(12px,-8px);opacity:1}}
-
-/* trail beam from ship to astronaut */
-.brand-trail{position:absolute;bottom:40px;left:58px;width:250px;height:24px;background:linear-gradient(90deg,transparent 0%,rgba(167,139,250,.04) 15%,rgba(167,139,250,.12) 35%,rgba(167,139,250,.3) 55%,rgba(167,139,250,.55) 78%,rgba(167,139,250,.7) 100%);clip-path:polygon(0 44%,0 56%,100% 0%,100% 100%);transform-origin:left center;transform:rotate(-48deg);z-index:4;pointer-events:none;animation:brandTrailPulse 3s ease-in-out infinite}
-@keyframes brandTrailPulse{0%,100%{opacity:.5}50%{opacity:1}}
-.brand-trail-glow{position:absolute;bottom:34px;left:54px;width:250px;height:36px;background:linear-gradient(90deg,transparent 0%,rgba(167,139,250,.02) 15%,rgba(167,139,250,.06) 35%,rgba(167,139,250,.12) 55%,rgba(167,139,250,.2) 78%,rgba(167,139,250,.28) 100%);clip-path:polygon(0 44%,0 56%,100% 0%,100% 100%);transform-origin:left center;transform:rotate(-48deg);z-index:3;pointer-events:none;filter:blur(8px);animation:brandTrailPulse 4s ease-in-out infinite}
-
-/* small spaceship at bottom-left */
-.brand-spaceship{position:absolute;bottom:28px;left:28px;z-index:6;width:32px;height:32px;filter:drop-shadow(0 0 16px rgba(167,139,250,.6)) drop-shadow(0 0 40px rgba(124,58,237,.25));animation:brandShipDrift 5s ease-in-out infinite;transform:rotate(48deg)}
-@keyframes brandShipDrift{0%,100%{transform:rotate(48deg) translateY(0)}50%{transform:rotate(46deg) translateY(-5px)}}
-.brand-spaceship svg{display:block;width:100%;height:auto;overflow:visible}
-.brand-spaceship svg path:first-child{animation:shipEngineFlicker .8s ease-in-out infinite alternate}
-@keyframes shipEngineFlicker{0%{opacity:.85}100%{opacity:1}}
-
-/* ── Login box (right) ── */
-.login-box{position:relative;z-index:0;flex:0.9;padding:36px 34px;border-radius:28px;text-align:left;color:#fff;background:linear-gradient(180deg,rgba(15,23,42,.82),rgba(2,6,23,.72));border:1px solid rgba(139,92,246,.16);box-shadow:0 28px 80px rgba(2,6,23,.48),0 0 40px rgba(139,92,246,.08),inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(14px);isolation:isolate}
-.login-box form{display:flex;flex-direction:column;align-items:stretch;gap:14px}
-.login-heading{text-align:center;padding:10px 0 4px;border-bottom:1px solid rgba(139,92,246,.1);margin-bottom:2px}
-.login-heading>svg{width:26px;height:26px;color:#7c3aed;margin-bottom:8px;filter:drop-shadow(0 0 14px rgba(124,58,237,.5))}
-.login-title{color:#fff;font-size:1.45rem;line-height:1.15;margin:0 0 6px;font-weight:800;letter-spacing:0}
-.login-subtitle{color:rgba(226,232,240,.6);font-size:.92rem;margin:0}
-.login-field{position:relative;display:flex;align-items:center;min-height:54px;border-radius:14px;background:rgba(15,23,42,.5);border:1px solid rgba(139,92,246,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.04);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease,transform .2s ease}
-.login-field:focus-within{background:rgba(15,23,42,.65);border-color:rgba(124,58,237,.7);box-shadow:0 0 0 3px rgba(124,58,237,.12),0 0 20px rgba(124,58,237,.15),inset 0 1px 0 rgba(255,255,255,.06)}
-.login-field>svg{position:absolute;left:16px;width:20px;height:20px;color:#7c3aed;pointer-events:none;filter:drop-shadow(0 0 8px rgba(124,58,237,.24))}
-.login-field .form-control{width:100%;min-height:52px;padding:14px 16px 14px 52px;background:transparent!important;border:none!important;border-radius:14px;color:#fff;box-shadow:none!important;font-weight:600}
-.login-field .form-control::placeholder{color:rgba(203,213,225,.5);font-weight:600}
+.astronaut-wrapper{position:absolute;top:52%;left:42%;width:240px;height:300px;margin:-150px 0 0 -120px;pointer-events:none;animation:astroDrift 9s ease-in-out infinite;z-index:1;filter:drop-shadow(0 0 30px rgba(147,197,253,.2))}
+.login-layout{position:relative;width:100%;max-width:920px;margin:0 auto;display:flex;gap:24px;align-items:stretch;z-index:2;padding:28px 0}
+.login-brand-panel,.login-box{border-radius:30px;padding:34px;text-align:left;color:#fff}
+.login-brand-panel{flex:1;display:flex;flex-direction:column;gap:20px}
+.glass-panel{background:rgba(15,23,42,.34);border:1px solid rgba(191,219,254,.16);backdrop-filter:blur(18px);box-shadow:0 24px 60px rgba(2,6,23,.32)}
+.zoom-lens{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:1px solid rgba(191,219,254,.06);box-shadow:0 24px 60px rgba(2,6,23,.32),inset 0 0 100px rgba(2,6,23,.06)}
+.login-box{position:relative;z-index:0;padding:42px 38px;border-radius:28px;text-align:left;color:#fff;background:linear-gradient(180deg,rgba(15,23,42,.72),rgba(2,6,23,.62));border:1px solid rgba(191,219,254,.18);box-shadow:0 28px 80px rgba(2,6,23,.42),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(10px);isolation:isolate}
+.login-box form{display:flex;flex-direction:column;align-items:stretch;gap:16px}
+.login-student-badge{align-self:center;display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;background:linear-gradient(135deg,rgba(67,56,202,.42),rgba(37,99,235,.24));border:1px solid rgba(167,139,250,.24);box-shadow:0 10px 28px rgba(79,70,229,.18),inset 0 1px 0 rgba(255,255,255,.08);color:rgba(255,255,255,.82);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.login-student-badge svg{width:16px;height:16px;color:#7c3aed;filter:drop-shadow(0 0 8px rgba(124,58,237,.55))}
+.login-heading{text-align:center;padding:14px 0 6px;border-bottom:1px solid rgba(191,219,254,.12);margin-bottom:4px}
+.login-heading>svg{width:28px;height:28px;color:#7c3aed;margin-bottom:10px;filter:drop-shadow(0 0 14px rgba(124,58,237,.5))}
+.login-title{color:#fff;font-size:1.55rem;line-height:1.15;margin:0 0 8px;font-weight:800;letter-spacing:0}
+.login-subtitle{color:rgba(226,232,240,.68);font-size:.98rem;margin:0}
+.login-field{position:relative;display:flex;align-items:center;min-height:60px;border-radius:16px;background:rgba(15,23,42,.42);border:1px solid rgba(148,163,184,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease,transform .2s ease}
+.login-field:focus-within{background:rgba(15,23,42,.58);border-color:rgba(96,165,250,.75);box-shadow:0 0 0 4px rgba(59,130,246,.14),0 0 24px rgba(124,58,237,.18),inset 0 1px 0 rgba(255,255,255,.07)}
+.login-field>svg{position:absolute;left:18px;width:24px;height:24px;color:#7c3aed;pointer-events:none;filter:drop-shadow(0 0 10px rgba(124,58,237,.28))}
+.login-field .form-control{width:100%;min-height:58px;padding:16px 18px 16px 60px;background:transparent!important;border:none!important;border-radius:16px;color:#fff;box-shadow:none!important;font-weight:600}
+.login-field .form-control::placeholder{color:rgba(203,213,225,.58);font-weight:600}
 .login-field .form-control:focus{background:transparent!important;color:#fff;box-shadow:none!important}
-.login-password-field .form-control{padding-right:52px}
-.login-password-toggle{position:absolute;right:10px;width:36px;height:36px;border:0;border-radius:10px;display:grid;place-items:center;background:transparent;color:rgba(203,213,225,.6);cursor:pointer;transition:color .2s ease,background .2s ease,transform .2s ease}
+.login-password-field .form-control{padding-right:58px}
+.login-password-toggle{position:absolute;right:12px;width:40px;height:40px;border:0;border-radius:12px;display:grid;place-items:center;background:transparent;color:rgba(203,213,225,.66);cursor:pointer;transition:color .2s ease,background .2s ease,transform .2s ease}
 .login-password-toggle:hover,.login-password-toggle:focus-visible{color:#fff;background:rgba(255,255,255,.08);transform:scale(1.04);outline:none}
-.login-password-toggle svg{width:18px;height:18px}
-.login-submit{min-height:54px;border-radius:16px;font-weight:800;border:none;background:linear-gradient(135deg,#7c3aed 0%,#6d28d9 48%,#4f46e5 100%);box-shadow:0 16px 32px rgba(124,58,237,.24),0 0 20px rgba(124,58,237,.18);display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;cursor:pointer;color:#fff;font-family:inherit;font-size:.95rem}
-.login-submit:hover,.login-submit:focus-visible{transform:translateY(-1px) scale(1.018);box-shadow:0 22px 44px rgba(124,58,237,.34),0 0 36px rgba(124,58,237,.28);filter:brightness(1.06)}
+.login-password-toggle svg{width:20px;height:20px}
+.login-submit{min-height:58px;border-radius:17px;font-weight:800;border:none;background:linear-gradient(135deg,#2563eb 0%,#4f46e5 48%,#7c3aed 100%);box-shadow:0 18px 36px rgba(37,99,235,.26),0 0 24px rgba(124,58,237,.16);display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;cursor:pointer;color:#fff;font-family:inherit;font-size:1rem}
+.login-submit:hover,.login-submit:focus-visible{transform:translateY(-1px) scale(1.018);box-shadow:0 24px 48px rgba(37,99,235,.34),0 0 34px rgba(124,58,237,.26);filter:brightness(1.06)}
 .login-submit:disabled{opacity:.7;cursor:not-allowed;transform:none}
-.login-submit svg{width:17px;height:17px;transition:transform .22s ease}
+.login-submit svg{width:18px;height:18px;transition:transform .22s ease}
 .login-submit:hover svg:not(:disabled){transform:translateX(3px)}
-.login-links{text-align:center;margin-top:-2px}
-.login-link-btn{background:none;border:none;color:rgba(167,139,250,.7);font-family:inherit;font-size:.82rem;cursor:pointer;padding:0;transition:color .2s ease}
-.login-link-btn:hover{color:rgba(167,139,250,1)}
-.login-divider{display:flex;align-items:center;gap:14px;margin:4px 0;color:rgba(203,213,225,.35);font-size:.78rem}
-.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:rgba(139,92,246,.1)}
-.btn-google{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;border-radius:14px;font-weight:700;font-family:inherit;font-size:.9rem;border:1px solid rgba(139,92,246,.16);background:rgba(255,255,255,.05);color:#fff;cursor:pointer;transition:background .2s ease,transform .2s ease,border-color .2s ease}
-.btn-google:hover,.btn-google:focus-visible{background:rgba(255,255,255,.1);border-color:rgba(139,92,246,.28);transform:translateY(-1px)}
-.btn-google:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.login-signup-text{text-align:center;color:rgba(226,232,240,.55);font-size:.82rem;margin:0}
-.login-signup-text a{color:rgba(167,139,250,.85);text-decoration:none;font-weight:600}
-.login-signup-text a:hover{color:rgba(167,139,250,1);text-decoration:underline}
-.login-tabs{display:flex;background:rgba(2,6,23,.35);border-radius:12px;padding:3px;margin-bottom:14px}
-.login-tab{flex:1;padding:9px;border:none;border-radius:10px;background:transparent;color:rgba(226,232,240,.5);font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .25s ease}
-.login-tab.active{background:rgba(124,58,237,.22);color:#fff;box-shadow:0 4px 12px rgba(124,58,237,.15)}
-
-/* ── Senha strength & checklist ── */
-.validacao-msg{font-size:.78rem;margin:-10px 0 0;padding:0 6px;font-weight:600;transition:color var(--motion-fast) ease}
-.validacao-msg.valido{color:var(--green)}
-.validacao-msg.invalido{color:var(--red)}
-.senha-strength{display:flex;align-items:center;gap:10px;margin:-8px 0 2px;padding:0 6px}
-.senha-strength-bar{flex:1;height:4px;border-radius:4px;background:rgba(148,163,184,.16);overflow:hidden}
-.senha-strength-fill{height:100%;border-radius:4px;transition:width .28s ease,background-color .28s ease}
-.senha-strength-label{font-size:.72rem;font-weight:700;white-space:nowrap;min-width:80px;text-align:right;transition:color .28s ease}
-.senha-checklist{display:flex;flex-wrap:wrap;gap:4px 14px;margin:-6px 0 4px;padding:0 6px}
-.check-item{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:600;padding:3px 8px;border-radius:6px;background:rgba(148,163,184,.08);color:rgba(203,213,225,.45);transition:all .22s ease}
-.check-item.check-ok{color:var(--green);background:rgba(34,197,94,.12)}
-.check-item.check-pending{color:var(--red);background:rgba(239,68,68,.1)}
-.check-item svg{width:12px;height:12px;flex-shrink:0}
-.text-danger{color:var(--red)}
+.login-hint{margin-top:18px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(191,219,254,.12)}
+.login-hint span,.login-hint strong{display:block;color:#fff}
+.login-hint span{opacity:.7;margin-bottom:4px}
+.text-danger{color:#f87171}
 .text-danger.mt-3{margin-top:12px}
 
-/* ── Login light theme ── */
+/* ── Login success transition ── */
+.login-success{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:20px;animation:loginSuccessFadeIn .6s ease-out}
+@keyframes loginSuccessFadeIn{0%{opacity:0;transform:scale(.92) translateY(16px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+.login-success-ring{position:absolute;width:180px;height:180px;border-radius:50%;border:3px solid rgba(34,197,94,.25);animation:loginSuccessRing 1.8s ease-in-out infinite}
+@keyframes loginSuccessRing{0%{transform:scale(.85);opacity:.5}50%{transform:scale(1.15);opacity:0}100%{transform:scale(.85);opacity:0}}
+.login-success-icon{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,rgba(34,197,94,.18),rgba(16,185,129,.12));border:2px solid rgba(34,197,94,.3);box-shadow:0 0 60px rgba(34,197,94,.2),0 0 120px rgba(34,197,94,.08);animation:loginSuccessPulse 2s ease-in-out infinite}
+.login-success-icon svg{color:#4ade80;filter:drop-shadow(0 0 20px rgba(34,197,94,.5));animation:loginSuccessCheck .6s ease-out .2s both}
+@keyframes loginSuccessCheck{0%{stroke-dasharray:100;stroke-dashoffset:100}100%{stroke-dasharray:100;stroke-dashoffset:0}}
+@keyframes loginSuccessPulse{0%,100%{box-shadow:0 0 60px rgba(34,197,94,.2),0 0 120px rgba(34,197,94,.08)}50%{box-shadow:0 0 80px rgba(34,197,94,.35),0 0 160px rgba(34,197,94,.12)}}
+.login-success-title{color:#fff;font-size:1.6rem;font-weight:800;margin:0;animation:loginSuccessText .5s ease-out .3s both}
+.login-success-sub{color:rgba(226,232,240,.6);font-size:.95rem;margin:0;animation:loginSuccessText .5s ease-out .45s both}
+@keyframes loginSuccessText{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+body.light .login-success-icon{background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(16,185,129,.06));border-color:rgba(34,197,94,.2)}
+body.light .login-success-icon svg{color:#16a34a;filter:drop-shadow(0 0 14px rgba(34,197,94,.35))}
+body.light .login-success-ring{border-color:rgba(34,197,94,.15)}
+body.light .login-success-title{color:#0f172a}
+body.light .login-success-sub{color:#475569}
+.login-divider{display:flex;align-items:center;gap:14px;margin:16px 0 0;color:rgba(203,213,225,.4);font-size:.8rem}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:rgba(191,219,254,.12)}
+.btn-google{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 24px;border-radius:12px;font-weight:700;font-family:inherit;font-size:.92rem;border:1px solid rgba(191,219,254,.2);background:transparent;color:rgba(226,232,240,.85);cursor:pointer;transition:all .2s ease;width:fit-content;margin:0 auto}
+.btn-google:hover,.btn-google:focus-visible{border-color:rgba(191,219,254,.4);color:#fff;background:rgba(255,255,255,.06)}
+.btn-google:active{background:rgba(255,255,255,.1)}
+.btn-google:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn-google svg{flex-shrink:0}
+
 body.light .login-screen{background:radial-gradient(circle at 20% 30%,rgba(59,130,246,.06),transparent 40%),radial-gradient(circle at 80% 70%,rgba(124,58,237,.05),transparent 35%),linear-gradient(140deg,#eef4ff 0%,#f8fbff 54%,#dbeafe 100%)}
-body.light .login-brand-panel{background:linear-gradient(170deg,rgba(255,255,255,.82),rgba(239,246,255,.72));border-color:rgba(139,92,246,.1);color:#1f2937;box-shadow:0 24px 60px rgba(139,92,246,.08)}
-body.light .login-box{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(248,250,255,.84));border-color:rgba(139,92,246,.1);color:#1f2937;box-shadow:0 24px 60px rgba(139,92,246,.08)}
+body.light .login-brand-panel,body.light .login-box{background:linear-gradient(180deg,rgba(255,255,255,.86),rgba(239,246,255,.74));border-color:rgba(37,99,235,.16);color:#1f2937;box-shadow:0 24px 60px rgba(37,99,235,.14)}
+body.light .zoom-lens{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-color:rgba(37,99,235,.08);box-shadow:0 24px 60px rgba(37,99,235,.14),inset 0 0 80px rgba(37,99,235,.04)}
 body.light .cosmos-nebula.nebula-one{opacity:.14}
 body.light .cosmos-nebula.nebula-two{opacity:.12}
-body.light .login-brand-astro{filter:drop-shadow(0 0 30px rgba(139,92,246,.18))}
 body.light .login-title{color:#0f172a}
 body.light .login-subtitle{color:#475569}
-body.light .login-field{background:rgba(255,255,255,.7);border-color:rgba(139,92,246,.15)}
+body.light .login-student-badge{background:linear-gradient(135deg,rgba(124,58,237,.14),rgba(37,99,235,.12));color:#3730a3;border-color:rgba(124,58,237,.2)}
+body.light .login-field{background:rgba(255,255,255,.68);border-color:rgba(96,165,250,.26)}
 body.light .login-field .form-control{color:#0f172a}
 body.light .login-field .form-control::placeholder{color:#64748b}
 body.light .login-password-toggle{color:#64748b}
-body.light .login-password-toggle:hover,body.light .login-password-toggle:focus-visible{color:#6d28d9;background:rgba(124,58,237,.08)}
-body.light .login-link-btn{color:rgba(124,58,237,.65)}
-body.light .login-link-btn:hover{color:rgba(124,58,237,1)}
+body.light .login-password-toggle:hover,body.light .login-password-toggle:focus-visible{color:#1d4ed8;background:rgba(37,99,235,.08)}
+body.light .login-subtitle{color:#64748b}
+body.light .login-hint{background:#f8fbff;border-color:#bfdbfe}
+body.light .login-hint span{color:#64748b}
+body.light .login-hint strong{color:#0f172a}
 body.light .login-divider{color:rgba(148,163,184,.5)}
-body.light .login-divider::before,body.light .login-divider::after{background:rgba(139,92,246,.1)}
-body.light .btn-google{border-color:rgba(139,92,246,.12);background:rgba(255,255,255,.5);color:#1f2937}
-body.light .btn-google:hover,body.light .btn-google:focus-visible{background:rgba(255,255,255,.8);border-color:rgba(139,92,246,.24)}
-body.light .validacao-msg.valido{color:var(--green)}
-body.light .validacao-msg.invalido{color:var(--red)}
-body.light .check-item{background:rgba(148,163,184,.1);color:rgba(71,85,105,.5)}
-body.light .check-item.check-ok{color:var(--green);background:rgba(34,197,94,.1)}
-body.light .check-item.check-pending{color:var(--red);background:rgba(239,68,68,.08)}
-body.light .senha-strength-bar{background:rgba(148,163,184,.2)}
-body.light .login-signup-text{color:rgba(71,85,105,.6)}
-body.light .login-signup-text a{color:rgba(124,58,237,.7)}
-body.light .login-tabs{background:rgba(139,92,246,.08)}
-body.light .login-tab{color:rgba(71,85,105,.5)}
-body.light .login-tab.active{background:rgba(124,58,237,.12);color:#6d28d9;box-shadow:0 2px 8px rgba(124,58,237,.1)}
+body.light .login-divider::before,body.light .login-divider::after{background:rgba(191,219,254,.2)}
+body.light .btn-google{border-color:rgba(37,99,235,.18);color:#475569}
+body.light .btn-google:hover,body.light .btn-google:focus-visible{border-color:rgba(37,99,235,.35);color:#1e293b;background:rgba(37,99,235,.04)}
 
 @media (max-width:991px){
   .login-screen{align-items:flex-start;overflow:auto;padding:16px}
   .login-layout{flex-direction:column;padding:14px 0 28px;gap:16px}
-  .login-brand-panel,.login-box{padding:24px;border-radius:24px}
+  .login-brand-panel,.login-box{padding:18px;border-radius:22px}
   .login-cosmos .orbit{display:none}
   .cosmos-particles{display:none}
-  .login-brand-panel{align-items:center}
-  .login-box{padding:24px 20px}
+  .astronaut-wrapper{width:140px;height:180px;margin:-90px 0 0 -70px;top:48%;left:50%}
+  .login-box{padding:24px 18px}
   .login-box form{gap:12px}
   .login-heading{padding:8px 0 2px}
-  .login-title{font-size:1.3rem}
-  .login-subtitle{font-size:.9rem;text-align:center}
-  .login-field{min-height:50px;border-radius:12px}
-  .login-field .form-control{min-height:48px;padding-top:11px;padding-bottom:11px}
-  .login-submit{min-height:50px}
+  .login-title{font-size:1.35rem}
+  .login-subtitle{font-size:.92rem;text-align:center}
+  .login-field{min-height:54px;border-radius:14px}
+  .login-field .form-control{min-height:52px;padding-top:12px;padding-bottom:12px}
+  .login-submit{min-height:52px}
 }
 @media(max-width:400px){
   .login-screen{padding:12px}
   .login-layout{padding:8px 0 16px}
-  .login-brand-panel{padding:18px;border-radius:20px}
   .login-box{padding:18px 14px;border-radius:18px}
   .login-box form{gap:10px}
   .login-title{font-size:1.15rem}
   .login-subtitle{font-size:.85rem}
-  .login-field{min-height:46px;border-radius:12px}
-  .login-field .form-control{min-height:44px;padding-top:10px;padding-bottom:10px;padding-left:44px;font-size:.85rem}
-  .login-field>svg{width:18px;height:18px;left:12px}
-  .login-submit{min-height:46px;font-size:.9rem}
+  .login-field{min-height:48px;border-radius:12px}
+  .login-field .form-control{min-height:46px;padding-top:10px;padding-bottom:10px;padding-left:48px;font-size:.85rem}
+  .login-field>svg{width:20px;height:20px;left:14px}
+  .login-submit{min-height:48px;font-size:.9rem}
+  .login-student-badge{font-size:.7rem;padding:6px 14px}
+  .login-hint{font-size:.82rem;padding:10px 12px}
 }
 
 /* ===== HOME / DASHBOARD ===== */

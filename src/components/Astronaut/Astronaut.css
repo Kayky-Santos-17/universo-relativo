@@ -3,11 +3,6 @@
   50%      { transform: translateY(-14px) translateX(10px) scale(var(--astro-scale)); }
 }
 
-@keyframes astroGlow {
-  0%, 100% { box-shadow: 0 0 4px rgba(125,211,252,0.3); }
-  50%      { box-shadow: 0 0 16px rgba(125,211,252,0.6); }
-}
-
 .astro-root {
   display: inline-flex;
   align-items: center;
@@ -23,106 +18,26 @@
 
 .astro {
   position: relative;
-  width: 120px;
-  height: 150px;
+  width: 110px;
+  height: 168px;
   transform: scale(var(--astro-scale));
   transform-origin: center center;
   will-change: transform;
+  filter: drop-shadow(0 10px 20px rgba(124, 58, 237, 0.3));
 }
 
 .astro--animated {
   animation: astroFloat 6s ease-in-out infinite;
 }
 
-.astro-helmet {
-  position: absolute;
-  top: 0;
-  left: 28px;
-  width: 66px;
-  height: 62px;
-  background: linear-gradient(180deg, #f8fafc, #cbd5e1);
-  border: 5px solid #e2e8f0;
-  border-radius: 50%;
-  z-index: 4;
-  animation: astroGlow 4s ease-in-out infinite;
-}
-
-.astro-face {
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  background: linear-gradient(180deg, rgba(125,211,252,.88), rgba(37,99,235,.34));
-}
-
-.astro-pack {
-  position: absolute;
-  top: 58px;
-  left: 20px;
-  width: 18px;
-  height: 50px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #f8fafc, #cbd5e1);
-  z-index: 0;
-}
-
-.astro-body {
-  position: absolute;
-  top: 54px;
-  left: 33px;
-  width: 56px;
-  height: 58px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #f8fafc, #cbd5e1);
-  z-index: 2;
-}
-
-.astro-arm {
-  position: absolute;
-  top: 62px;
-  width: 16px;
-  height: 48px;
-  background: #e2e8f0;
-  border-radius: 999px;
-  z-index: 1;
-}
-
-.astro-arm--left {
-  left: 18px;
-  transform: rotate(30deg);
-  transform-origin: top center;
-}
-
-.astro-arm--right {
-  right: 18px;
-  transform: rotate(-34deg);
-  transform-origin: top center;
-}
-
-.astro-leg {
-  position: absolute;
-  top: 104px;
-  width: 16px;
-  height: 44px;
-  background: #e2e8f0;
-  border-radius: 999px;
-  z-index: 1;
-}
-
-.astro-leg--left {
-  left: 42px;
-  transform: rotate(12deg);
-  transform-origin: top center;
-}
-
-.astro-leg--right {
-  right: 42px;
-  transform: rotate(-10deg);
-  transform-origin: top center;
+.astro-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .astro--animated,
-  .astro-helmet {
+  .astro--animated {
     animation: none !important;
   }
 }
